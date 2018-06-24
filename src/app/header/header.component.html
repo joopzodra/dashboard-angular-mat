@@ -1,0 +1,7 @@
+<mat-toolbar color="primary">
+  <span class="mat-headline">
+    Welcome to {{ day }} {{ month }} {{ year }}
+  </span>
+  <span class="space-filler"></span>
+  <button mat-icon-button="" *ngIf="!mediaLarge" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+</mat-toolbar>

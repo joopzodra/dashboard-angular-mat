@@ -1,0 +1,9 @@
+#dashboard-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 16px;
+}
+#dashboard-container > div {
+    flex: 1 1 360px;
+    margin: 8px;
+}

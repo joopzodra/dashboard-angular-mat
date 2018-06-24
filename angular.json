@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "md-dashboard": {
+    "dashboard-md": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/md-dashboard",
+            "outputPath": "dist/dashboard-md",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,7 +27,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "src/styles/styles.scss",
+              "src/styles/dashboard-md-theme.scss"
             ],
             "scripts": []
           },
@@ -54,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "md-dashboard:build"
+            "browserTarget": "dashboard-md:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "md-dashboard:build:production"
+              "browserTarget": "dashboard-md:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "md-dashboard:build"
+            "browserTarget": "dashboard-md:build"
           }
         },
         "test": {
@@ -76,6 +80,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "src/styles.scss"
             ],
             "scripts": [],
@@ -99,7 +106,7 @@
         }
       }
     },
-    "md-dashboard-e2e": {
+    "dashboard-md-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -107,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "md-dashboard:serve"
+            "devServerTarget": "dashboard-md:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "md-dashboard:serve:production"
+              "devServerTarget": "dashboard-md:serve:production"
             }
           }
         },
@@ -127,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "md-dashboard"
+  "defaultProject": "dashboard-md"
 }

@@ -1,0 +1,20 @@
+<mat-card id="nos-news-container">
+  <mat-card-title >
+    <span>Nieuws</span>
+    <img class="logo" src="assets/200px-NOS_logo.png" alt="NOS logo">
+  </mat-card-title>
+  <mat-card-content>
+    <ul class="ul">
+      <li *ngFor="let item of items">
+        <h3 class="mat-h3 bold">{{item.title}}</h3>
+        <div class="mat-body-1">
+          <img class="thumbnail" [src]="item.thumbnail" alt="thumbnail">
+          <span>{{item.trailText}}</span>
+        </div>
+        <mat-divider *ngIf="!last"></mat-divider>
+      </li>
+    </ul>
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+  </mat-card-content>
+</mat-card>
+

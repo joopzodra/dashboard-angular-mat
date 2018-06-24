@@ -1,0 +1,29 @@
+mat-card-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+}
+svg {
+  width: 80px;
+  height: 30px;
+}
+/* The mat-divider is absolutely positioned and has a width: 100%. We want it to respect the width of the li-element, therefore add position: relative to the li. */
+li {
+  position: relative;
+}
+img {
+  height: 40px;
+  margin: 0 8px 0px 0;
+}
+.mat-h3 {
+  line-height: 1;
+}
+.mat-body-1 {
+  display: flex;
+}
+.mat-h3, .mat-body-1 {
+  margin-bottom: 8px;
+}
+.bold {
+  font-weight:bold;
+}

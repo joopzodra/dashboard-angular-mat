@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+@import '../app/dashboard/widgets/guardian-news-widget/guardian-news-widget.component-theme.scss';
+// Plus imports for other components in your app.
+
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$md-dashboard-primary: mat-palette($mat-lime);
+$md-dashboard-accent:  mat-palette($mat-light-blue);
+
+// The warn palette is optional (defaults to red).
+$md-dashboard-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$md-dashboard-theme: mat-light-theme($md-dashboard-primary, $md-dashboard-accent, $md-dashboard-warn);
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Avenir, Helvetica, Arial, sans-serif'
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+@include angular-material-theme($md-dashboard-theme);
+@include mat-core($custom-typography);
+@include guardian-news-widget-theme($md-dashboard-theme);
