@@ -1,36 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NosNewsService } from '../../../services/nos-news/nos-news.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { NewsWidgetComponent } from '../news-widget/news-widget.component';
+
+/*
+ * The NosNewsWidgetComponent shows NOS news items.
+ * The component uses the html template and scss file in the news-widget directory.
+ * Its properties sets the values in the html template.
+ * It exposes its NosNewsService to its super, the NewsWidgetComponent.
+ */
 
 @Component({
   selector: 'jr-nos-news-widget',
-  templateUrl: './nos-news-widget.component.html',
-  styleUrls: ['./nos-news-widget.component.scss']
+  templateUrl: '../news-widget/news-widget.component.html',
+  styleUrls: ['../news-widget/news-widget.component.scss']
 })
-export class NosNewsWidgetComponent implements OnInit {
+export class NosNewsWidgetComponent extends NewsWidgetComponent {
 
-  items: any[] = [];
-  errorMessage = '';
+  widgetTitle = 'Nieuws';
+  logoSrc = 'assets/200px-NOS_logo.png';
+  logoAlt = 'NOS logo';
+  logoWidth = '50px';
+  logoHeight = '18px';
 
-  constructor(private newsService: NosNewsService) { }
-
-  ngOnInit() {
-    this.getNews();
-  }
-
-  getNews() {
-    this.newsService.getNews()
-      .subscribe((res: any) => {
-        const regex = RegExp('<p>(.*?)<\/p>')
-        this.items = res.map((item: any) => {
-          const regexResult = regex.exec(item.description[0]);
-          return {
-            title: item.title[0],
-            trailText: regexResult ? regexResult[1] : '',
-            thumbnail: item.enclosure[0].$.url
-          }
-        }),
-          (errorResponse: HttpErrorResponse) => this.errorMessage = errorResponse.error
-      })
+ constructor(protected newsService: NosNewsService) {
+     super(newsService)
   }
 }

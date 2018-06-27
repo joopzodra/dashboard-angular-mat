@@ -2,6 +2,12 @@ import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
+/*
+ * The SidenavComponent is a child component of the AppComponent.
+ * Depending on the screen width, the sidenav is opened or closed. On large screens it's opened. On small and medium screen it's closed and can its opening and closing can be toggled.
+ * The toggle method is called in the AppComponent's template (on a toggleEvent, fired by clicking the HeaderComponent's nav button). 
+ */
+
 @Component({
   selector: 'jr-sidenav',
   templateUrl: './sidenav.component.html',

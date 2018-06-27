@@ -1,5 +1,4 @@
 @import '~@angular/material/theming';
-@import '../app/dashboard/widgets/guardian-news-widget/guardian-news-widget.component-theme.scss';
 // Plus imports for other components in your app.
 
 @include mat-core();
@@ -21,9 +20,18 @@ $custom-typography: mat-typography-config(
 );
 
 // Include theme styles for core and each component used in your app.
+@mixin widget-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .mat-card-title {
+    background-color: mat-color($primary, A100);
+  }
+}
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
 @include angular-material-theme($md-dashboard-theme);
 @include mat-core($custom-typography);
-@include guardian-news-widget-theme($md-dashboard-theme);
+@include widget-theme($md-dashboard-theme);

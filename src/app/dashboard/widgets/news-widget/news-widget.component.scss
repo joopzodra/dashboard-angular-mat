@@ -4,10 +4,6 @@ mat-card-title {
   padding: 4px 8px;
   align-items: center;
 }
-.logo {
-  width: 50px;
-  height: 18px;
-}
 /* The mat-divider is absolutely positioned and has a width: 100%. We want it to respect the width of the li-element, therefore add position: relative to the li. */
 li {
   position: relative;

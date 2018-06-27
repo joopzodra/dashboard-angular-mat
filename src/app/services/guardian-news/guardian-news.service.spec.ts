@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { GuardianNewsService } from './guardian-news.service';
-import { of } from 'rxjs';
+import { NewsItem } from '../../models/news-item';
 
 describe('GuardianNewsService', () => {
 
@@ -10,6 +10,12 @@ describe('GuardianNewsService', () => {
   let httpTestingController: HttpTestingController;
   let service: GuardianNewsService;
   const baseUrl = 'http://localhost:8000/dashboard';
+  const stubNewsItem: NewsItem = {
+    title: 'stub title',
+    trailText: 'stub trail text',
+    thumbnail: '',
+    body: 'stub body text'
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,38 +32,27 @@ describe('GuardianNewsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('its getNews method does the expected get-request', () => {
-    const guardianNewsResponse: any = {
-      response: {
-        results: Array(3).fill('http://test')
-      }
-    };
-    const singleResponse = { name: 'test-response' }
-    const singleResponses = Array(3).fill(singleResponse);
-    const spy = spyOn(service, 'getSingle').and.returnValue(
-      of(singleResponse)
-    );
-    service.getNews()
-      .subscribe(response => {
-        expect(response).toEqual(singleResponses);
-        expect(service.getSingle).toHaveBeenCalled();
+  it('its getWidgetNews method returns an observable of an array of news items', () => {
+    const stubResponse = Array(3).fill(stubNewsItem);
+    service.getWidgetNews()
+      .subscribe(res => {
+        expect(res).toEqual(stubResponse);
       });
-    const req = httpTestingController.expectOne(baseUrl + '/guardian-news?section=technology&page-size=3');
+    const req = httpTestingController.expectOne(baseUrl + '/guardian-news?page-size=3');
     expect(req.request.method).toEqual('GET');
-    req.flush(guardianNewsResponse);
+    req.flush(stubResponse);
     httpTestingController.verify();
   });
 
-  it('its getSingle method does the expected get-request', () => {
-    const testSingleUrl = 'https://test-url';
-    const testResponse = { name: 'test-response' };
-    service.getSingle(testSingleUrl)
-      .subscribe(response => {
-        expect(response).toEqual(testResponse);
+  it('its getPageNews method returns an observable of an array of news items', () => {
+    const stubResponse = Array(20).fill(stubNewsItem);
+    service.getPageNews()
+      .subscribe(res => {
+        expect(res).toEqual(stubResponse);
       });
-    const req = httpTestingController.expectOne(`${baseUrl}/guardian-single?single-url=${testSingleUrl}&show-fields=trailText,thumbnail`);
+    const req = httpTestingController.expectOne(baseUrl + '/guardian-news?page-size=20&include-body=true');
     expect(req.request.method).toEqual('GET');
-    req.flush(testResponse);
+    req.flush(stubResponse);
     httpTestingController.verify();
   });
 });

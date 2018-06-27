@@ -1,9 +1,0 @@
-@mixin guardian-news-widget-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map-get($theme, primary);
-
-  // Use mat-color to extract individual colors from a palette as necessary.
-  .mat-card-title {
-    background-color: mat-color($primary, A100);
-  }
-}

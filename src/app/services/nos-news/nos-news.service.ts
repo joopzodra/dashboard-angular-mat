@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { flatMap, catchError } from 'rxjs/operators';
-import { of, forkJoin } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
+import { NewsService } from '../news/news.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NosNewsService {
+export class NosNewsService extends NewsService {
 
-  constructor(private http: HttpClient) { }
-  baseUrl = environment.production ? 'https://frontendjr.nldashboard/' : 'http://localhost:8000/dashboard';
-
-  getNews() {
-    return this.http.get<any>(this.baseUrl + '/nos-news')
+  constructor(protected http: HttpClient) {
+    super('/nos-news', http);
   }
 }

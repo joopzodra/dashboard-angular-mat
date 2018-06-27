@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
+/*
+ * The HeaderComponent is a child component of the AppComponent.
+ * It shows the app title and the current date.
+ */
+
 @Component({
   selector: 'jr-header',
   templateUrl: './header.component.html',

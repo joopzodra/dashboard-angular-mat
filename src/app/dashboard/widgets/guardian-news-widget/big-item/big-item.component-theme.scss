@@ -1,3 +1,5 @@
+/* A demo mat theme.scss file */
+
 @mixin big-item-theme($theme) {
   // Extract whichever individual palettes you need from the theme.
   $primary: map-get($theme, primary);

@@ -1,20 +1,20 @@
-import { of, forkJoin } from 'rxjs';
+import { of } from 'rxjs';
+import { NewsItem } from '../models/news-item';
 
-const newsItem = {
-  response: {
-    content: {
-      webTitle: 'stub title',
-      fields: {
-        trailText: 'stub trailtext',
-        thumbnail: './img/guardian-500.jpg'
-      }
-    }
-  }
+const newsItem: NewsItem = {
+  title: 'stub title',
+  trailText: 'stub trail text',
+  thumbnail: '',
+  body: 'stub body text'
 }
 
 export class MockGuardianNewsService {
-  getNews() {
-    return forkJoin([of(newsItem), of(newsItem), of(newsItem)]);
+  getWidgetNews() {
+    return of(Array(3).fill(newsItem));
+  }
+
+  getPageNews() {
+    console.log('getPageNews has to be implemented in MockGuardianNewsService')
   }
 }
 
