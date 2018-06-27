@@ -1,6 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {environment } from '../../../environments/environment';
+
 import { GuardianNewsService } from './guardian-news.service';
 import { NewsItem } from '../../models/news-item';
 
@@ -9,7 +11,7 @@ describe('GuardianNewsService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let service: GuardianNewsService;
-  const baseUrl = 'http://localhost:8000/dashboard';
+  const baseUrl = environment.backendBaseUrl;
   const stubNewsItem: NewsItem = {
     title: 'stub title',
     trailText: 'stub trail text',

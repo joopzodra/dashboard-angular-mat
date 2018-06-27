@@ -9,7 +9,7 @@ import { NewsItem } from '../../models/news-item';
  */
 
 export abstract class NewsService {
-  baseUrl = environment.production ? 'https://frontendjr.nldashboard/' : 'http://localhost:8000/dashboard';
+  baseUrl = environment.backendBaseUrl;
 
   constructor(private apiEndpoint: string, protected http: HttpClient) { }
 

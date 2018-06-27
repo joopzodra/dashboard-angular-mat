@@ -6,10 +6,11 @@ import { Observable, of } from 'rxjs';
 import { DashboardComponent } from './dashboard.component';
 
 @Component({ selector: 'jr-guardian-news-widget', template: '' })
-class GuardianNewsComponentComponent { }
-
+class GuardianStubComponent { }
 @Component({ selector: 'jr-nos-news-widget', template: '' })
-class NosNewsComponent { }
+class NosStubComponent { }
+@Component({ selector: 'jr-openweathermap-widget', template: '' })
+class OpenWeathermapStubComponent { }
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -20,11 +21,11 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
-        GuardianNewsComponentComponent,
-        NosNewsComponent
+        GuardianStubComponent,
+        NosStubComponent,
+        OpenWeathermapStubComponent
       ]
-    })
-      .compileComponents();
+    });
   }));
 
   beforeEach(() => {

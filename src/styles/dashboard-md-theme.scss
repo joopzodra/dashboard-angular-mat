@@ -29,9 +29,20 @@ $custom-typography: mat-typography-config(
     background-color: mat-color($primary, A100);
   }
 }
+
+@mixin widget-accent-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $accent: map-get($theme, accent);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .mat-card-title.accent {
+    background-color: mat-color($accent, 100);
+  }
+}
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
 @include angular-material-theme($md-dashboard-theme);
 @include mat-core($custom-typography);
 @include widget-theme($md-dashboard-theme);
+@include widget-accent-theme($md-dashboard-theme);

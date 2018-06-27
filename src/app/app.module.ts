@@ -11,6 +11,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NosNewsWidgetComponent } from './dashboard/widgets/nos-news-widget/nos-news-widget.component';
+import { OpenweathermapWidgetComponent } from './dashboard/widgets/openweathermap-widget/openweathermap-widget.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NosNewsWidgetComponent } from './dashboard/widgets/nos-news-widget/nos-
     HeaderComponent,
     DashboardComponent,
     NosNewsWidgetComponent,
+    OpenweathermapWidgetComponent,
   ],
   imports: [
     BrowserModule,
