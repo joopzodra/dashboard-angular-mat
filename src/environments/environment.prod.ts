@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendBaseUrl: 'https://frontendjr.nldashboard'
+  backendBaseUrl: 'https://frontendjr.nl/dashboard'
 };
