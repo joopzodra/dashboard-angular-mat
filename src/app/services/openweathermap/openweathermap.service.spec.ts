@@ -46,8 +46,8 @@ describe('OpenweathermapService', () => {
       .subscribe(res => {
         expect(res).toEqual(stubResponse);
       });
-    // ????? const req = httpTestingController.expectOne(baseUrl + '/guardian-news?page-size=20&include-body=true');
-    expect(req.request.method).toEqual('GET');
+/*    ????? const req = httpTestingController.expectOne(baseUrl + '/guardian-news?page-size=20&include-body=true');
+    expect(req.request.method).toEqual('GET');*/
     req.flush(stubResponse);
     httpTestingController.verify();
   });

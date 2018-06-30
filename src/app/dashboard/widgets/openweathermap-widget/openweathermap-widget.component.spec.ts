@@ -26,4 +26,8 @@ describe('OpenweathermapWidgetComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('shows a weather item', () => {
+
+  });
 });

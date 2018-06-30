@@ -1,10 +1,12 @@
-interface ForecastDataItem {
+export interface ForecastData {
   datetime: number,
   description: string,
   icon: string,
   temp: number,
   wind_direction: number,
-  wind_speed: number
+  wind_speed: number,
+  day?: number,
+  time?: string
 }
 
 export interface OpenweathermapItem {
@@ -18,6 +20,6 @@ export interface OpenweathermapItem {
   },
   forecast: {
     city: string,
-    data: ForecastDataItem[]
+    data: ForecastData[]
   }
 }

@@ -4,7 +4,16 @@
     <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps">
   </mat-card-title>
   <mat-card-content>
-
+    <div id="current-weather">
+      <div class="text-info">
+        <div class="mat-h2 city-name">Utrecht</div>
+        <div class="mat-body-2 description">{{currentWeather.description}}</div>
+        <div class="mat-display-1">{{currentWeather.temp}}°</div>
+      </div>
+      <div class="icon-container">
+        <img class="icon" [src]="currentWeather?.icon" alt="icoontje van weertype">
+      </div>
+    </div>
 <!--     <p *ngIf="errorMessage">{{errorMessage}}</p>
- -->  </mat-card-content>
+-->  </mat-card-content>
 </mat-card>

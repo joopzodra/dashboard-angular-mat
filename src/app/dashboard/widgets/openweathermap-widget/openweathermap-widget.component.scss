@@ -3,27 +3,36 @@ mat-card-title {
   justify-content: space-between;
   padding: 4px 8px;
   align-items: center;
+  margin-bottom: 0;
 }
 .logo {
   width: 140px;
 }
-/* The mat-divider is absolutely positioned and has a width: 100%. We want it to respect the width of the li-element, therefore add position: relative to the li. */
-li {
-  position: relative;
-}
-.thumbnail {
-  height: 50px;
-  margin: 0 8px 0px 0;
-}
-.mat-h3 {
-  line-height: 1;
-}
-.mat-body-1 {
+#current-weather {
   display: flex;
+  align-content: center;
 }
-.mat-h3, .mat-body-1 {
-  margin-bottom: 8px;
+#current-weather .text-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
-.bold {
+#current-weather .description {
+  white-space: nowrap;
+}
+.mat-display-1 {
+  margin-bottom: 0;
+}
+.icon-container {
+  flex: 1 1 100%;
+  text-align: center;
+}
+.icon {
+  width: 128px;
+}
+#current-weather .city-name {
+  margin-bottom: 0;
+}
+/* .bold {
   font-weight:bold;
-}
+} */
