@@ -5,7 +5,7 @@ import { GuardianNewsService } from '../../../services/guardian-news/guardian-ne
 import { MockGuardianNewsService } from '../../../testing/mock-guardian-news.service';
 import { GuardianNewsWidgetComponent } from './guardian-news-widget.component';
 
-describe('GuardianNewsComponent', () => {
+describe('GuardianNewsWidgetComponent', () => {
   let component: GuardianNewsWidgetComponent;
   let fixture: ComponentFixture<GuardianNewsWidgetComponent>;
   let el: HTMLElement;

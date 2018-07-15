@@ -3,6 +3,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+/*
+ * The AppComponent has a BreakpointObserver injected.
+ * The BreakpointObserver is part of the Angular Material component dev kit (CDK). It is a utility for evaluating media queries and reacting to their changing.
+ * The AppComponent passes the breakpoint values to its child components as input properties.
+ */
+
 @Component({
   selector: 'jr-root',
   templateUrl: './app.component.html',

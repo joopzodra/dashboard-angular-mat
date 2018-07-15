@@ -5,7 +5,7 @@ import { NewsWidgetComponent } from '../news-widget/news-widget.component';
 /*
  * The GuardianNewsWidgetComponent shows Guardian tech news items.
  * The component uses the html template and scss file in the news-widget directory.
- * Its properties sets the values in the html template.
+ * Its properties set the values in the html template.
  * It exposes its GuardianNewsService to its super, the NewsWidgetComponent.
  */
 

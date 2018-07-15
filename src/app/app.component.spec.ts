@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, Input } from '@angular/core';
 import  { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ class DashboardStubComponent {@Input() 'breakpoints': Observable<boolean[]>}
 class RouterOutletStubComponent { }
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -30,11 +30,11 @@ describe('AppComponent', () => {
         SidenavStubComponent,
         DashboardStubComponent
       ]      
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
+    });
+  });
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
 });

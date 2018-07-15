@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
@@ -11,12 +11,12 @@ describe('HeaderComponent', () => {
   let expectedBreakpoints = new Subject<boolean[]>();
   let headerEl: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [AppMaterialModule]
     });
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);

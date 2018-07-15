@@ -25,9 +25,9 @@ describe('OpenweathermapService', () => {
     service = new OpenweathermapService(httpClient);
   });
 
-  it('should be created', inject([OpenweathermapService], (service: OpenweathermapService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
   it('its getWidgetWeather method returns an observable of an Openweathermap item', () => {
     service.getWidgetWeather('test')
@@ -47,9 +47,9 @@ describe('OpenweathermapService', () => {
         expect(res).toEqual(stubResponse);
       });
 /*    ????? const req = httpTestingController.expectOne(baseUrl + '/guardian-news?page-size=20&include-body=true');
-    expect(req.request.method).toEqual('GET');*/
+    expect(req.request.method).toEqual('GET');
     req.flush(stubResponse);
-    httpTestingController.verify();
+    httpTestingController.verify();*/
   });
 
 });

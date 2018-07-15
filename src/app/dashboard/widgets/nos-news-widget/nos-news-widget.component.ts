@@ -5,7 +5,7 @@ import { NewsWidgetComponent } from '../news-widget/news-widget.component';
 /*
  * The NosNewsWidgetComponent shows NOS news items.
  * The component uses the html template and scss file in the news-widget directory.
- * Its properties sets the values in the html template.
+ * Its properties set the values in the html template.
  * It exposes its NosNewsService to its super, the NewsWidgetComponent.
  */
 

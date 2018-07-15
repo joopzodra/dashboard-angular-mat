@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMaterialModule } from '../../app.material-module';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -17,7 +17,7 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
   let expectedBreakpoints: Observable<boolean[]>
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
@@ -26,7 +26,7 @@ describe('DashboardComponent', () => {
         OpenWeathermapStubComponent
       ]
     });
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);

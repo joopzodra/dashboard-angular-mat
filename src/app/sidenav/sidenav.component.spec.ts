@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -10,12 +10,12 @@ describe('SidenavComponent', () => {
   let fixture: ComponentFixture<SidenavComponent>;
   let expectedBreakpoints = new Subject<boolean[]>();
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SidenavComponent],
       imports: [AppMaterialModule, BrowserAnimationsModule]
     });
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SidenavComponent);

@@ -32,11 +32,11 @@ export class OpenweathermapWidgetComponent implements OnInit {
     const forecast = data.forecast.data;
     forecast.forEach(item => {
       const datetime = new Date(item.datetime * 1000)
-      console.log(datetime,datetime.getDay())
+      // console.log(datetime,datetime.getDay())
       item.day = datetime.getDay()
       item.icon = this.iconToIconUrl(item.icon);
     })
-    console.log(forecast)
+    // console.log(forecast)
   }
 
   iconToIconUrl = (icon: string) => {
