@@ -29,6 +29,10 @@ describe('NosNewsService', () => {
     service = TestBed.get(NosNewsService);
   });
 
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -42,7 +46,6 @@ describe('NosNewsService', () => {
     const req = httpTestingController.expectOne(baseUrl + '/nos-news?page-size=3');
     expect(req.request.method).toEqual('GET');
     req.flush(stubResponse);
-    httpTestingController.verify();
   });
 
   it('its getPageNews method returns an observable of an array of news items', () => {
@@ -54,8 +57,5 @@ describe('NosNewsService', () => {
     const req = httpTestingController.expectOne(baseUrl + '/nos-news?page-size=20&include-body=true');
     expect(req.request.method).toEqual('GET');
     req.flush(stubResponse);
-    httpTestingController.verify();
   });
-
-
 });
