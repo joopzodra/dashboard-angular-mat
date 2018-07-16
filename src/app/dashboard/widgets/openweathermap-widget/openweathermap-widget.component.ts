@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 import { environment } from '../../../../environments/environment'
 import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
@@ -14,13 +16,18 @@ export class OpenweathermapWidgetComponent implements OnInit {
 
   currentWeather = currentWeather;
   forecast = forecast;
+  errorMessage = '';
 
   constructor(private service: OpenweathermapService) { }
 
   ngOnInit() {
     this.service.getWidgetWeather('utrecht').subscribe(res => {
       this.handleWeatherData(res);
-    })
+    },
+      (err: HttpErrorResponse) => {
+        this.errorMessage = err.error;
+        return of();
+      })
   }
 
   handleWeatherData(data: OpenweathermapItem) {
