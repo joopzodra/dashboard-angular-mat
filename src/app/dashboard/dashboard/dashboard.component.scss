@@ -1,9 +1,10 @@
 #dashboard-container {
   display: flex;
   flex-flow: row wrap;
-  margin: 16px;
+  padding: 16px 8px 0;
 }
 #dashboard-container > div {
-    flex: 1 1 360px;
-    margin: 8px;
+  flex: 1 1 360px;
+  margin: 0 8px 16px;
+  max-width: calc(100% - 16px);
 }
