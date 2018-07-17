@@ -6,7 +6,7 @@ import { NosNewsService } from '../../../services/nos-news/nos-news.service';
 import { NosNewsWidgetComponent } from './nos-news-widget.component';
 import { NewsItem } from '../../../models/news-item';
 
-fdescribe('NosNewsWidgetComponent', () => {
+describe('NosNewsWidgetComponent', () => {
   let component: NosNewsWidgetComponent;
   let fixture: ComponentFixture<NosNewsWidgetComponent>;
   let el: HTMLElement;
