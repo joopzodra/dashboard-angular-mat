@@ -1,7 +1,7 @@
 <div id="app-container">
   <jr-header [breakpoints]="breakpoints" (toggleEvent)="sidenav.toggle()"></jr-header>
   <jr-sidenav #sidenav [breakpoints]="breakpoints">
-    <jr-dashboard [breakpoints]="breakpoints"></jr-dashboard> 
+    <jr-dashboard></jr-dashboard> 
   </jr-sidenav>
   <router-outlet></router-outlet>
 </div>
