@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { OpenweathermapItem } from '../../models/openweathermap-item';
+
+/*
+ * The OpenweathermapService fectches openweathermap data from the backend.
+ * The service on construction also fetches the names of the cities for which there is weather data available at the backend.
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +17,18 @@ import { OpenweathermapItem } from '../../models/openweathermap-item';
 export class OpenweathermapService {
   baseUrl = environment.backendBaseUrl;
   apiEndpoint = '/openweathermap';
+  cityNames$: Observable<string[]>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const options = {
+      params: new HttpParams()
+        .set('city', 'listcitynames')
+    };
+    this.cityNames$ = this.http.get<string[]>(this.baseUrl + this.apiEndpoint, options)
+      .pipe(
+        catchError(() => of([]))
+      );
+  }
 
   getWidgetWeather(city: string) {
     const options = {
@@ -29,5 +46,4 @@ export class OpenweathermapService {
     };
     return this.http.get<OpenweathermapItem[]>(this.baseUrl + this.apiEndpoint, options)
   }
-
 }

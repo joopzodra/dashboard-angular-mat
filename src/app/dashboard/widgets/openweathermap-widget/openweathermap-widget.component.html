@@ -8,12 +8,31 @@
       <div class="text-info">
         <div class="mat-h2 city-name">{{currentWeather.city}}</div>
         <div class="mat-body-2 description">{{currentWeather.description}}</div>
-        <div class="mat-display-1">{{currentWeather.temp}}°</div>
+        <div *ngIf="currentWeather.temp" class="mat-display-1">{{currentWeather.temp}}°</div>
       </div>
       <div class="icon-container">
         <img class="icon" [src]="currentWeather?.icon" alt="icoontje van weertype">
       </div>
+      <div class="wind">
+        <div class="mat-body-2">wind</div>
+        <div class="mat-body-2">{{windDirection(currentWeather.wind_direction)}}</div>
+        <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(currentWeather.wind_speed)}}</div>
+      </div>
+    </div>
+    <div id="forecast">
+      <div class="forecast-item" *ngFor="let forecastItem of forecast">
+        <div>{{forecastItem.time}}</div>
+        <div class="temp bold" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
+        <div>
+          <img class="icon" [src]="forecastItem.icon" alt="icoontje van weertype">
+        </div>
+      </div>
     </div>
     <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+    <mat-form-field *ngIf="(cityNames$ | async)?.length" appearance="standard" color="accent">
+      <mat-select  #citySelect placeholder="kies andere stad" (selectionChange)="cityChanged($event)">
+        <mat-option *ngFor="let city of cityNames$ | async" [value]=city>{{city}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-card-content>
 </mat-card>

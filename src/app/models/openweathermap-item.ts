@@ -1,11 +1,11 @@
 export interface ForecastData {
-  datetime: number,
+  datetime: number | undefined,
   description: string,
   icon: string,
-  temp: number,
-  wind_direction: number,
-  wind_speed: number,
-  day?: number,
+  temp: number | undefined,
+  wind_direction: number | undefined,
+  wind_speed: number | undefined,
+  day?: string,
   time?: string
 }
 

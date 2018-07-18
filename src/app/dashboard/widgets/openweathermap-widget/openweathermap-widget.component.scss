@@ -1,3 +1,7 @@
+mat-card {
+  padding-bottom: 0;
+}
+
 mat-card-title {
   display: flex;
   justify-content: space-between;
@@ -8,18 +12,34 @@ mat-card-title {
 .logo {
   width: 140px;
 }
+
 #current-weather {
   display: flex;
   align-content: center;
+  max-width: 350px;
+
+  .text-info, .wind {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .wind {
+    text-align: center;
+  }
+  .description {
+    white-space: nowrap;
+  }
+  .city-name, .wind-speed {
+    margin-bottom: 0;
+  }
+  .icon {
+    width: 128px;
+  }
+  .wind-icon {
+    width: 16px;
+  }
 }
-#current-weather .text-info {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-}
-#current-weather .description {
-  white-space: nowrap;
-}
+
 .mat-display-1 {
   margin-bottom: 0;
 }
@@ -27,12 +47,27 @@ mat-card-title {
   flex: 1 1 100%;
   text-align: center;
 }
-.icon {
-  width: 128px;
+
+#forecast {
+  overflow: auto;
+  white-space: nowrap;
+
+  .forecast-item {
+    display: inline-block;
+    margin-left: 8px;
+    text-align: center;
+  }
+  .forecast-item:first-child {
+    margin-left: 0;
+  }
+  .icon {
+    width: 30px;
+  }
 }
-#current-weather .city-name {
-  margin-bottom: 0;
+
+.bold {
+  font-weight: bold;
 }
-/* .bold {
-  font-weight:bold;
-} */
+mat-form-field{
+  margin-top: -.75em;
+}
