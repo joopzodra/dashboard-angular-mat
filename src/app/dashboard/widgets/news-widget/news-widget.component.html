@@ -5,7 +5,7 @@
   </mat-card-title>
   <mat-card-content>
     <ul class="ul">
-      <li *ngFor="let item of items | async">
+      <li *ngFor="let item of items$ | async">
         <h3 class="mat-h3 bold">{{item.title}}</h3>
         <div class="mat-body-1">
           <img class="thumbnail" [src]="item.thumbnail" alt="nieuwsfoto">

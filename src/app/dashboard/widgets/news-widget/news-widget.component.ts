@@ -12,13 +12,13 @@ import { NewsItem } from '../../../models/news-item';
  */
 
 export abstract class NewsWidgetComponent implements OnInit {
-  items: Observable<NewsItem[] | {}> = of();
+  items$: Observable<NewsItem[] | {}> = of();
   errorMessage = '';
 
   constructor(protected newsService: NewsService) {}
 
   ngOnInit() {
-    this.items = this.newsService.getWidgetNews()
+    this.items$ = this.newsService.getWidgetNews()
       .pipe(
         catchError((err: HttpErrorResponse) => {
           this.errorMessage = err.error
