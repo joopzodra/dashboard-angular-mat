@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendBaseUrl: 'http://localhost:8000/dashboard'
+  backendBaseUrl: 'http://192.168.1.112:8000/dashboard'
 };
 
 /*
