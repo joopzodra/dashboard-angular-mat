@@ -73,7 +73,7 @@ export class OpenweathermapWidgetComponent implements OnInit {
 
   cityChanged(event: MatSelectChange) {
     const city = event.value.toLowerCase().replace(/ /g, '');
-    document.cookie = "dashboardMdOpenweathermapCity=" + city;
+    document.cookie = "dashboardMdOpenweathermapCity=" + city + "; max-age=31536000"; // max-age is 60*60*24*365 seconds = 1 year
     this.getWeatherData(city);
     this.citySelect.value = '';
   }
