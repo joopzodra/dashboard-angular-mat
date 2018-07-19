@@ -6,12 +6,12 @@ import { AppMaterialModule} from './app.material-module'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GuardianNewsWidgetComponent } from './dashboard/widgets/guardian-news-widget/guardian-news-widget.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NosNewsWidgetComponent } from './dashboard/widgets/nos-news-widget/nos-news-widget.component';
 import { OpenweathermapWidgetComponent } from './dashboard/widgets/openweathermap-widget/openweathermap-widget.component';
+
+import { appRoutingComponents } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,15 +19,14 @@ import { OpenweathermapWidgetComponent } from './dashboard/widgets/openweatherma
     GuardianNewsWidgetComponent,
     SidenavComponent,
     HeaderComponent,
-    DashboardComponent,
     NosNewsWidgetComponent,
     OpenweathermapWidgetComponent,
+    appRoutingComponents,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     AppMaterialModule
   ],
   providers: [],

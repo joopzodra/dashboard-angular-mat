@@ -1,7 +1,7 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [mode]="mode">
+  <mat-sidenav #sidenav [mode]="mode" [fixedInViewport]=true [fixedTopGap]="topGap">
     <mat-nav-list>
-      <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+      <a mat-list-item [routerLink]="nav.url" *ngFor="let nav of navItems">{{nav.label}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
