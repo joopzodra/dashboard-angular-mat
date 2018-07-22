@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1 class="mat-headline">{{pageTitle}}</h1>
+  <img class="logo" [src]="logoSrc" [alt]="logoAlt" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+</div>
+
+<div class="page-content">
+  <div class="ul-container">
+    <ul class="ul">
+      <li #newsItem *ngFor="let item of items$ | async" [id]="selectedItem === item ? 'selected-item' : '' " (click)="toggleBodyText(item)" >
+        <div [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " [style.padding]="selectedItem === item ? '8px' : '0' ">
+          <h3 class="mat-h3 bold">{{item.title}}</h3>
+          <div class="list-item-body mat-body-1" [style.display]="(selectedItem === item && columns === 1) ? 'block' : 'flex'">
+            <img [ngClass]="(selectedItem === item && columns === 1) ? thumbnailClass : 'thumbnail-small' " [src]="item.thumbnail" alt="nieuwsfoto">
+            <span *ngIf="selectedItem !== item || columns === 2" >{{item.trailText}}</span>
+            <span class="body-text" *ngIf="selectedItem === item && columns === 1" [innerHTML]="item.body"></span>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </li>
+    </ul>
+    <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
+  </div>
+
+  <div class="selected-item-container soft-background-theme-color" *ngIf="selectedItem && columns === 2">
+    <h3 class="mat-h3 bold">{{selectedItem.title}}</h3>
+    <div class="mat-body-1">
+      <img [src]="selectedItem.thumbnail" alt="nieuwsfoto">
+      <span class="body-text" [innerHTML]="selectedItem.body"></span>
+    </div>
+  </div>
+</div>

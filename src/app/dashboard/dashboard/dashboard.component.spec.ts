@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMaterialModule } from '../../app.material-module';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -13,9 +14,9 @@ class NosStubComponent { }
 class OpenWeathermapStubComponent { }
 
 describe('DashboardComponent', () => {
+  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let expectedBreakpoints: Observable<boolean[]>
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,15 +25,14 @@ describe('DashboardComponent', () => {
         GuardianStubComponent,
         NosStubComponent,
         OpenWeathermapStubComponent
-      ]
+      ],
+      providers:[{provide: Router, useValue: routerSpy}]
     });
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
-    expectedBreakpoints = of([true, true]);
-    component.breakpoints = expectedBreakpoints;
     fixture.detectChanges();
   });
 

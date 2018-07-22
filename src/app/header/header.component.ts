@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { Breakpoints } from '../models/breakpoints';
 import { BreakpointsService } from '../services/breakpoints/breakpoints.service';
@@ -7,6 +9,7 @@ import { BreakpointsService } from '../services/breakpoints/breakpoints.service'
 /*
  * The HeaderComponent is a child component of the AppComponent.
  * It shows the app title and the current date.
+ * It is clickable to navigate to the dashboard component, with a pointer cursor on hover. However, the cursor is not a pointer if the app already showing the dashboard component.
  */
 
 @Component({
@@ -20,11 +23,12 @@ export class HeaderComponent implements OnInit {
   day = this.date.getDate();
   month = this.monthDict[this.date.getMonth()];
   year = this.date.getFullYear();
+  cursor = 'auto';
 
   mediaLarge = false;
   @Output() toggleEvent: EventEmitter<boolean>;
 
-  constructor(breakpointsService: BreakpointsService) {
+  constructor(private router: Router, private breakpointsService: BreakpointsService) {
     breakpointsService.breakpoints$.subscribe(value => {
       this.mediaLarge = value.large;
     })
@@ -32,9 +36,20 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+      )
+    .subscribe(event => {
+      this.cursor = (<NavigationEnd>event).url === '/overzicht' ? 'auto' : 'pointer';
+    })
   }
 
   toggleSidenav() {
     this.toggleEvent.emit(true);
   }
+
+  navigateTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
 }

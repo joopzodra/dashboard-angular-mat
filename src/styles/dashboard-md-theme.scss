@@ -28,6 +28,9 @@ $custom-typography: mat-typography-config(
   .mat-card-title {
     background-color: mat-color($primary, A100);
   }
+  .soft-background-theme-color {
+    background-color: mat-color($primary, 50);
+  }
 }
 
 @mixin widget-accent-theme($theme) {

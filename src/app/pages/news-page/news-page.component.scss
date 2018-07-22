@@ -1,0 +1,66 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  img {
+    margin-left: 24px;
+  }
+}
+.page-content {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 16px;
+}
+.ul-container, .selected-item-container {
+  max-width: 600px;
+}
+.selected-item-container {
+  margin: 0 0 8px 32px;
+  padding: 16px;
+
+  img {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto 8px;
+  }
+}
+.thumbnail-small {
+  height: 50px;
+  margin: 0 8px 0px 0;
+}
+.thumbnail-medium {
+  height: 130px;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.thumbnail-large {
+  max-height: 320px;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.mat-h3 {
+  line-height: 1;
+}
+.list-item-body {
+  display: flex;
+}
+.mat-h3, .mat-body-1 {
+  margin-bottom: 8px;
+}
+.bold {
+  font-weight:bold;
+}
+/* ::ng-deep is deprecated, see: https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep */
+::ng-deep .body-text h2 { 
+  font-size: 1.2em;
+}
+::ng-deep .gu-image {
+  max-width: 150px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+}

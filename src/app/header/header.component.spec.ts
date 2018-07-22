@@ -1,11 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { AppMaterialModule } from '../app.material-module';
 import { HeaderComponent } from './header.component';
 import { Breakpoints } from '../models/breakpoints';
 import { BreakpointsService } from '../services/breakpoints/breakpoints.service';
+import { StubRouter } from '../testing/stub-router';
 
 describe('HeaderComponent', () => {
 
@@ -22,7 +24,10 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [AppMaterialModule],
-      providers: [{ provide: BreakpointsService, useClass: StubBreakpointsService }],
+      providers: [
+        { provide: BreakpointsService, useClass: StubBreakpointsService },
+        { provide: Router, useClass: StubRouter }
+      ],
     });
   });
 

@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span class="mat-headline">
+  <span class="mat-headline" (click)="navigateTo('/overzicht')" [style.cursor]="cursor">
     Welcome to {{ day }} {{ month }} {{ year }}
   </span>
   <button mat-icon-button="" *ngIf="!mediaLarge" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>

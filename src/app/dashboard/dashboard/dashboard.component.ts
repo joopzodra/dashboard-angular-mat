@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /*
@@ -12,4 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent {
 
+  constructor(private router: Router){}
+
+  navigateTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
 }
