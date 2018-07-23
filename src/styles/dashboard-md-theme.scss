@@ -41,6 +41,9 @@ $custom-typography: mat-typography-config(
   .mat-card-title.accent {
     background-color: mat-color($accent, 100);
   }
+  .soft-background-accent-theme-color {
+    background-color: mat-color($accent, 50);
+  }
 }
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

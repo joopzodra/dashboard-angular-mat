@@ -1,4 +1,5 @@
 import { OpenweathermapItem } from '../models/openweathermap-item';
+import { ProcessedWeatherItem } from '../models/processed-weather-item';
 import { environment } from '../../environments/environment';
 
 export const currentWeather = {
@@ -22,7 +23,7 @@ export const forecast = [{
 }];
 
 
-export function handleWeatherData(data: OpenweathermapItem, length: number | undefined) {
+export function handleWeatherData(data: OpenweathermapItem, length: number | undefined): ProcessedWeatherItem {
     // current weather
     const currentWeather = data.current_weather;
     currentWeather.icon = iconToIconUrl(currentWeather.icon);
@@ -30,14 +31,14 @@ export function handleWeatherData(data: OpenweathermapItem, length: number | und
     // forecast
     const forecast = data.forecast.data.slice(0, length);
     forecast.forEach(item => {
-      const datetime = new Date((<number>item.datetime) * 1000)
-      item.day = datetime.getDay().toString();
-      item.time = datetime.getHours().toString() + 'u';
-      item.icon = iconToIconUrl(item.icon);
+        const datetime = new Date((<number>item.datetime) * 1000)
+        item.day = datetime.getDay().toString();
+        item.time = datetime.getHours().toString() + 'u';
+        item.icon = iconToIconUrl(item.icon);
     });
 
     return { city: data.city, currentWeather: currentWeather, forecast: forecast };
-  }
+}
 
 export function windSpeedBeaufort(speed: number) {
     // openweathermap windspeed unity is m/s
@@ -49,9 +50,12 @@ export function windSpeedBeaufort(speed: number) {
     return beaufort;
 }
 
-export function windDirection(degree: number) {
+export function windDirection(degree: number | null) {
+    if (degree === null) {
+        return '';
+    }
     const directions = ['N', 'NO', 'O', 'ZO', 'Z', 'ZW', 'W', 'NW', 'N'];
-    const degreeToDirectionsIndex = Math.round(degree / 45);
+    const degreeToDirectionsIndex = Math.round(<number>degree / 45);
     return directions[degreeToDirectionsIndex];
 }
 
@@ -71,12 +75,12 @@ const iconDict = {
 
 export function iconToIconUrl(icon: string) {
     const iconName: string = (<any>iconDict)[icon.slice(0, -1)];
-    const backendHost = getBackendHost(environment.backendBaseUrl);    
+    const backendHost = getBackendHost(environment.backendBaseUrl);
     const iconLastChar = <'d' | 'n'>(icon.slice(-1));
     if (iconLastChar === 'd') {
         return `${backendHost}/uploads/dashboard/weather-icons/day/${iconName}.svg`;
     } else if (iconLastChar === 'n') {
-    return `${backendHost}/uploads/dashboard/weather-icons/night/${iconName}.svg`;
+        return `${backendHost}/uploads/dashboard/weather-icons/night/${iconName}.svg`;
     } else {
         // stub for test cases
         return 'assets-for-testing/stub-image.jpg';

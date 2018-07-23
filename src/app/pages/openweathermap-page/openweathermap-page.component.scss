@@ -1,3 +1,12 @@
+
+.mat-card {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.mat-display-1 {
+  margin-bottom: 0;
+}
+
 .page-header {
   display: flex;
   align-items: center;
@@ -10,17 +19,13 @@
 }
 .page-content {
   display: flex;
+  flex-flow: column;
   justify-content: space-around;
   margin: 0 16px;
 }
-.ul-container, .selected-item-container {
+.ul-container, .selected-city-container {
   max-width: 600px;
 }
-.selected-item-container {
-  margin: 0 0 8px 32px;
-  padding: 16px;
-}
-
 .current-weather {
   display: flex;
   align-content: center;
@@ -30,6 +35,9 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
+  }
+  .text-info {
+    width: 100px;
   }
   .wind {
     text-align: center;
@@ -41,9 +49,27 @@
     margin-bottom: 0;
   }
   .icon {
-    width: 128px;
+    width: 110px;
   }
   .wind-icon {
     width: 16px;
+  }
+}
+
+#forecast {
+  overflow: auto;
+  white-space: nowrap;
+  cursor: auto;
+
+  .forecast-item {
+    display: inline-block;
+    margin-left: 8px;
+    text-align: center;
+  }
+  .forecast-item:first-child {
+    margin-left: 0;
+  }
+  .icon {
+    width: 30px;
   }
 }

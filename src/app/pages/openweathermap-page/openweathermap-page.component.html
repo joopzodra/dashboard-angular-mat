@@ -3,28 +3,61 @@
   <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
 </div>
 
-<div class="page-content">
+<div class="page-content" [ngStyle]="pageContentStyle">
+
+  <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
+
+  <div *ngIf="selectedCity" class="selected-city-container" [ngStyle]="selectedCityStyle">
+    <mat-card class="soft-background-accent-theme-color">
+      <div class="current-weather">
+        <div class="text-info">
+          <div class="mat-h2 city-name">{{selectedCity.currentWeather.city}}</div>
+          <div class="mat-body-2 description">{{selectedCity.currentWeather.description}}</div>
+          <div *ngIf="selectedCity.currentWeather.temp" class="mat-display-1">{{selectedCity.currentWeather.temp}}°</div>
+        </div>
+        <div class="icon-container">
+          <img class="icon" [src]="selectedCity.currentWeather?.icon" alt="icoontje van weertype">
+        </div>
+        <div class="wind">
+          <div class="mat-body-2">wind</div>
+          <div class="mat-body-2">{{windDirection(selectedCity.currentWeather.wind_direction)}}</div>
+          <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(selectedCity.currentWeather.wind_speed)}}</div>
+        </div>
+      </div>
+      <div id="forecast">
+        <div class="forecast-item" *ngFor="let forecastItem of selectedCity.forecast">
+          <div class="mat-body-1">{{forecastItem.time}}</div>
+          <div class="temp mat-body-2" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
+          <div>
+            <img class="icon" [src]="forecastItem.icon" alt="icoontje van weertype">
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
   <div class="ul-container">
     <ul class="ul">
       <li *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)">
-        <div class="current-weather">
-          <div class="text-info">
-            <div class="mat-h2 city-name">{{item.currentWeather.city}}</div>
-            <div class="mat-body-2 description">{{item.currentWeather.description}}</div>
-            <div *ngIf="item.currentWeather.temp" class="mat-display-1">{{item.currentWeather.temp}}°</div>
+        <mat-card>
+          <div class="current-weather">
+            <div class="text-info">
+              <div class="mat-h2 city-name">{{item.currentWeather.city}}</div>
+              <div class="mat-body-2 description">{{item.currentWeather.description}}</div>
+              <div *ngIf="item.currentWeather.temp" class="mat-display-1">{{item.currentWeather.temp}}°</div>
+            </div>
+            <div class="icon-container">
+              <img class="icon" [src]="item.currentWeather?.icon" alt="icoontje van weertype">
+            </div>
+            <div class="wind">
+              <div class="mat-body-2">wind</div>
+              <div class="mat-body-2">{{windDirection(item.currentWeather.wind_direction)}}</div>
+              <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.currentWeather.wind_speed)}}</div>
+            </div>
           </div>
-          <div class="icon-container">
-            <img class="icon" [src]="item.currentWeather?.icon" alt="icoontje van weertype">
-          </div>
-          <div class="wind">
-            <div class="mat-body-2">wind</div>
-            <div class="mat-body-2">{{windDirection(item.currentWeather.wind_direction)}}</div>
-            <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.currentWeather.wind_speed)}}</div>
-          </div>
-        </div>
+        </mat-card>
       </li>
-    </ul>
-    <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
+    </ul>    
   </div>
 
   <div class="selected-item-container soft-background-theme-color" *ngIf="selectedItem && columns === 2">
