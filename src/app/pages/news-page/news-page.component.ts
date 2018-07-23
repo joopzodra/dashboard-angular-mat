@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } fro
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'
+import { Location } from '@angular/common';
 
 import { BreakpointsService } from '../../services/breakpoints/breakpoints.service';
 import { NewsItem } from '../../models/news-item';
@@ -9,7 +10,7 @@ import { NewsService } from '../../services/news/news.service';
 
 export abstract class NewsPageComponent implements OnInit, OnDestroy {
 
-  items$!: Observable<NewsItem[] | {}>;
+  items: NewsItem[] = [];
   errorMessage = '';
   breakpointsSubscription!: Subscription;
   selectedItem: NewsItem | undefined;
@@ -17,7 +18,7 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
   columns = 1;
   @ViewChildren('newsItem') itemsList!: QueryList<ElementRef>
 
-  constructor(protected breakpointsService: BreakpointsService, protected newsService: NewsService) {}
+  constructor(protected breakpointsService: BreakpointsService, protected newsService: NewsService, protected location: Location) { }
 
   ngOnInit() {
     this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(value => {
@@ -41,18 +42,21 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.items$ = this.newsService.getPageNews()
+    this.newsService.getPageNews()
       .pipe(
-        catchError((err: HttpErrorResponse) => {
-          this.errorMessage = err.error
-          return of()
-        }),
         tap((items: NewsItem[]) => {
           if (this.columns === 2) {
             this.selectedItem = items[0];
           }
         })
-      );
+      )
+      .subscribe((items: NewsItem[]) => {
+        this.items = items;
+        this.afterNavigation();
+      },
+        (err: HttpErrorResponse) => {
+          this.errorMessage = err.error;
+        });
   }
 
   ngOnDestroy() {
@@ -74,4 +78,14 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  afterNavigation() {
+    // If the url which navigated to this component contains a query param, replace the url by an url without query param.
+    const urlFragments = this.location.path().split('?');
+    const itemIndexQueryParam = urlFragments[1];
+    if (itemIndexQueryParam) {
+      const itemIndex = +itemIndexQueryParam.split('=')[1];
+      this.selectedItem = this.items[itemIndex];
+      this.location.replaceState(urlFragments[0]);
+    }
+  }
 }

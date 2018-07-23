@@ -6,7 +6,7 @@
 <div class="page-content">
   <div class="ul-container">
     <ul class="ul">
-      <li #newsItem *ngFor="let item of items$ | async" [id]="selectedItem === item ? 'selected-item' : '' " (click)="toggleBodyText(item)" >
+      <li #newsItem *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="toggleBodyText(item)" >
         <div [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " [style.padding]="selectedItem === item ? '8px' : '0' ">
           <h3 class="mat-h3 bold">{{item.title}}</h3>
           <div class="list-item-body mat-body-1" [style.display]="(selectedItem === item && columns === 1) ? 'block' : 'flex'">

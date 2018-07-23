@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { NewsItem } from '../../models/news-item';
 import { NosNewsService } from '../../services/nos-news/nos-news.service';
@@ -18,8 +19,8 @@ export class NosNewsPageComponent extends NewsPageComponent {
   logoWidth = '50px';
   logoHeight = '18px';
   
-  constructor(protected breakpointsService: BreakpointsService, protected newsService: NosNewsService) {
-    super(breakpointsService, newsService)
+  constructor(protected breakpointsService: BreakpointsService, protected newsService: NosNewsService, protected location: Location) {
+    super(breakpointsService, newsService, location)
   }
 
 }

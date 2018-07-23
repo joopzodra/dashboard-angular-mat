@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { NewsItem } from '../../models/news-item';
 import { GuardianNewsService } from '../../services/guardian-news/guardian-news.service';
@@ -18,8 +19,8 @@ export class GuardianNewsPageComponent extends NewsPageComponent {
   logoWidth = '80px';
   logoHeight = '30px';
   
-  constructor(protected breakpointsService: BreakpointsService, protected newsService: GuardianNewsService) {
-    super(breakpointsService, newsService)
+  constructor(protected breakpointsService: BreakpointsService, protected newsService: GuardianNewsService, protected location: Location) {
+    super(breakpointsService, newsService, location)
   }
 
 }

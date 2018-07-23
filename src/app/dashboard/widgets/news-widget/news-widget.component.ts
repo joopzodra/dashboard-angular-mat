@@ -3,6 +3,8 @@ import { NewsService } from '../../../services/news/news.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators'
+import { Router, NavigationExtras } from '@angular/router';
+
 import { NewsItem } from '../../../models/news-item';
 
 /*
@@ -15,7 +17,7 @@ export abstract class NewsWidgetComponent implements OnInit {
   items$: Observable<NewsItem[] | {}> = of();
   errorMessage = '';
 
-  constructor(protected newsService: NewsService) {}
+  constructor(protected newsService: NewsService, protected router: Router) {}
 
   ngOnInit() {
     this.items$ = this.newsService.getWidgetNews()
@@ -26,4 +28,5 @@ export abstract class NewsWidgetComponent implements OnInit {
         })
       )
   }
+
 }

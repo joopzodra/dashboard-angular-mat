@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing'
 
 import { GuardianNewsPageComponent } from './guardian-news-page.component';
 import { AppMaterialModule } from '../../app.material-module'
@@ -18,9 +19,15 @@ describe('GuardianNewsPageComponent', () => {
     guardianNewsService = jasmine.createSpyObj('GuardianNewsService', ['getPageNews']);
     (<any>guardianNewsService).getPageNews.and.returnValue(asyncData(newsItemsArray));
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [
+        AppMaterialModule,
+        // The RouterTestingModule is needed for the Location class, which is used in the component.
+        RouterTestingModule
+      ],
       declarations: [GuardianNewsPageComponent],
-      providers: [{ provide: GuardianNewsService, useValue: guardianNewsService }]
+      providers: [
+        { provide: GuardianNewsService, useValue: guardianNewsService }
+      ]
     });
   });
 

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { AppMaterialModule } from '../../../app.material-module'
 import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
@@ -11,6 +12,7 @@ describe('GuardianNewsWidgetComponent', () => {
   let fixture: ComponentFixture<GuardianNewsWidgetComponent>;
   let el: HTMLElement;
   let guardianNewsService: jasmine.SpyObj<{}>;
+  let routerSpy: jasmine.SpyObj<{}>;
 
   const newsItem: NewsItem = {
     title: 'stub title',
@@ -22,12 +24,14 @@ describe('GuardianNewsWidgetComponent', () => {
 
   beforeEach(() => {
     guardianNewsService = jasmine.createSpyObj('GuardianNewsService', ['getWidgetNews']);
+    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     TestBed.configureTestingModule({
       declarations: [GuardianNewsWidgetComponent],
       imports: [AppMaterialModule],
       providers: [
-        { provide: GuardianNewsService, useValue: guardianNewsService }
+        { provide: GuardianNewsService, useValue: guardianNewsService },
+        { provide: Router, useValue: routerSpy }
       ]
     });
 
