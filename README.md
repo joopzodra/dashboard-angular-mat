@@ -1,6 +1,6 @@
-# DashboardMd
+# Dashboard Angular Material
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+At the moment there's an overview page with widgets for news (Dutch), tech news and the weather (Dutch). Also there are pages for reading full news items, full tech news items and more weather information. Next step will be stockexchange info of the Dutch AEX index and companies.
 
 ## Development server
 
