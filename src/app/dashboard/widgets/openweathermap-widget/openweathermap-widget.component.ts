@@ -5,7 +5,7 @@ import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { environment } from '../../../../environments/environment'
 import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
 import { OpenweathermapItem, ForecastData } from '../../../models/openweathermap-item';
-import { currentWeather, forecast, iconDict, windSpeedBeaufort, windDirection, getBackendHost } from '../../../helpers/openweathermap-helpers';
+import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeatherData } from '../../../helpers/openweathermap-helpers';
 
 /*
  * The OpenweathermapWidgetComponent
@@ -41,7 +41,9 @@ export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
 
   getWeatherData(city: string) {
     this.weatherSubscription = this.service.getWidgetWeather(city).subscribe(res => {
-      this.handleWeatherData(res);
+      const weatherData = handleWeatherData(res, 9);
+      this.currentWeather = weatherData.currentWeather;
+      this.forecast = weatherData.forecast;
     },
       (err: HttpErrorResponse) => {
         this.errorMessage = err.error;
@@ -49,30 +51,8 @@ export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
       });
   }
 
-  handleWeatherData(data: OpenweathermapItem) {
-    // current weather
-    this.currentWeather = data.current_weather;
-    this.currentWeather.icon = this.iconToIconUrl(this.currentWeather.icon);
-
-    // forecast
-    this.forecast = data.forecast.data.slice(0, 9);
-    this.forecast.forEach(item => {
-      const datetime = new Date((<number>item.datetime) * 1000)
-      item.day = datetime.getDay().toString();
-      item.time = datetime.getHours().toString() + 'u';
-      item.icon = this.iconToIconUrl(item.icon);
-    });
-  }
-
-  iconToIconUrl = (icon: string) => {
-    const iconLastChar = <'d' | 'n'>(icon.slice(-1));
-    const dayOrNight = iconLastChar === 'd' ? 'day' : 'night';
-    const iconName: string = (<any>iconDict)[icon.slice(0, -1)];
-    const backendHost = getBackendHost(environment.backendBaseUrl);
-    return `${backendHost}/uploads/dashboard/weather-icons/${dayOrNight}/${iconName}.svg`;
-  }
-
   cityChanged(event: MatSelectChange) {
+    event
     const city = event.value.toLowerCase().replace(/ /g, '');
     document.cookie = "dashboardMdOpenweathermapCity=" + city + "; max-age=31536000"; // max-age is 60*60*24*365 seconds = 1 year
     this.getWeatherData(city);
@@ -89,5 +69,9 @@ export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.weatherSubscription.unsubscribe();
+  }
+
+  stopEventPropagation(event: Event){
+    event.stopPropagation();
   }
 }

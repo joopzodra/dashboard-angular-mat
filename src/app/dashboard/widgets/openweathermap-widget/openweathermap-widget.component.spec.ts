@@ -29,10 +29,6 @@ describe('OpenweathermapWidgetComponent', () => {
     el = fixture.nativeElement;
     openweathermapService = TestBed.get(OpenweathermapService);
 
-    // use a stub image, otherwise XHR-request to localhost:8000, which causes CORS errors
-    // don't forget to set path to assets-for-testing in angular.json 
-    component.iconToIconUrl = () => 'assets-for-testing/stub-image.jpg';
-
     //fixture.detectChanges(); // Don't call this without providing spy with returnValue, otherwise subscription in ngOnInit fails and throws an error.
   });
 

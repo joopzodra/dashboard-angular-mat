@@ -51,6 +51,7 @@ mat-card-title {
 #forecast {
   overflow: auto;
   white-space: nowrap;
+  cursor: auto;
 
   .forecast-item {
     display: inline-block;

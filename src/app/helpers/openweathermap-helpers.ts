@@ -1,3 +1,6 @@
+import { OpenweathermapItem } from '../models/openweathermap-item';
+import { environment } from '../../environments/environment';
+
 export const currentWeather = {
     city: '',
     description: '',
@@ -18,17 +21,23 @@ export const forecast = [{
     wind_speed: <number | undefined>undefined
 }];
 
-export const iconDict = {
-    "01": "sunny",
-    "02": "partlysunny",
-    "03": "cloudy",
-    "04": "cloudy",
-    "09": "rain",
-    "10": "flurries",
-    "11": "tstorms",
-    "13": "snow",
-    "50": "hazy"
-};
+
+export function handleWeatherData(data: OpenweathermapItem, length: number | undefined) {
+    // current weather
+    const currentWeather = data.current_weather;
+    currentWeather.icon = iconToIconUrl(currentWeather.icon);
+
+    // forecast
+    const forecast = data.forecast.data.slice(0, length);
+    forecast.forEach(item => {
+      const datetime = new Date((<number>item.datetime) * 1000)
+      item.day = datetime.getDay().toString();
+      item.time = datetime.getHours().toString() + 'u';
+      item.icon = iconToIconUrl(item.icon);
+    });
+
+    return { city: data.city, currentWeather: currentWeather, forecast: forecast };
+  }
 
 export function windSpeedBeaufort(speed: number) {
     // openweathermap windspeed unity is m/s
@@ -42,8 +51,34 @@ export function windSpeedBeaufort(speed: number) {
 
 export function windDirection(degree: number) {
     const directions = ['N', 'NO', 'O', 'ZO', 'Z', 'ZW', 'W', 'NW', 'N'];
-    const degreeToDirectionsIndex = Math.round(degree/45);
+    const degreeToDirectionsIndex = Math.round(degree / 45);
     return directions[degreeToDirectionsIndex];
 }
 
-export const getBackendHost = (backendUrl: string) => backendUrl.substring(0, backendUrl.indexOf('/dashboard'));
+const getBackendHost = (backendUrl: string) => backendUrl.substring(0, backendUrl.indexOf('/dashboard'));
+
+const iconDict = {
+    "01": "sunny",
+    "02": "partlysunny",
+    "03": "cloudy",
+    "04": "cloudy",
+    "09": "rain",
+    "10": "flurries",
+    "11": "tstorms",
+    "13": "snow",
+    "50": "hazy"
+};
+
+export function iconToIconUrl(icon: string) {
+    const iconName: string = (<any>iconDict)[icon.slice(0, -1)];
+    const backendHost = getBackendHost(environment.backendBaseUrl);    
+    const iconLastChar = <'d' | 'n'>(icon.slice(-1));
+    if (iconLastChar === 'd') {
+        return `${backendHost}/uploads/dashboard/weather-icons/day/${iconName}.svg`;
+    } else if (iconLastChar === 'n') {
+    return `${backendHost}/uploads/dashboard/weather-icons/night/${iconName}.svg`;
+    } else {
+        // stub for test cases
+        return 'assets-for-testing/stub-image.jpg';
+    }
+}

@@ -19,7 +19,7 @@
         <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(currentWeather.wind_speed)}}</div>
       </div>
     </div>
-    <div id="forecast">
+    <div id="forecast" (click)="stopEventPropagation($event)">
       <div class="forecast-item" *ngFor="let forecastItem of forecast">
         <div class="mat-body-1">{{forecastItem.time}}</div>
         <div class="temp mat-body-2" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
-    <mat-form-field *ngIf="(cityNames$ | async)?.length" appearance="standard" color="accent">
+    <mat-form-field *ngIf="(cityNames$ | async)?.length" appearance="standard" color="accent" (click)="stopEventPropagation($event)">
       <mat-select  #citySelect placeholder="kies andere stad" (selectionChange)="cityChanged($event)">
         <mat-option *ngFor="let city of cityNames$ | async" [value]=city>{{city}}</mat-option>
       </mat-select>

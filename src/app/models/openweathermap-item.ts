@@ -10,6 +10,7 @@ export interface ForecastData {
 }
 
 export interface OpenweathermapItem {
+  city: string,
   current_weather: {
     city: string,
     description: string,

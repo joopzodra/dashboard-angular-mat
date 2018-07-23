@@ -41,8 +41,7 @@ export class OpenweathermapService {
   getPageWeather() {
     const options = {
       params: new HttpParams()
-        .set('page-size', '20')
-        .set('include-body', 'true')
+        .set('city', 'all')
     };
     return this.http.get<OpenweathermapItem[]>(this.baseUrl + this.apiEndpoint, options)
   }

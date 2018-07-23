@@ -1,0 +1,49 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  img {
+    margin-left: 24px;
+  }
+}
+.logo {
+  width: 140px;
+}
+.page-content {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 16px;
+}
+.ul-container, .selected-item-container {
+  max-width: 600px;
+}
+.selected-item-container {
+  margin: 0 0 8px 32px;
+  padding: 16px;
+}
+
+.current-weather {
+  display: flex;
+  align-content: center;
+  max-width: 350px;
+
+  .text-info, .wind {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .wind {
+    text-align: center;
+  }
+  .description {
+    white-space: nowrap;
+  }
+  .city-name, .wind-speed {
+    margin-bottom: 0;
+  }
+  .icon {
+    width: 128px;
+  }
+  .wind-icon {
+    width: 16px;
+  }
+}

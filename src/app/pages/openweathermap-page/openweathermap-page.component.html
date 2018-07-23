@@ -1,3 +1,32 @@
-<p>
-  openweathermap-page works!
-</p>
+<div class="page-header">
+  <h1 class="mat-headline">Weer</h1>
+  <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+</div>
+
+<div class="page-content">
+  <div class="ul-container">
+    <ul class="ul">
+      <li *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)">
+        <div class="current-weather">
+          <div class="text-info">
+            <div class="mat-h2 city-name">{{item.currentWeather.city}}</div>
+            <div class="mat-body-2 description">{{item.currentWeather.description}}</div>
+            <div *ngIf="item.currentWeather.temp" class="mat-display-1">{{item.currentWeather.temp}}°</div>
+          </div>
+          <div class="icon-container">
+            <img class="icon" [src]="item.currentWeather?.icon" alt="icoontje van weertype">
+          </div>
+          <div class="wind">
+            <div class="mat-body-2">wind</div>
+            <div class="mat-body-2">{{windDirection(item.currentWeather.wind_direction)}}</div>
+            <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.currentWeather.wind_speed)}}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
+  </div>
+
+  <div class="selected-item-container soft-background-theme-color" *ngIf="selectedItem && columns === 2">
+  </div>
+</div>

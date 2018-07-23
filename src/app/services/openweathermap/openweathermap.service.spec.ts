@@ -49,7 +49,7 @@ describe('OpenweathermapService', () => {
       .subscribe(res => {
         expect(res).toEqual(stubResponse);
       });
-    const req = httpTestingController.expectOne(baseUrl + '/openweathermap?page-size=20&include-body=true');
+    const req = httpTestingController.expectOne(baseUrl + '/openweathermap?city=all');
     expect(req.request.method).toEqual('GET');
     req.flush(stubResponse);
   });
