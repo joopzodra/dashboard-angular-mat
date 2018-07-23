@@ -51,4 +51,10 @@ export class SidenavComponent {
   toggle() {
     this.sidenav.toggle();
   }
+
+  close() {
+    if (this.mode === 'over') {
+      this.sidenav.close();
+    }
+  }
 }
