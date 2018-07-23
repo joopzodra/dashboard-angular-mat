@@ -2,13 +2,13 @@
   <h1 class="mat-headline">Overzicht</h1>
 </div>
 <div id="dashboard-container">
-  <div (click)="navigateTo('/paginas/nieuws')">
+  <div class="dashboard-item" (click)="navigateTo('/paginas/nieuws')">
     <jr-nos-news-widget></jr-nos-news-widget>
   </div>
-  <div>
+  <div class="dashboard-item" (click)="navigateTo('/paginas/tech-news')">
     <jr-guardian-news-widget></jr-guardian-news-widget>
   </div>
-  <div>
+  <div class="dashboard-item" (click)= "navigateTo('/paginas/weer')">
     <jr-openweathermap-widget></jr-openweathermap-widget>
   </div>
 </div>

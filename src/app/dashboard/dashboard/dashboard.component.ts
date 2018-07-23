@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 /*
  * The DashboardComponent is the host of several widget components.
+ * On clicking a widget, it navigates to the corresponding page.
  */
 
 @Component({
