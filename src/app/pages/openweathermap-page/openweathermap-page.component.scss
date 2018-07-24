@@ -23,9 +23,10 @@
   justify-content: space-around;
   margin: 0 16px;
 }
-.ul-container, .selected-city-container {
+li, #selected-city {
   max-width: 600px;
 }
+
 .current-weather {
   display: flex;
   align-content: center;
@@ -37,7 +38,7 @@
     justify-content: center;
   }
   .text-info {
-    width: 100px;
+    width: 110px;
   }
   .wind {
     text-align: center;
@@ -56,18 +57,22 @@
   }
 }
 
-#forecast {
+.forecast {
   overflow: auto;
   white-space: nowrap;
   cursor: auto;
 
   .forecast-item {
     display: inline-block;
-    margin-left: 8px;
+    padding: 0 4px;
+    margin-bottom: 8px;
     text-align: center;
   }
+  .forecast-item-day-border {
+    border-left: dotted 1px;
+  }
   .forecast-item:first-child {
-    margin-left: 0;
+    border-left: none;
   }
   .icon {
     width: 30px;

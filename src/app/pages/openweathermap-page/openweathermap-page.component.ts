@@ -6,7 +6,6 @@ import { BreakpointsService } from '../../services/breakpoints/breakpoints.servi
 import { OpenweathermapItem } from '../../models/openweathermap-item';
 import { OpenweathermapService } from '../../services/openweathermap/openweathermap.service';
 import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeatherData } from '../../helpers/openweathermap-helpers';
-import { ProcessedWeatherItem } from '../../models/processed-weather-item';
 
 @Component({
   selector: 'jr-openweathermap-page',
@@ -17,8 +16,8 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
 
   columns = 1;
   breakpointsSubscription!: Subscription;
-  items: ProcessedWeatherItem[] = [];
-  selectedCity: ProcessedWeatherItem | undefined;
+  items: OpenweathermapItem[] = [];
+  selectedCity: OpenweathermapItem | undefined;
   errorMessage = '';
   selectedCityStyle = {};
   pageContentStyle = {};
@@ -92,9 +91,8 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
 
   selectItem(item: any) {
     this.selectedCity = item;
-    console.log(item)
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    //const city = event.value.toLowerCase().replace(/ /g, '');
-    //document.cookie = "dashboardMdOpenweathermapCity=" + city + "; max-age=31536000"; // max-age is 60*60*24*365 seconds = 1 year
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const city = item.city;
+    document.cookie = "dashboardMdOpenweathermapCity=" + city + "; max-age=31536000"; // max-age is 60*60*24*365 seconds = 1 year
   }
 }

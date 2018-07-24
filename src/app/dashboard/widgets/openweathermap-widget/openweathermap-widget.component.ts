@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of, Observable, Subscription } from 'rxjs';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { environment } from '../../../../environments/environment'
 import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
-import { OpenweathermapItem, ForecastData } from '../../../models/openweathermap-item';
+import { ForecastData } from '../../../models/openweathermap-item';
 import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeatherData } from '../../../helpers/openweathermap-helpers';
 
 /*
@@ -16,14 +16,13 @@ import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeath
   templateUrl: './openweathermap-widget.component.html',
   styleUrls: ['./openweathermap-widget.component.scss']
 })
-export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
+export class OpenweathermapWidgetComponent implements OnInit {
 
   currentWeather = currentWeather;
   forecast: ForecastData[] = forecast;
   errorMessage = '';
   cityNames$: Observable<string[]> = of([]);
   @ViewChild('citySelect') citySelect!: MatSelect;
-  weatherSubscription!: Subscription;
 
   constructor(private service: OpenweathermapService) { }
 
@@ -40,10 +39,10 @@ export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
   }
 
   getWeatherData(city: string) {
-    this.weatherSubscription = this.service.getWidgetWeather(city).subscribe(res => {
+    this.service.getWidgetWeather(city).subscribe(res => {
       const weatherData = handleWeatherData(res, 9);
-      this.currentWeather = weatherData.currentWeather;
-      this.forecast = weatherData.forecast;
+      this.currentWeather = weatherData.current_weather;
+      this.forecast = weatherData.forecast.data;
     },
       (err: HttpErrorResponse) => {
         this.errorMessage = err.error;
@@ -65,10 +64,6 @@ export class OpenweathermapWidgetComponent implements OnInit, OnDestroy {
 
   windDirection(degree: number) {
     return windDirection(degree);
-  }
-
-  ngOnDestroy() {
-    this.weatherSubscription.unsubscribe();
   }
 
   stopEventPropagation(event: Event){

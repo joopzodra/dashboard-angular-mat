@@ -1,31 +1,33 @@
 <div class="page-header">
   <h1 class="mat-headline">Weer</h1>
-  <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+  <a href="https://openweathermap.org/">
+    <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+  </a>
 </div>
 
 <div class="page-content" [ngStyle]="pageContentStyle">
 
   <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
 
-  <div *ngIf="selectedCity" class="selected-city-container" [ngStyle]="selectedCityStyle">
+  <div *ngIf="selectedCity" id="selected-city" [ngStyle]="selectedCityStyle">
     <mat-card class="soft-background-accent-theme-color">
       <div class="current-weather">
         <div class="text-info">
-          <div class="mat-h2 city-name">{{selectedCity.currentWeather.city}}</div>
-          <div class="mat-body-2 description">{{selectedCity.currentWeather.description}}</div>
-          <div *ngIf="selectedCity.currentWeather.temp" class="mat-display-1">{{selectedCity.currentWeather.temp}}°</div>
+          <div class="mat-h2 city-name">{{selectedCity.current_weather.city}}</div>
+          <div class="mat-body-2 description">{{selectedCity.current_weather.description}}</div>
+          <div *ngIf="selectedCity.current_weather.temp" class="mat-display-1">{{selectedCity.current_weather.temp}}°</div>
         </div>
         <div class="icon-container">
-          <img class="icon" [src]="selectedCity.currentWeather?.icon" alt="icoontje van weertype">
+          <img class="icon" [src]="selectedCity.current_weather?.icon" alt="icoontje van weertype">
         </div>
         <div class="wind">
           <div class="mat-body-2">wind</div>
-          <div class="mat-body-2">{{windDirection(selectedCity.currentWeather.wind_direction)}}</div>
-          <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(selectedCity.currentWeather.wind_speed)}}</div>
+          <div class="mat-body-2">{{windDirection(selectedCity.current_weather.wind_direction)}}</div>
+          <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(selectedCity.current_weather.wind_speed)}}</div>
         </div>
       </div>
-      <div id="forecast">
-        <div class="forecast-item" *ngFor="let forecastItem of selectedCity.forecast">
+      <div class="forecast">
+        <div class="forecast-item" *ngFor="let forecastItem of selectedCity.forecast.data" [class.forecast-item-day-border]="forecastItem.time === '2u'">
           <div class="mat-body-1">{{forecastItem.time}}</div>
           <div class="temp mat-body-2" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
           <div>
@@ -36,23 +38,23 @@
     </mat-card>
   </div>
 
-  <div class="ul-container">
-    <ul class="ul">
+  <div id="all-cities-container">
+    <ul class="ul" id="all-cities">
       <li *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)">
         <mat-card>
           <div class="current-weather">
             <div class="text-info">
-              <div class="mat-h2 city-name">{{item.currentWeather.city}}</div>
-              <div class="mat-body-2 description">{{item.currentWeather.description}}</div>
-              <div *ngIf="item.currentWeather.temp" class="mat-display-1">{{item.currentWeather.temp}}°</div>
+              <div class="mat-h2 city-name">{{item.current_weather.city}}</div>
+              <div class="mat-body-2 description">{{item.current_weather.description}}</div>
+              <div *ngIf="item.current_weather.temp" class="mat-display-1">{{item.current_weather.temp}}°</div>
             </div>
             <div class="icon-container">
-              <img class="icon" [src]="item.currentWeather?.icon" alt="icoontje van weertype">
+              <img class="icon" [src]="item.current_weather?.icon" alt="icoontje van weertype">
             </div>
             <div class="wind">
               <div class="mat-body-2">wind</div>
-              <div class="mat-body-2">{{windDirection(item.currentWeather.wind_direction)}}</div>
-              <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.currentWeather.wind_speed)}}</div>
+              <div class="mat-body-2">{{windDirection(item.current_weather.wind_direction)}}</div>
+              <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.current_weather.wind_speed)}}</div>
             </div>
           </div>
         </mat-card>

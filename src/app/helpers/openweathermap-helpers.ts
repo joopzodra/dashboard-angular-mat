@@ -23,21 +23,22 @@ export const forecast = [{
 }];
 
 
-export function handleWeatherData(data: OpenweathermapItem, length: number | undefined): ProcessedWeatherItem {
+export function handleWeatherData(data: OpenweathermapItem, length: number | undefined): OpenweathermapItem {
     // current weather
     const currentWeather = data.current_weather;
     currentWeather.icon = iconToIconUrl(currentWeather.icon);
 
     // forecast
-    const forecast = data.forecast.data.slice(0, length);
-    forecast.forEach(item => {
+    const city = data.forecast.city;
+    const forecastData = data.forecast.data.slice(0, length);
+    forecastData.forEach(item => {
         const datetime = new Date((<number>item.datetime) * 1000)
         item.day = datetime.getDay().toString();
         item.time = datetime.getHours().toString() + 'u';
         item.icon = iconToIconUrl(item.icon);
     });
 
-    return { city: data.city, currentWeather: currentWeather, forecast: forecast };
+    return { city: data.city, current_weather: currentWeather, forecast: {city: city, data: forecastData} };
 }
 
 export function windSpeedBeaufort(speed: number) {
