@@ -18,6 +18,7 @@ export class GuardianNewsPageComponent extends NewsPageComponent {
   logoAlt = 'logo The Guardian';
   logoWidth = '80px';
   logoHeight = '30px';
+  logoLink = 'https://www.theguardian.com/uk/technology';
   
   constructor(protected breakpointsService: BreakpointsService, protected newsService: GuardianNewsService, protected location: Location) {
     super(breakpointsService, newsService, location)
