@@ -1,5 +1,4 @@
 import { OpenweathermapItem } from '../models/openweathermap-item';
-import { ProcessedWeatherItem } from '../models/processed-weather-item';
 import { environment } from '../../environments/environment';
 
 export const currentWeather = {
