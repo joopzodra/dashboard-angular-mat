@@ -43,7 +43,8 @@ describe('NosNewsWidgetComponent', () => {
 
   it('should create', () => {
     (<any>nosNewsService).getWidgetNews.and.returnValue(asyncData(newsItemsArray));
-    fixture.detectChanges();    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
   it('shows three news items', async(() => {
