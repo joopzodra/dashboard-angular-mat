@@ -1,0 +1,19 @@
+<mat-card class="iex-widget-container">
+  <mat-card-title class="accent">
+    <span>Tech aandelen</span>
+    <div class="logo-container">
+      <div class="logo-text bold">IEX</div>
+    <img class="logo-img" src="assets/iex.svg" alt="IEX-logo">
+  </div>
+  </mat-card-title>
+  <mat-card-content>
+<mat-tab-group (click)="$event.stopPropagation()">
+  <mat-tab *ngFor="let company of companyData | async" [label]="company.company">
+    <h1>Some tab content</h1>
+    <p>...</p>
+  </mat-tab>
+</mat-tab-group>
+
+    <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+  </mat-card-content>
+</mat-card>

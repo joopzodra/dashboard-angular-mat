@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NosNewsPageComponent } from './pages/nos-news-page/nos-news-page.component';
 import { OpenweathermapPageComponent } from './pages/openweathermap-page/openweathermap-page.component';
-import { GuardianNewsPageComponent } from './pages/guardian-news-page/guardian-news-page.component'
+import { GuardianNewsPageComponent } from './pages/guardian-news-page/guardian-news-page.component';
+import { IexPageComponent } from './pages/iex-page/iex-page.component';
 
 const routes: Routes = [
   { path: 'overzicht', component: DashboardComponent },
   { path: 'paginas/nieuws', component: NosNewsPageComponent },
-  { path: 'paginas/tech-news', component: GuardianNewsPageComponent},
-  { path: 'paginas/weer', component: OpenweathermapPageComponent},
+  { path: 'paginas/tech-news', component: GuardianNewsPageComponent },
+  { path: 'paginas/weer', component: OpenweathermapPageComponent },
+  { path: 'paginas/tech-aandelen', component: IexPageComponent },
   { path: '', redirectTo: 'overzicht', pathMatch: 'full' },
 ];
 
@@ -24,5 +26,6 @@ export const appRoutingComponents = [
   DashboardComponent,
   NosNewsPageComponent,
   OpenweathermapPageComponent,
-  GuardianNewsPageComponent
+  GuardianNewsPageComponent,
+  IexPageComponent
 ]

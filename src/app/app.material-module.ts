@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
 
 const moduleList = [
   BrowserAnimationsModule,
@@ -20,7 +21,8 @@ const moduleList = [
   MatIconModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 ];
 
 @NgModule({

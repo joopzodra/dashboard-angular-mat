@@ -12,6 +12,8 @@ class GuardianStubComponent { }
 class NosStubComponent { }
 @Component({ selector: 'jr-openweathermap-widget', template: '' })
 class OpenWeathermapStubComponent { }
+@Component({ selector: 'jr-iex-widget', template: '' })
+class IexStubComponent { }
 
 describe('DashboardComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
@@ -24,7 +26,8 @@ describe('DashboardComponent', () => {
         DashboardComponent,
         GuardianStubComponent,
         NosStubComponent,
-        OpenWeathermapStubComponent
+        OpenWeathermapStubComponent,
+        IexStubComponent
       ],
       providers:[{provide: Router, useValue: routerSpy}]
     });
