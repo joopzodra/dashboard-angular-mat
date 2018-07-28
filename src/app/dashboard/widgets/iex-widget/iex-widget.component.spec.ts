@@ -32,7 +32,7 @@ describe('IexWidgetComponent', () => {
   }
 
   beforeEach(() => {
-    iexService = jasmine.createSpyObj('IexService', ['getDayData']);
+    iexService = jasmine.createSpyObj('IexService', ['getWidgetData']);
     TestBed.configureTestingModule({
       imports: [AppMaterialModule],
       declarations: [IexWidgetComponent],
@@ -51,7 +51,7 @@ describe('IexWidgetComponent', () => {
   });
 
   it('should create', () => {
-    (<any>iexService).getDayData.and.returnValue(asyncData(iexDayItemStub));
+    (<any>iexService).getWidgetData.and.returnValue(asyncData(iexDayItemStub));
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });

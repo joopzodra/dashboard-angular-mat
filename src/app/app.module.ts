@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppMaterialModule} from './app.material-module'
 
 import { AppRoutingModule } from './app-routing.module';
+import { ChartsModule } from './charts/charts.module';
 
 import { AppComponent } from './app.component';
 import { appRoutingComponents } from './app-routing.module';
@@ -29,7 +30,8 @@ import { IexWidgetComponent } from './dashboard/widgets/iex-widget/iex-widget.co
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

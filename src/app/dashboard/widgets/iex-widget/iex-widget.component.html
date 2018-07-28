@@ -3,16 +3,21 @@
     <span>Tech aandelen</span>
     <div class="logo-container">
       <div class="logo-text bold">IEX</div>
-    <img class="logo-img" src="assets/iex.svg" alt="IEX-logo">
-  </div>
+      <img class="logo-img" src="assets/iex.svg" alt="IEX-logo">
+    </div>
   </mat-card-title>
   <mat-card-content>
-<mat-tab-group (click)="$event.stopPropagation()">
-  <mat-tab *ngFor="let company of companyData | async" [label]="company.company">
-    <h1>Some tab content</h1>
-    <p>...</p>
-  </mat-tab>
-</mat-tab-group>
+    <mat-tab-group (click)="$event.stopPropagation()">
+      <mat-tab  *ngFor="let company of companyData | async" [label]="company.company">
+        <ng-template matTabContent>
+          <h1>Some tab content</h1>
+          <jr-iex-chart [data]="company">
+            <div [style.height]="chartHeight">
+            </div>
+          </jr-iex-chart>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
 
     <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
   </mat-card-content>
