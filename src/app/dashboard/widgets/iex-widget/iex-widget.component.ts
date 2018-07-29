@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'
 
-import { IexService } from '../../../services/iex-service/iex.service';
+import { IexService } from '../../../services/iex/iex.service';
 import { IexDayItem } from '../../../models/iex-items';
 
 /*

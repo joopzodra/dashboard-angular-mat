@@ -10,7 +10,7 @@ registerLocaleData(localeNl);
 import { AppMaterialModule } from '../../../app.material-module';
 import { IexWidgetComponent } from './iex-widget.component';
 import { IexChartComponent } from '../../../charts/iex-chart/iex-chart.component';
-import { IexService } from '../../../services/iex-service/iex.service';
+import { IexService } from '../../../services/iex/iex.service';
 import { IexDayItem, IexLongtermItem } from '../../../models/iex-items';
 import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
 import { stubIexDayItem } from '../../../testing/stub-iex-data';
