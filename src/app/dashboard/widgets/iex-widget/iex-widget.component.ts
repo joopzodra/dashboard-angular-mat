@@ -21,12 +21,13 @@ import { IexDayItem } from '../../../models/iex-items';
 export class IexWidgetComponent implements OnInit {
 
   companyData: Observable<IexDayItem[]> = of([]);
-  chartHeight = 200;
+  chartHeight = 150;
+  weekdays = ['maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'];
 
   constructor(private service: IexService) { }
 
   ngOnInit() {
-    this.companyData = this.service.getWidgetData().pipe(tap(x => console.log(x)));
+    this.companyData = this.service.getWidgetData();
   }
 
 }

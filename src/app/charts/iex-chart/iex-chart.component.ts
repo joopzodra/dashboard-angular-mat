@@ -22,9 +22,9 @@ import { IexDayItem } from '../../models/iex-items'
 export class IexChartComponent implements OnInit {
   @Input() private data!: IexDayItem;
   @ViewChild('chartContainer') private chartContainer!: ElementRef<HTMLElement>;
-  private margin = { top: 20, bottom: 20, left: 45, right: 20 };
+  private margin = { top: 8, bottom: 20, left: 45, right: 15 };
   private chart!: Selection<BaseType, {}, null, undefined>;
-  private parentElHeight = 200;
+  @Input('chartHeight') private parentElHeight = 200;
 
   /* D3 settings */
   private locale = formatLocale({

@@ -12,7 +12,11 @@ export const stubIexDayItem = {
   company: 'AAAA',
   quote: {
     company_name: 'a company',
-    latest_update: 1532548800218,
+    latest_update: {
+      amsterdamTimeIso: '2018-07-27T22:00:00.248+02:00',
+      newYorkTimeIso: '2018-07-27T16:00:00.248-04:0',
+      weekday: 5
+    },
     latest_price: 217.5
   },
   day: {

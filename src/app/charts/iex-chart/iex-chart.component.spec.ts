@@ -4,7 +4,7 @@ import { IexChartComponent } from './iex-chart.component';
 import { stubIexDayItem } from '../../testing/stub-iex-data';
 import { IexDayItem } from '../../models/iex-items'
 
-fdescribe('IexChartComponent', () => {
+describe('IexChartComponent', () => {
   let component: IexChartComponent;
   let fixture: ComponentFixture<IexChartComponent>;
   const iexDayItem: IexDayItem = stubIexDayItem;

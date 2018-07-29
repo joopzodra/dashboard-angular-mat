@@ -2,7 +2,11 @@ export interface IexDayItem {
   company: string,
   quote: {
     company_name: string,
-    latest_update: number,
+    latest_update: {
+      amsterdamTimeIso: string,
+      newYorkTimeIso: string,
+      weekday: number
+    },
     latest_price: number
   },
   day: {
