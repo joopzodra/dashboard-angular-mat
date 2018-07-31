@@ -6,7 +6,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$md-dashboard-primary: mat-palette($mat-lime);
+$md-dashboard-primary: mat-palette($mat-amber);
 $md-dashboard-accent:  mat-palette($mat-light-blue);
 
 // The warn palette is optional (defaults to red).
@@ -46,6 +46,9 @@ $custom-typography: mat-typography-config(
   }
   .iex-widget-chart-title {
     background-color: mat-color($accent, 50);
+  }
+  .iex-chart-price-line {
+    stroke: mat-color($accent, A700);
   }
 }
 // Alternatively, you can import and @include the theme mixins for each component
