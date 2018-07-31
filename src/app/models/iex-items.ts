@@ -32,6 +32,6 @@ export interface IexLongtermItem {
     chart_data: {
       date: string,
       price: number
-    }
-  }[]
+    }[]
+  }
 }
