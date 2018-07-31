@@ -10,7 +10,6 @@ describe('IexChartComponent', () => {
   let fixture: ComponentFixture<IexChartComponent>;
   const iexDayItem: IexDayItem = stubIexDayItem;
   let el: HTMLElement;
-  const spy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,10 +23,8 @@ describe('IexChartComponent', () => {
     (component as any).iexItem = iexDayItem;
     (component as any).period = 'day';
     el = fixture.nativeElement;
-    // We need to call ngOnChanges, since we manually changed a property of the IexChartComponent. This means that when we call detectChanges Angular will not detect any changes and not call ngOnChanges. See https://medium.com/@christophkrautz/testing-ngonchanges-in-angular-components-bbb3b4650ee8
-    let prevValue = undefined;
-    let newValue = iexDayItem; // Curiously the specs also succeeds if newValue = undefined.
-    component.ngOnChanges({ iexItem: new SimpleChange(prevValue, newValue) });
+    // We need to call ngOnChanges, since we manually changed a property of the IexChartComponent. This means that when we call detectChanges Angular will not detect any changes and not call ngOnChanges.
+    component.ngOnChanges();
     fixture.detectChanges();
   });
 
