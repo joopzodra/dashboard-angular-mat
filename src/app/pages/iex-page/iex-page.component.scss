@@ -1,3 +1,4 @@
+/* Changes in mat styles */
 .mat-card {
   padding-top: 0;
   padding-bottom: 0;
@@ -6,6 +7,7 @@
   margin-bottom: 0;
 }
 
+/* In page title */
 .page-title {
   display: flex;
   align-items: center;
@@ -14,9 +16,6 @@
     margin-left: 8px;
     width: 30px;
   }
-}
-.update-message {
-  margin-bottom: 16px;
 }
 .logo-container {
   display: flex;
@@ -30,6 +29,11 @@
 .logo-link {
   text-decoration: none;
 }
+.update-message {
+  margin-bottom: 16px;
+}
+
+/* In page content */
 .page-content {
   display: flex;
   flex-flow: column;
@@ -41,12 +45,16 @@
   max-width: 600px;
   margin-bottom: 16px;
 }
-#all-companies-list mat-card {
+
+/* In all-companies-container */
+#all-companies-container mat-card {
   cursor: pointer;
 }
 .company-header {
   padding-top: 8px;
 }
+
+/* In selected-company-container */
 .selected-subheading {
   margin-top: 8px;
 }

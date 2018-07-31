@@ -50,7 +50,6 @@ export class IexPageComponent implements OnInit {
         }
         this.selectedCompanyStyle = {
           'order': '2',
-          'max-width': 'none',
           'margin-left': '16px',
           'margin-top': '8px'
         }

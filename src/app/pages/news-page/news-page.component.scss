@@ -1,3 +1,12 @@
+/* Changes in mat styles */
+.mat-h3, .mat-body-1 {
+  margin-bottom: 8px;
+}
+.mat-h3 {
+  line-height: 1.2;
+}
+
+/* In page header and page content */
 .page-header {
   display: flex;
   align-items: center;
@@ -10,10 +19,12 @@
   justify-content: space-around;
   margin: 0 16px;
 }
-.ul-container, .selected-item-container {
+#all-items-container, #selected-item-container {
   max-width: 600px;
 }
-.selected-item-container {
+
+/* In selected-item-container */
+#selected-item-container {
   margin: 0 0 8px 32px;
   padding: 16px;
 
@@ -26,6 +37,26 @@
     margin: 0 auto 8px;
   }
 }
+
+/* ::ng-deep is deprecated, see: https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep */
+/* h2 heading inside Nos and Guardian news body text */
+::ng-deep .body-text h2 {
+  font-size: 1em;
+}
+
+/* Images inside Guardian news body text */
+::ng-deep .gu-image {
+  max-width: 150px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+}
+/* //// End of selected-item-container //// */
+
+/* In all-items-container */
+#all-items-container li {
+  cursor: pointer;
+}
 .thumbnail-small {
   height: 50px;
   margin: 0 8px 0px 0;
@@ -35,32 +66,11 @@
   display: block;
   margin: 0 auto 8px;
 }
-
 .thumbnail-large {
   max-height: 320px;
   display: block;
   margin: 0 auto 8px;
 }
-
-.mat-h3 {
-  line-height: 1;
-}
-.list-item-body {
+.item-body {
   display: flex;
-}
-.mat-h3, .mat-body-1 {
-  margin-bottom: 8px;
-}
-.bold {
-  font-weight:bold;
-}
-/* ::ng-deep is deprecated, see: https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep */
-::ng-deep .body-text h2 { 
-  font-size: 1.2em;
-}
-::ng-deep .gu-image {
-  max-width: 150px;
-  max-height: 150px;
-  width: auto;
-  height: auto;
 }

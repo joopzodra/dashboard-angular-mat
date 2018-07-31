@@ -9,7 +9,7 @@
 
   <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
 
-  <div *ngIf="selectedCity" id="selected-city" [ngStyle]="selectedCityStyle">
+  <div *ngIf="selectedCity" id="selected-city-container" [ngStyle]="selectedCityStyle">
     <mat-card class="soft-background-accent-theme-color">
       <div class="current-weather">
         <div class="text-info">
@@ -39,9 +39,9 @@
   </div>
 
   <div id="all-cities-container">
-    <ul class="ul" id="all-cities">
-      <li *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)">
-        <mat-card>
+    <ul class="ul">
+      <li *ngFor="let item of items" [id]="selectedCity === item ? 'selected-item' : '' " (click)="selectItem(item)">
+        <mat-card [ngClass]="selectedCity === item ? 'soft-background-accent-theme-color' : '' " >
           <div class="current-weather">
             <div class="text-info">
               <div class="mat-h2 city-name">{{item.current_weather.city}}</div>
@@ -62,6 +62,4 @@
     </ul>    
   </div>
 
-  <div class="selected-item-container soft-background-theme-color" *ngIf="selectedItem && columns === 2">
-  </div>
 </div>

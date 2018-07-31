@@ -40,13 +40,16 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
       if (screenSize === 'medium' || screenSize === 'large') {
         this.columns = 2;
         this.pageContentStyle = {
-          'flex-flow': 'row'
+          'flex-flow': 'row',
+          'justify-content': 'center'
         }
         this.selectedCityStyle = {
           'order': '2',
           'max-width': 'none',
           'margin-left': '16px',
-          'margin-top': '8px'
+          'margin-top': '8px',
+          // To prevent overflow (see: https://stackoverflow.com/questions/12022288/how-to-keep-a-flex-item-from-overflowing-due-to-its-text)
+          'min-width': 0
         }
       } else {
         this.columns = 1;

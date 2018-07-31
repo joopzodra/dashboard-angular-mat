@@ -10,13 +10,13 @@ import { NewsService } from '../../services/news/news.service';
 
 export abstract class NewsPageComponent implements OnInit, OnDestroy {
 
+  @ViewChildren('newsItem') itemsList!: QueryList<ElementRef>
   items: NewsItem[] = [];
   errorMessage = '';
   breakpointsSubscription!: Subscription;
   selectedItem: NewsItem | undefined;
   thumbnailClass = 'thumbnail-medium';
   columns = 1;
-  @ViewChildren('newsItem') itemsList!: QueryList<ElementRef>
 
   constructor(protected breakpointsService: BreakpointsService, protected newsService: NewsService, protected location: Location) { }
 
@@ -63,18 +63,23 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
     this.breakpointsSubscription.unsubscribe();
   }
 
-  toggleBodyText(item: NewsItem) {
-    if (this.selectedItem === item) {
-      this.selectedItem = undefined;
-    } else {
-      this.selectedItem = item;
-      if (this.columns === 1) {
+  selectItem(item: NewsItem) {
+    if (this.columns === 1) {
+      if (this.selectedItem === item) {
+        this.selectedItem = undefined;
+      } else {
+        this.selectedItem = item;
+        // Using setTimeout to get element's offsetTop when it is fully displayed.
         setTimeout(() => {
           const elRef = this.itemsList.find(item => item.nativeElement.id === 'selected-item');
           const el = (<ElementRef<any>>elRef).nativeElement;
-          window.scrollTo({ top: el.offsetTop, behavior: 'auto' })
-        })
+          window.scrollTo({top: el.offsetTop , behavior: 'auto'})
+        });
       }
+    }
+    else {
+      this.selectedItem = item;
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
   }
 
