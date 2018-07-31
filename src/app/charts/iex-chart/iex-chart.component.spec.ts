@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SimpleChange } from '@angular/core';
 
 import { IexChartComponent } from './iex-chart.component';
 import { stubIexDayItem } from '../../testing/stub-iex-data';
@@ -9,18 +10,24 @@ describe('IexChartComponent', () => {
   let fixture: ComponentFixture<IexChartComponent>;
   const iexDayItem: IexDayItem = stubIexDayItem;
   let el: HTMLElement;
+  const spy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ IexChartComponent ]
+      declarations: [IexChartComponent]
     });
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(IexChartComponent);
     component = fixture.componentInstance;
-    (component as any).data = iexDayItem;
+    (component as any).iexItem = iexDayItem;
+    (component as any).period = 'day';
     el = fixture.nativeElement;
+    // We need to call ngOnChanges, since we manually changed a property of the IexChartComponent. This means that when we call detectChanges Angular will not detect any changes and not call ngOnChanges. See https://medium.com/@christophkrautz/testing-ngonchanges-in-angular-components-bbb3b4650ee8
+    let prevValue = undefined;
+    let newValue = iexDayItem; // Curiously the specs also succeeds if newValue = undefined.
+    component.ngOnChanges({ iexItem: new SimpleChange(prevValue, newValue) });
     fixture.detectChanges();
   });
 
@@ -31,10 +38,10 @@ describe('IexChartComponent', () => {
   it('should contain an svg element', () => {
     const svg = el.querySelector('svg');
     expect(svg).toBeTruthy();
-  }); 
+  });
 
   it('it should contain an x and and y axis.', () => {
-    const axes = el.querySelectorAll('.iex-widget-x-axis, .iex-widget-y-axis');
+    const axes = el.querySelectorAll('.iex-chart-x-axis, .iex-chart-y-axis');
     expect(axes.length).toBe(2);
     const boundingRectX = axes[0].getBoundingClientRect();
     expect(boundingRectX.width).toBeGreaterThan(200);
@@ -42,13 +49,14 @@ describe('IexChartComponent', () => {
     const boundingRectY = axes[1].getBoundingClientRect();
     expect(boundingRectY.width).toBeGreaterThan(5);
     expect(boundingRectY.height).toBeGreaterThan(100);
+
   });
 
   it('it should contain a line graph', () => {
-    const line = el.querySelector('.stock-price-line') as Element;
+    const line = el.querySelector('.iex-chart-price-line') as Element;
     expect(line).toBeTruthy();
     const boundingRect = line.getBoundingClientRect();
     expect(boundingRect.width).toBeGreaterThan(200);
-    expect(boundingRect.height).toBeGreaterThan(10);    
+    expect(boundingRect.height).toBeGreaterThan(10);
   });
 });

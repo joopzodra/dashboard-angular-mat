@@ -1,8 +1,11 @@
-.iex-widget-x-axis {
+.iex-chart-container {
+  width: 100%;
+  max-width: 700px;
+}
+.iex-chart-x-axis {
   shape-rendering: crispEdges;
 }
-
-.iex-widget-y-axis line {
+.iex-chart-y-axis line {
   opacity: 0.1;
   shape-rendering: crispEdges;
 }

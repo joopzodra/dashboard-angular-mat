@@ -1,1 +1,5 @@
-<div class="chart-container" #chartContainer [ngStyle]="{'height': elHeight + 'px'}"></div>
+<div class="iex-chart-container" #chartContainer [ngStyle]="{'height': elHeight + 'px'}">
+  <svg #svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <g class="chart" [attr.transform]="'translate(' + margin.left + ',' + margin.top + ')'"></g>
+</svg>
+</div>
