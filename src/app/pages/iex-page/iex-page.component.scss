@@ -1,0 +1,52 @@
+.mat-card {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.mat-display-1 {
+  margin-bottom: 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  img {
+    margin-left: 8px;
+    width: 30px;
+  }
+}
+.update-message {
+  margin-bottom: 16px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+}
+.logo-text {
+  font-size: 16px;
+  color: rgb(0,0,0);
+}
+.logo-link {
+  text-decoration: none;
+}
+.page-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  margin: 0 16px;
+}
+#all-companies-container, #selected-company-container {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+#all-companies-list mat-card {
+  cursor: pointer;
+}
+.company-header {
+  padding-top: 8px;
+}
+.selected-subheading {
+  margin-top: 8px;
+}

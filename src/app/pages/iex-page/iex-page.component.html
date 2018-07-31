@@ -1,3 +1,61 @@
-<p>
-  iex-page works!
-</p>
+<div class="page-header" [style.display]="columns === 2 ? 'flex' : ''">
+  <div class="page-title">
+    <h1 class="mat-headline">Tech aandelen</h1>
+    <a class="logo-link" href="https://iextrading.com/">
+      <div class="logo-container">
+        <span class="logo-text bold mat-body-1">IEX</span>
+        <img class="logo" src="assets/iex.svg" alt="logo IEX" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+      </div>
+    </a>
+  </div>
+  <div *ngIf="iexDayItems.length" class="mat-caption update-message" [style.margin-left]="columns === 2 ? 'auto' : ''" >Laatste update: {{iexDayItems[0]?.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd) <br>(Nederlandse tijd: {{iexDayItems[0].quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }})</div>
+</div>
+
+<div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
+
+<div *ngIf="iexDayItems.length && iexSelectedCompanyLongtermItem" class="page-content" [ngStyle]="pageContentStyle">
+
+  <div id="selected-company-container" [ngStyle]="selectedCompanyStyle">
+    <div *ngIf="columns === 2" class="mat-subheading-2">&nbsp;</div>
+
+    <mat-card class="soft-background-accent-theme-color">
+      <div class="mat-heading company-header">
+        <span class="company-symbol bold">{{iexSelectedCompanyDayItem.day.symbol}} </span>
+        <span class="company-name">– {{iexSelectedCompanyDayItem.company}}</span>
+      </div>
+      <div class="chart-container-selected">
+        <div class="mat-body-1 selected-subheading">{{iexDayItems[0].quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime":"day"}}</div>
+        <jr-iex-chart [iexItem]="iexSelectedCompanyDayItem" [period]="'day'" [chartHeight]="chartHeight">            
+        </jr-iex-chart>
+      </div>
+      <div class="chart-container-selected">
+        <div class="mat-body-1 selected-subheading">afgelopen maand</div>
+        <jr-iex-chart [iexItem]="iexSelectedCompanyLongtermItem" [period]="'month'" [chartHeight]="chartHeight">            
+        </jr-iex-chart>
+      </div>
+      <div class="chart-container-selected">
+        <div class="mat-body-1 selected-subheading">afgelopen twee jaar</div>
+        <jr-iex-chart [iexItem]="iexSelectedCompanyLongtermItem" [period]="'twoYears'" [chartHeight]="chartHeight">            
+        </jr-iex-chart>
+      </div> 
+    </mat-card>
+  </div>
+
+  <div id="all-companies-container">
+    <div class="mat-subheading-2">{{iexDayItems[0].quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime":"day"}}</div>
+    <ul class="ul" id="all-companies-list">
+      <li *ngFor="let company of iexDayItems" (click)="selectCompany(company.day.symbol)">
+        <mat-card>
+          <div class="company-header">
+            <span class="company-symbol bold">{{company.day.symbol}} </span>
+            <span class="company-name">– {{company.company}}</span>
+          </div>
+          <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">            
+          </jr-iex-chart>
+        </mat-card>
+      </li>
+    </ul>    
+    <div *ngIf="iexDayItems.length" class="mat-caption"></div>
+  </div>
+
+</div>
