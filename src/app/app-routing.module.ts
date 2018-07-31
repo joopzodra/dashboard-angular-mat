@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'paginas/tech-news', component: GuardianNewsPageComponent },
   { path: 'paginas/weer', component: OpenweathermapPageComponent },
   { path: 'paginas/tech-aandelen', component: IexPageComponent },
-  { path: '', redirectTo: 'overzicht', pathMatch: 'full' },
+  { path: '**', redirectTo: 'overzicht' }
 ];
 
 @NgModule({
