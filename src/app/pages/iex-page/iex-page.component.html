@@ -11,7 +11,7 @@
   <div *ngIf="iexDayItems.length" class="mat-caption update-message" [style.margin-left]="columns === 2 ? 'auto' : ''" >Laatste update: {{iexDayItems[0]?.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd) <br>(Nederlandse tijd: {{iexDayItems[0].quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }})</div>
 </div>
 
-<div class="page-content" [ngStyle]="pageContentStyle">
+<div *ngIf="iexDayItems && iexSelectedCompanyLongtermItem" class="page-content" [ngStyle]="pageContentStyle">
 
   <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
 
