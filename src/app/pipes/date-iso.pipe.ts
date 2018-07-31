@@ -7,9 +7,12 @@ import {utcParse, timeFormat, isoParse } from 'd3-time-format';
 export class DateIsoPipe implements PipeTransform {
   private months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
   private shortMonths = ['jan', 'feb', 'mrt', 'apr', 'mei', 'juni', 'juli', 'aug', 'sept', 'okt', 'nov', 'dec'];
+  private days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+  private shortDays = ['zo', 'ma', 'di', 'woe', 'do', 'vrij', 'za'];
 
   transform(value: string, ...args: any[]): string | null {
     if (value && typeof value === 'string') {
+      const parsedDate = new Date(value);
       const months = args.includes('shortMonths') ? this.shortMonths : this.months;
       const year = args.includes('noYear') ? '' :  ' ' + value.slice(0, 4);
       const month = +value.slice(5, 7) - 1;
@@ -17,7 +20,15 @@ export class DateIsoPipe implements PipeTransform {
       const hour = value.slice(11, 13);
       const minutes = value.slice(14, 16);
       const time = args.includes('noTime') ? '' : `${hour}.${minutes} uur`;
-      return `${day} ${months[month]} ${year} ${time}`
+      let weekday = '';
+      if (args.includes('day')) {
+        const weekDayNumber = parsedDate.getDay();
+        weekday = this.days[weekDayNumber];
+      } else if (args.includes('shortDay')) {
+        const weekDayNumber = parsedDate.getDay();
+        weekday = this.shortDays[weekDayNumber];
+      }
+      return `${weekday} ${day} ${months[month]} ${year} ${time}`.trim()
     }
     return null;
   }
