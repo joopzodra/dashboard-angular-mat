@@ -68,7 +68,7 @@ describe('IexWidgetComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       component.companyData.subscribe(data => {
-        expect(data[0]).toEqual(stubIexDayItem);
+        expect((<IexDayItem[]>data)[0]).toEqual(stubIexDayItem);
       })
     });
   });
