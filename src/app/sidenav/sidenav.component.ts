@@ -28,7 +28,8 @@ export class SidenavComponent {
     { url: '/overzicht', label: 'Overzicht' },
     { url: '/paginas/nieuws', label: 'Nieuws' },
     { url: '/paginas/tech-news', label: 'Tech news' },
-    { url: '/paginas/weer', label: 'Weer' }
+    { url: '/paginas/weer', label: 'Weer' },
+    { url: 'paginas/tech-aandelen', label: 'Tech aandelen'}
   ]
 
   constructor(breakpointsService: BreakpointsService) {
