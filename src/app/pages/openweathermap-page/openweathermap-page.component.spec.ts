@@ -44,4 +44,13 @@ describe('OpenweathermapPageComponent', () => {
     });
   }));
 
+  it('displays an error message when OpenweathermapService fails', async(() => {
+    serviceSpy.getPageWeather.and.returnValue(asyncError({ error: 'OpenweathermapService test failure' }));
+    fixture.detectChanges()
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const errMessage = el.querySelector('.error-message');
+      expect((<HTMLElement>errMessage).textContent).toMatch(/test failure/);
+    });
+  }));
 });

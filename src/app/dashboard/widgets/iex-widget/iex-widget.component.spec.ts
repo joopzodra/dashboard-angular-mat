@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
@@ -13,17 +11,15 @@ import { IexChartComponent } from '../../../charts/iex-chart/iex-chart.component
 import { IexService } from '../../../services/iex/iex.service';
 import { IexDayItem, IexLongtermItem } from '../../../models/iex-items';
 import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
-import { stubIexDayItem } from '../../../testing/stub-iex-data';
+import { stubIexDayItems } from '../../../testing/stub-iex-data';
 import { DateIsoPipe } from '../../../pipes/date-iso.pipe';
 
 describe('IexWidgetComponent', () => {
   let component: IexWidgetComponent;
   let fixture: ComponentFixture<IexWidgetComponent>;
   let el: HTMLElement;
-  let de: DebugElement;
   let iexService: jasmine.SpyObj<{}>;
   let routerSpy: jasmine.SpyObj<{}>;
-  const stubData = Array(3).fill(Object.assign({}, stubIexDayItem));
 
   beforeEach(() => {
     iexService = jasmine.createSpyObj('IexService', ['getWidgetData']);
@@ -42,17 +38,16 @@ describe('IexWidgetComponent', () => {
     component = fixture.componentInstance;
     // fixture.detectChanges();
     el = fixture.nativeElement;
-    de = fixture.debugElement;
   });
 
   it('should create', () => {
-    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubData));
+    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubIexDayItems));
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('displays stock data', async(() => {
-    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubData));
+    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubIexDayItems));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -64,12 +59,23 @@ describe('IexWidgetComponent', () => {
   }));
 
   it('passes stock data to the iex-chart-component', () => {
-    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubData));
+    (<any>iexService).getWidgetData.and.returnValue(asyncData(stubIexDayItems));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       component.companyData.subscribe(data => {
-        expect((<IexDayItem[]>data)[0]).toEqual(stubIexDayItem);
+        expect((<IexDayItem[]>data)[0]).toEqual(stubIexDayItems[0]);
       })
     });
   });
+
+  it('displays an error message when IexService fails', async(() => {
+    (<any>iexService).getWidgetData.and.returnValue(asyncError({ error: 'IexService test failure' }));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const errMessage = el.querySelector('.error-message');
+      expect((<HTMLElement>errMessage).textContent).toMatch(/test failure/);
+    });
+  }));
+
 });
