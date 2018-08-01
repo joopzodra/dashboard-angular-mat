@@ -21,19 +21,8 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
   constructor(protected breakpointsService: BreakpointsService, protected newsService: NewsService, protected location: Location) { }
 
   ngOnInit() {
-    this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(value => {
-      let screenSize;
-      if (value.large) {
-        screenSize = 'large';
-      } else if (value.medium) {
-        screenSize = 'medium';
-      } else if (value.tablet) {
-        screenSize = 'tablet'
-      } else {
-        screenSize = 'small';
-      }
-
-      if (screenSize === 'medium' || screenSize === 'large') {
+    this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
+      if (screenSize.medium || screenSize.large) {
         this.thumbnailClass = 'thumbnail-large';
         this.columns = 2;
       } else {

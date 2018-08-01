@@ -31,19 +31,8 @@ export class IexPageComponent implements OnInit {
   constructor(private iexService: IexService, private breakpointsService: BreakpointsService, private location: Location) { }
 
   ngOnInit() {
-    this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(value => {
-      let screenSize;
-      if (value.large) {
-        screenSize = 'large';
-      } else if (value.medium) {
-        screenSize = 'medium';
-      } else if (value.tablet) {
-        screenSize = 'tablet'
-      } else {
-        screenSize = 'small';
-      }
-
-      if (screenSize === 'medium' || screenSize === 'large') {
+    this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
+      if (screenSize.medium || screenSize.large) {
         this.columns = 2;
         this.pageContentStyle = {
           'flex-flow': 'row'
