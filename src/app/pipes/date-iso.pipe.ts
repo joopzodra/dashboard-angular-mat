@@ -5,6 +5,7 @@ import {utcParse, timeFormat, isoParse } from 'd3-time-format';
   name: 'dateIso'
 })
 export class DateIsoPipe implements PipeTransform {
+
   private months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
   private shortMonths = ['jan', 'feb', 'mrt', 'apr', 'mei', 'juni', 'juli', 'aug', 'sept', 'okt', 'nov', 'dec'];
   private days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];

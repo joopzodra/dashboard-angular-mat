@@ -18,8 +18,8 @@ import { BreakpointsService } from '../services/breakpoints/breakpoints.service'
 })
 export class SidenavComponent {
 
-  mode = 'over';
   @ViewChild('sidenav') sidenav!: MatSidenav;
+  mode = 'over';
   // topGap is equal to height of mat-toolbar in HeaderComponent, which is changing at the 600px breakpoint
   topGap = 56;
   breakpoints$: Observable<Breakpoints>;

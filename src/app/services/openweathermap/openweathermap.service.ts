@@ -15,8 +15,9 @@ import { OpenweathermapItem } from '../../models/openweathermap-item';
   providedIn: 'root'
 })
 export class OpenweathermapService {
-  baseUrl = environment.backendBaseUrl;
-  apiEndpoint = '/openweathermap';
+
+  private baseUrl = environment.backendBaseUrl;
+  private apiEndpoint = '/openweathermap';
   cityNames$: Observable<string[]>;
 
   constructor(private http: HttpClient) {

@@ -18,11 +18,11 @@ import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeath
 })
 export class OpenweathermapWidgetComponent implements OnInit {
 
+  @ViewChild('citySelect') citySelect!: MatSelect;
   currentWeather = currentWeather;
   forecast: ForecastData[] = forecast;
   errorMessage = '';
   cityNames$: Observable<string[]> = of([]);
-  @ViewChild('citySelect') citySelect!: MatSelect;
 
   constructor(private service: OpenweathermapService) { }
 

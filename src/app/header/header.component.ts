@@ -18,15 +18,15 @@ import { BreakpointsService } from '../services/breakpoints/breakpoints.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Output() toggleEvent: EventEmitter<boolean>;
   monthDict = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']
   date = new Date()
   day = this.date.getDate();
   month = this.monthDict[this.date.getMonth()];
   year = this.date.getFullYear();
   cursor = 'auto';
-
   mediaLarge = false;
-  @Output() toggleEvent: EventEmitter<boolean>;
 
   constructor(private router: Router, private breakpointsService: BreakpointsService) {
     breakpointsService.breakpoints$.subscribe(value => {

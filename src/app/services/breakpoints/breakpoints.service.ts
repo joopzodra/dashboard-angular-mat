@@ -17,9 +17,9 @@ export class BreakpointsService {
 
   breakpoints$: Observable<Breakpoints>;
 
-  // breakpoint at which the height of mat-toolbar in the HeaderComponent changes:
+  // Breakpoint at which the height of mat-toolbar in the HeaderComponent changes:
   private breakpointTablet = '(min-width: 600px)'
-  // breakpoint usefull for responsive design
+  // Breakpoint usefull for responsive design:
   private breakpointMedium = '(min-width: 960px)';
   private breakpointLarge = '(min-width: 1440px)';
 

@@ -17,6 +17,7 @@ import { IexService } from '../../services/iex/iex.service';
   styleUrls: ['./iex-page.component.scss']
 })
 export class IexPageComponent implements OnInit {
+
   iexDayItems: IexDayItem[] = [];
   iexSelectedCompanyDayItem!: IexDayItem;
   iexSelectedCompanyLongtermItem!: IexLongtermItem;
@@ -56,7 +57,7 @@ export class IexPageComponent implements OnInit {
         this.errorMessage = (data as HttpErrorResponse).error;
       } else if ((data as IexDayItem[]).length) { // Test for length because the BehaviourSubject on initiation sends an empty array.
         this.iexDayItems = data as IexDayItem[];
-        // setInitialSelectedCompany needs iexDayItems, so call it after setting the iexDayItems.
+        // setInitialSelectedCompany needs iexDayItems, so call it after setting the iexDayItems, i.e. within this subscription.
         this.setInitialSelectedCompany();
       }
     });

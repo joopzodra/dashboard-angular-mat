@@ -14,6 +14,7 @@ import { NewsItem } from '../../../models/news-item';
  */
 
 export abstract class NewsWidgetComponent implements OnInit {
+
   items$: Observable<NewsItem[] | {}> = of();
   errorMessage = '';
 

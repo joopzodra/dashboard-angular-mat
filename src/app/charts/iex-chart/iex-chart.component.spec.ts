@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SimpleChange } from '@angular/core';
 
 import { IexChartComponent } from './iex-chart.component';
-import { stubIexDayItem } from '../../testing/stub-iex-data';
+import { stubIexDayItems } from '../../testing/stub-iex-data';
 import { IexDayItem } from '../../models/iex-items'
 
 describe('IexChartComponent', () => {
   let component: IexChartComponent;
   let fixture: ComponentFixture<IexChartComponent>;
-  const iexDayItem: IexDayItem = stubIexDayItem;
+  const iexDayItem: IexDayItem = stubIexDayItems[0];
   let el: HTMLElement;
 
   beforeEach(() => {
@@ -32,12 +32,12 @@ describe('IexChartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain an svg element', () => {
+  it('contains an svg element', () => {
     const svg = el.querySelector('svg');
     expect(svg).toBeTruthy();
   });
 
-  it('it should contain an x and and y axis.', () => {
+  it('contains an x and and y axis.', () => {
     const axes = el.querySelectorAll('.iex-chart-x-axis, .iex-chart-y-axis');
     expect(axes.length).toBe(2);
     const boundingRectX = axes[0].getBoundingClientRect();
@@ -49,7 +49,7 @@ describe('IexChartComponent', () => {
 
   });
 
-  it('it should contain a line graph', () => {
+  it('contains a line graph', () => {
     const line = el.querySelector('.iex-chart-price-line') as Element;
     expect(line).toBeTruthy();
     const boundingRect = line.getBoundingClientRect();

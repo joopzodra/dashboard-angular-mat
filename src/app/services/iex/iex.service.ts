@@ -10,11 +10,12 @@ import { IexDayItem, IexLongtermItem } from '../../models/iex-items';
   providedIn: 'root'
 })
 export class IexService {
-  baseUrl = environment.backendBaseUrl;
-  apiEndpoint = '/iex';
-  iexDayDataFresh = false;
+
+  private baseUrl = environment.backendBaseUrl;
+  private apiEndpoint = '/iex';
+  private iexDayDataFresh = false;
+  private iexLongtermDataCache: IexLongtermItem[] = [];
   iexDayData$ = new BehaviorSubject<IexDayItem[] | HttpErrorResponse>([]);
-  iexLongtermDataCache: IexLongtermItem[] = [];
   iexLongtermData$ = new BehaviorSubject<IexLongtermItem | undefined | HttpErrorResponse>(undefined);
 
   constructor(private http: HttpClient) { }

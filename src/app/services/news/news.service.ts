@@ -9,7 +9,8 @@ import { NewsItem } from '../../models/news-item';
  */
 
 export abstract class NewsService {
-  baseUrl = environment.backendBaseUrl;
+
+  private baseUrl = environment.backendBaseUrl;
 
   constructor(private apiEndpoint: string, protected http: HttpClient) { }
 
