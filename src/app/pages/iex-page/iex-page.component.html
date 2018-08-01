@@ -11,11 +11,11 @@
   <div *ngIf="iexDayItems.length" class="mat-caption update-message" [style.margin-left]="columns === 2 ? 'auto' : ''" >Laatste update: {{iexDayItems[0]?.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd) <br>(Nederlandse tijd: {{iexDayItems[0].quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }})</div>
 </div>
 
-<div *ngIf="iexDayItems && iexSelectedCompanyLongtermItem" class="page-content" [ngStyle]="pageContentStyle">
+<div class="page-content" [ngStyle]="pageContentStyle">
 
   <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
 
-  <div id="selected-company-container" [ngStyle]="selectedCompanyStyle">
+  <div *ngIf="iexSelectedCompanyLongtermItem" id="selected-company-container" [ngStyle]="selectedCompanyStyle">
     <div *ngIf="columns === 2" class="mat-subheading-2">&nbsp;</div>
     <mat-card class="soft-background-theme-color">
       <div class="mat-heading company-header">
@@ -40,7 +40,7 @@
     </mat-card>
   </div>
 
-  <div id="all-companies-container">
+  <div *ngIf="iexDayItems.length" id="all-companies-container">
     <div class="mat-subheading-2">{{iexDayItems[0].quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime":"day"}}</div>
     <ul class="ul">
       <li *ngFor="let company of iexDayItems" (click)="selectCompany(company.day.symbol)">

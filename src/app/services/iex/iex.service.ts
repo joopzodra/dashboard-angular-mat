@@ -13,9 +13,9 @@ export class IexService {
   baseUrl = environment.backendBaseUrl;
   apiEndpoint = '/iex';
   iexDayDataFresh = false;
-  iexDayData$ = new BehaviorSubject<IexDayItem[]>([]);
+  iexDayData$ = new BehaviorSubject<IexDayItem[] | HttpErrorResponse>([]);
   iexLongtermDataCache: IexLongtermItem[] = [];
-  iexLongtermData$ = new BehaviorSubject<IexLongtermItem | undefined>(undefined);
+  iexLongtermData$ = new BehaviorSubject<IexLongtermItem | undefined | HttpErrorResponse>(undefined);
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +40,11 @@ export class IexService {
           this.iexDayDataFresh = true;
           setTimeout(() => this.iexDayDataFresh = false, 120000); // After 2 minutes, the day data isn't fresh anymore.
           this.iexDayData$.next(data);
-        });
+        },
+          (err: HttpErrorResponse) => {
+            this.iexDayData$.next(err);
+          }
+        );
     }
   }
 
@@ -55,9 +59,13 @@ export class IexService {
         .set('company', companySymbol)
     };
     this.http.get<IexLongtermItem>(this.baseUrl + this.apiEndpoint, options)
-    .subscribe(data => {
-      this.iexLongtermDataCache.push(data);
-      this.iexLongtermData$.next(data);
-    })
+      .subscribe(data => {
+        this.iexLongtermDataCache.push(data);
+        this.iexLongtermData$.next(data);
+      },
+        (err: HttpErrorResponse) => {
+          this.iexDayData$.next(err);
+        }
+      )
   }
 }

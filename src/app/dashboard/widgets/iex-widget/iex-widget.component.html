@@ -1,4 +1,5 @@
 <mat-card class="iex-widget-container">
+
   <mat-card-title class="accent">
     <span>Tech aandelen</span>
     <div class="logo-container">
@@ -6,30 +7,35 @@
       <img class="logo-img" src="assets/iex.svg" alt="IEX-logo">
     </div>
   </mat-card-title>
-  <mat-card-content>
-    <mat-tab-group (click)="$event.stopPropagation()" color="accent">
-      <mat-tab  *ngFor="let company of companyData | async" [label]="company.company">
-        <ng-template matTabContent>
-          <div (click)="navigate(company.day.symbol)">
-            <div class="quote-info">
-              <div class="quote-info-top">
-                <div class="quote-info-top-left">
-                  <div class="mat-headline company-symbol">{{company.day.symbol}}</div>
-                  <div class="mat-body-1 company-name">{{company.quote.company_name}}</div>
-                </div>
-                <div class="mat-display-1 quote-info-top-right">$ {{company.quote.latest_price | number:'1.2-2':'nl'}}</div>
-              </div>
-              <div class="mat-caption">Laatste update: {{company.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd*)</div>
-            </div>
-            <h3 class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</h3>
-            <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">
-            </jr-iex-chart>
-            <div class="mat-caption">* Nederlandse tijd: {{company.quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }}</div>
-          </div>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
 
-    <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
+  <mat-card-content>
+
+    <div class="error-message" *ngIf="errorMessage else iexContent">{{errorMessage}}</div>
+
+    <ng-template #iexContent>
+      <mat-tab-group (click)="$event.stopPropagation()" color="accent">
+        <mat-tab  *ngFor="let company of companyData | async" [label]="company.company">
+          <ng-template matTabContent>
+            <div (click)="navigate(company.day.symbol)">
+              <div class="quote-info">
+                <div class="quote-info-top">
+                  <div class="quote-info-top-left">
+                    <div class="mat-headline company-symbol">{{company.day.symbol}}</div>
+                    <div class="mat-body-1 company-name">{{company.quote.company_name}}</div>
+                  </div>
+                  <div class="mat-display-1 quote-info-top-right">$ {{company.quote.latest_price | number:'1.2-2':'nl'}}</div>
+                </div>
+                <div class="mat-caption">Laatste update: {{company.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd*)</div>
+              </div>
+              <h3 class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</h3>
+              <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">
+              </jr-iex-chart>
+              <div class="mat-caption">* Nederlandse tijd: {{company.quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }}</div>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-template>
+
   </mat-card-content>
 </mat-card>

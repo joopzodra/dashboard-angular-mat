@@ -8,6 +8,7 @@
 <div class="page-content">
 
   <div id="all-items-container">
+    <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
     <ul class="ul">
       <li #newsItem *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)" >
         <div [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " [style.padding]="selectedItem === item ? '8px' : '0' ">
@@ -21,7 +22,6 @@
         <mat-divider></mat-divider>
       </li>
     </ul>
-    <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
   </div>
 
   <div id="selected-item-container" class="soft-background-theme-color" *ngIf="selectedItem && columns === 2">

@@ -63,15 +63,22 @@ export class IexPageComponent implements OnInit {
     });
 
     this.iexService.iexDayData$.subscribe(data => {
-      if (data.length) {
-        this.iexDayItems = data;
+      if ((data as HttpErrorResponse).error) {
+        this.errorMessage = (data as HttpErrorResponse).error;
+      } else if ((data as IexDayItem[]).length) { // Test for length because the BehaviourSubject on initiation sends an empty array.
+        this.iexDayItems = data as IexDayItem[];
         // setInitialSelectedCompany needs iexDayItems, so call it after setting the iexDayItems.
         this.setInitialSelectedCompany();
       }
     });
     this.iexService.iexLongtermData$.subscribe(data => {
-      this.iexSelectedCompanyLongtermItem = <IexLongtermItem>data;
-    })
+      // The BehaviourSubject on initiation sends undefined, which causes an error 'cannot read property "error" of undefined.'
+      if (data !== undefined && (data as HttpErrorResponse).error) {
+        this.errorMessage = (data as HttpErrorResponse).error;
+      } else {
+        this.iexSelectedCompanyLongtermItem = <IexLongtermItem>data;
+      }
+    });
     this.iexService.getDayData();
   }
 

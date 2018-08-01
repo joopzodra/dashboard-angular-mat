@@ -7,7 +7,7 @@
 
 <div class="page-content" [ngStyle]="pageContentStyle">
 
-  <p class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</p>
+  <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
 
   <div *ngIf="selectedCity" id="selected-city-container" [ngStyle]="selectedCityStyle">
     <mat-card class="soft-background-accent-theme-color">
