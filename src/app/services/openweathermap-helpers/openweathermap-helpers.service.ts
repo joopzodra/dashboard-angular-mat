@@ -50,7 +50,6 @@ export class OpenweathermapHelpersService {
         const forecastData = data.forecast.data.slice(0, length);
         forecastData.forEach(item => {
             const datetime = new Date((<number>item.datetime) * 1000)
-            item.day = datetime.getDay().toString();
             item.time = datetime.getHours().toString() + 'u';
             item.icon = this.iconToIconUrl(item.icon);
         });
