@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of, Observable, Subscription } from 'rxjs';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
-import { environment } from '../../../../environments/environment'
-import { OpenweathermapDataService } from '../../../services/openweathermap-data/openweathermap-data.service';
-import { OpenweathermapHelpersService } from '../../../services/openweathermap-helpers/openweathermap-helpers.service';
-import { ForecastData } from '../../../models/openweathermap-item';
+import { environment } from '../../../../../environments/environment'
+import { OpenweathermapDataService } from '../../../../services/openweathermap-data/openweathermap-data.service';
+import { OpenweathermapHelpersService } from '../../../../services/openweathermap-helpers/openweathermap-helpers.service';
+import { ForecastData } from '../../../../models/openweathermap-item';
 
 /*
  * The OpenweathermapWidgetComponent

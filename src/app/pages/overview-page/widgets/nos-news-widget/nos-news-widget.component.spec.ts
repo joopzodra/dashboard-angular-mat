@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { AppMaterialModule } from '../../../app.material-module';
-import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
-import { NosNewsService } from '../../../services/nos-news/nos-news.service';
+import { AppMaterialModule } from '../../../../app.material-module';
+import { asyncData, asyncError } from '../../../../testing/async-observable-helpers';
+import { NosNewsService } from '../../../../services/nos-news/nos-news.service';
 import { NosNewsWidgetComponent } from './nos-news-widget.component';
-import { NewsItem } from '../../../models/news-item';
+import { NewsItem } from '../../../../models/news-item';
 
 describe('NosNewsWidgetComponent', () => {
   let component: NosNewsWidgetComponent;

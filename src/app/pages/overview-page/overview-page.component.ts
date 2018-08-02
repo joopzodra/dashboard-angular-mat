@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /*
- * The DashboardComponent is the host of several widget components.
+ * The DashboardComponent is the host of several widget components. In the navigation it is called Overview.
  * On clicking a widget, it navigates to the corresponding page.
  */
 
 @Component({
-  selector: 'jr-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'jr-overview-page',
+  templateUrl: './overview-page.component.html',
+  styleUrls: ['./overview-page.component.scss']
 })
-export class DashboardComponent {
+export class OverviewPageComponent {
 
   constructor(private router: Router){}
 

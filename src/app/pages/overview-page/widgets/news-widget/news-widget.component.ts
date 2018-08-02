@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from '../../../services/news/news.service';
+import { NewsService } from '../../../../services/news/news.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { Router, NavigationExtras } from '@angular/router';
 
-import { NewsItem } from '../../../models/news-item';
+import { NewsItem } from '../../../../models/news-item';
 
 /*
  *  The NewsWidgetComponent is an abstact class. It is extended in the NosNewsWidgetComponent and the GuardianNewsWidgetComponent.

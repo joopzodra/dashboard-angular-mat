@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { AppMaterialModule } from '../../../app.material-module';
+import { AppMaterialModule } from '../../../../app.material-module';
 import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
+import { asyncData, asyncError } from '../../../../testing/async-observable-helpers';
 import { OpenweathermapWidgetComponent } from './openweathermap-widget.component';
-import { OpenweathermapDataService } from '../../../services/openweathermap-data/openweathermap-data.service';
-import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../..//testing/stub-openweathermap-item';
+import { OpenweathermapDataService } from '../../../../services/openweathermap-data/openweathermap-data.service';
+import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../../../testing/stub-openweathermap-item';
 
 describe('OpenweathermapWidgetComponent', () => {
   let component: OpenweathermapWidgetComponent;

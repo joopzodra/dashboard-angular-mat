@@ -4,8 +4,8 @@ import { of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { Router, NavigationExtras } from '@angular/router';
 
-import { IexService } from '../../../services/iex/iex.service';
-import { IexDayItem } from '../../../models/iex-items';
+import { IexService } from '../../../../services/iex/iex.service';
+import { IexDayItem } from '../../../../models/iex-items';
 
 /*
  * We need to lazy load the tab. Otherwise the IexChartComponent cannot create the chart (because elements have size 0 or even don't exist).  From https://material.angular.io/components/tabs/overview#lazy-loading:

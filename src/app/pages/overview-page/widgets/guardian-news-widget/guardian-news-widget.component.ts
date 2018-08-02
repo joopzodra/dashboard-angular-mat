@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
-import { GuardianNewsService } from '../../../services/guardian-news/guardian-news.service';
+import { GuardianNewsService } from '../../../../services/guardian-news/guardian-news.service';
 import { NewsWidgetComponent } from '../news-widget/news-widget.component';
 
 /*

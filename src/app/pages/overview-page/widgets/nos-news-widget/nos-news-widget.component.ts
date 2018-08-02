@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
-import { NosNewsService } from '../../../services/nos-news/nos-news.service';
+import { NosNewsService } from '../../../../services/nos-news/nos-news.service';
 import { NewsWidgetComponent } from '../news-widget/news-widget.component';
 
 /*

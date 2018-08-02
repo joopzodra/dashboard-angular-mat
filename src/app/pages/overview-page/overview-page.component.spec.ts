@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { DashboardComponent } from './dashboard.component';
+import { OverviewPageComponent } from './overview-page.component';
 
 @Component({ selector: 'jr-guardian-news-widget', template: '' })
 class GuardianStubComponent { }
@@ -15,15 +15,15 @@ class OpenWeathermapStubComponent { }
 @Component({ selector: 'jr-iex-widget', template: '' })
 class IexStubComponent { }
 
-describe('DashboardComponent', () => {
+describe('OverviewPageComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+  let component: OverviewPageComponent;
+  let fixture: ComponentFixture<OverviewPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DashboardComponent,
+        OverviewPageComponent,
         GuardianStubComponent,
         NosStubComponent,
         OpenWeathermapStubComponent,
@@ -34,7 +34,7 @@ describe('DashboardComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(OverviewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

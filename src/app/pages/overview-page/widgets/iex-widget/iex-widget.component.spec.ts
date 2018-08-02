@@ -5,14 +5,14 @@ import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 registerLocaleData(localeNl);
 
-import { AppMaterialModule } from '../../../app.material-module';
+import { AppMaterialModule } from '../../../../app.material-module';
 import { IexWidgetComponent } from './iex-widget.component';
-import { IexChartComponent } from '../../../charts/iex-chart/iex-chart.component';
-import { IexService } from '../../../services/iex/iex.service';
-import { IexDayItem, IexLongtermItem } from '../../../models/iex-items';
-import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
-import { stubIexDayItems } from '../../../testing/stub-iex-data';
-import { DateIsoPipe } from '../../../pipes/date-iso.pipe';
+import { IexChartComponent } from '../../../../charts/iex-chart/iex-chart.component';
+import { IexService } from '../../../../services/iex/iex.service';
+import { IexDayItem, IexLongtermItem } from '../../../../models/iex-items';
+import { asyncData, asyncError } from '../../../../testing/async-observable-helpers';
+import { stubIexDayItems } from '../../../../testing/stub-iex-data';
+import { DateIsoPipe } from '../../../../pipes/date-iso.pipe';
 
 describe('IexWidgetComponent', () => {
   let component: IexWidgetComponent;
