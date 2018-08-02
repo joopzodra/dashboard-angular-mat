@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { BreakpointsService } from '../../services/breakpoints/breakpoints.service';
 import { IexDayItem, IexLongtermItem } from '../../models/iex-items';
@@ -29,9 +31,20 @@ export class IexPageComponent implements OnInit {
   selectedCompanyStyle = {};
   pageContentStyle = {};
 
-  constructor(private iexService: IexService, private breakpointsService: BreakpointsService, private location: Location) { }
+  constructor(
+    private iexService: IexService,
+    private breakpointsService: BreakpointsService,
+    private location: Location,
+    protected activatedRoute: ActivatedRoute,
+    protected titleService: Title
+    ) { }
 
   ngOnInit() {
+    const title = this.activatedRoute.snapshot.data['title'];
+    if (title) {
+      this.titleService.setTitle(title);
+    }
+    
     this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
       if (screenSize.medium || screenSize.large) {
         this.columns = 2;

@@ -7,12 +7,14 @@ import { OpenweathermapPageComponent } from './pages/openweathermap-page/openwea
 import { GuardianNewsPageComponent } from './pages/guardian-news-page/guardian-news-page.component';
 import { IexPageComponent } from './pages/iex-page/iex-page.component';
 
+const titlePrefix = 'Dashboard demo | ';
+
 const routes: Routes = [
-  { path: 'overzicht', component: OverviewPageComponent },
-  { path: 'paginas/nieuws', component: NosNewsPageComponent },
-  { path: 'paginas/tech-news', component: GuardianNewsPageComponent },
-  { path: 'paginas/weer', component: OpenweathermapPageComponent },
-  { path: 'paginas/tech-aandelen', component: IexPageComponent },
+  { path: 'overzicht', component: OverviewPageComponent, data: {title: titlePrefix + 'Overzicht'} },
+  { path: 'paginas/nieuws', component: NosNewsPageComponent, data: {title: titlePrefix + 'Nieuws'} },
+  { path: 'paginas/tech-news', component: GuardianNewsPageComponent, data: {title: titlePrefix + 'Tech nieuws'} },
+  { path: 'paginas/weer', component: OpenweathermapPageComponent, data: {title: titlePrefix + 'Weer'} },
+  { path: 'paginas/tech-aandelen', component: IexPageComponent, data: {title: titlePrefix + 'Tech aandelen'} },
   { path: '**', redirectTo: 'overzicht' }
 ];
 

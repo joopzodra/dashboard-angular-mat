@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { NewsItem } from '../../models/news-item';
 import { GuardianNewsService } from '../../services/guardian-news/guardian-news.service';
@@ -20,8 +22,14 @@ export class GuardianNewsPageComponent extends NewsPageComponent {
   logoHeight = '30px';
   logoLink = 'https://www.theguardian.com/uk/technology';
   
-  constructor(protected breakpointsService: BreakpointsService, protected newsService: GuardianNewsService, protected location: Location) {
-    super(breakpointsService, newsService, location)
+  constructor(
+    protected breakpointsService: BreakpointsService,
+    protected newsService: GuardianNewsService,
+    protected location: Location,
+    protected activatedRoute: ActivatedRoute,
+    protected titleService: Title
+    ) {
+    super(breakpointsService, newsService, location, activatedRoute,titleService);
   }
 
 }

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppMaterialModule } from './app.material-module'
@@ -39,7 +39,7 @@ import { DateIsoPipe } from './pipes/date-iso.pipe';
     AppMaterialModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
 /*
@@ -12,9 +13,16 @@ import { Observable } from 'rxjs';
   templateUrl: './overview-page.component.html',
   styleUrls: ['./overview-page.component.scss']
 })
-export class OverviewPageComponent {
+export class OverviewPageComponent implements OnInit {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) { }
+
+  ngOnInit() {
+    const title = this.activatedRoute.snapshot.data['title'];
+    if (title) {
+      this.titleService.setTitle(title);
+    }
+  }
 
   navigateTo(url: string) {
     this.router.navigateByUrl(url);

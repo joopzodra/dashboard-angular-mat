@@ -3,6 +3,8 @@ import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { BreakpointsService } from '../../services/breakpoints/breakpoints.service';
 import { NewsItem } from '../../models/news-item';
@@ -18,9 +20,20 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
   thumbnailClass = 'thumbnail-medium';
   columns = 1;
 
-  constructor(protected breakpointsService: BreakpointsService, protected newsService: NewsService, protected location: Location) { }
+  constructor(
+    protected breakpointsService: BreakpointsService,
+    protected newsService: NewsService,
+    protected location: Location,
+    protected activatedRoute: ActivatedRoute,
+    protected titleService: Title
+    ) { }
 
   ngOnInit() {
+    const title = this.activatedRoute.snapshot.data['title'];
+    if (title) {
+      this.titleService.setTitle(title);
+    }
+
     this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
       if (screenSize.medium || screenSize.large) {
         this.thumbnailClass = 'thumbnail-large';

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 import { BreakpointsService } from '../../services/breakpoints/breakpoints.service';
 import { OpenweathermapItem } from '../../models/openweathermap-item';
@@ -22,9 +24,20 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
   selectedCityStyle = {};
   pageContentStyle = {};
 
-  constructor(private breakpointsService: BreakpointsService, private openweathermapDataService: OpenweathermapDataService, private openweathermapHelpersService: OpenweathermapHelpersService) { }
+  constructor(
+    private breakpointsService: BreakpointsService,
+    private openweathermapDataService: OpenweathermapDataService,
+    private openweathermapHelpersService: OpenweathermapHelpersService,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
+  ) { }
 
   ngOnInit() {
+    const title = this.activatedRoute.snapshot.data['title'];
+    if (title) {
+      this.titleService.setTitle(title);
+    }
+
     this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
       if (screenSize.medium || screenSize.large) {
         this.columns = 2;
