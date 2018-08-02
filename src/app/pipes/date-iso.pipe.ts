@@ -17,7 +17,8 @@ export class DateIsoPipe implements PipeTransform {
       const months = args.includes('shortMonths') ? this.shortMonths : this.months;
       const year = args.includes('noYear') ? '' :  ' ' + value.slice(0, 4);
       const month = +value.slice(5, 7) - 1;
-      const day = value.slice(8, 10);
+      let day = value.slice(8, 10);
+      day = day.charAt(0) === '0' ? day.charAt(1) : day;
       const hour = value.slice(11, 13);
       const minutes = value.slice(14, 16);
       const time = args.includes('noTime') ? '' : `${hour}.${minutes} uur`;
@@ -29,7 +30,7 @@ export class DateIsoPipe implements PipeTransform {
         const weekDayNumber = parsedDate.getDay();
         weekday = this.shortDays[weekDayNumber];
       }
-      return `${weekday} ${day} ${months[month]} ${year} ${time}`.trim()
+      return `${weekday} ${day} ${months[month]}${year} ${time}`.trim()
     }
     return null;
   }
