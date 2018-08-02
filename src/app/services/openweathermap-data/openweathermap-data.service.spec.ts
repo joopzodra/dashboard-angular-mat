@@ -7,7 +7,7 @@ import { OpenweathermapDataService } from './openweathermap-data.service';
 import { OpenweathermapItem } from '../../models/openweathermap-item';
 import { stubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
 
-fdescribe('OpenweathermapDataService', () => {
+describe('OpenweathermapDataService', () => {
 
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
