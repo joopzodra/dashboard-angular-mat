@@ -1,16 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMaterialModule } from '../../app.material-module';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { asyncData, asyncError } from '../../testing/async-observable-helpers';
 import { OpenweathermapPageComponent } from './openweathermap-page.component';
 import { OpenweathermapService } from '../../services/openweathermap/openweathermap.service';
-import { stubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
+import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
 
 describe('OpenweathermapPageComponent', () => {
   let component: OpenweathermapPageComponent;
   let fixture: ComponentFixture<OpenweathermapPageComponent>;
   let serviceSpy: jasmine.SpyObj<any>;
   let el: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(() => {
     serviceSpy = jasmine.createSpyObj('OpenweathermapService', ['getPageWeather']);
@@ -25,7 +28,7 @@ describe('OpenweathermapPageComponent', () => {
     fixture = TestBed.createComponent(OpenweathermapPageComponent);
     component = fixture.componentInstance;
     el = fixture.nativeElement;
-
+    de = fixture.debugElement;
   });
 
   it('should create', () => {
@@ -53,4 +56,20 @@ describe('OpenweathermapPageComponent', () => {
       expect((<HTMLElement>errMessage).textContent).toMatch(/test failure/);
     });
   }));
+
+  it('on clicking on an news item, this item becomes the selected news item', async(() => {
+    serviceSpy.getPageWeather.and.returnValue(asyncData([stubOpenweathermapItem, anotherStubOpenweathermapItem]));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      component.selectedCity = stubOpenweathermapItem;
+      fixture.detectChanges();
+      let selectedItem = el.querySelector('#selected-city-container .city-name');
+      expect((<HTMLElement>selectedItem).textContent).toBe('city');
+      const newsItem2 = de.queryAll(By.css('#all-cities-container li'))[1];
+      newsItem2.triggerEventHandler('click', null);
+      fixture.detectChanges();
+      expect((<HTMLElement>selectedItem).textContent).toBe('another city');
+    });
+  }));
+
 });

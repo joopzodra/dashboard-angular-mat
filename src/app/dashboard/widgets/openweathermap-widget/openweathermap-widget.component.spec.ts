@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
 import { OpenweathermapWidgetComponent } from './openweathermap-widget.component';
 import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
-import { stubOpenweathermapItem } from '../../..//testing/stub-openweathermap-item';
+import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../..//testing/stub-openweathermap-item';
 
 describe('OpenweathermapWidgetComponent', () => {
   let component: OpenweathermapWidgetComponent;
@@ -47,8 +47,8 @@ describe('OpenweathermapWidgetComponent', () => {
       expect(currentWeatherDiv).toBeTruthy();
       const cityName = (<HTMLHeadingElement>currentWeatherDiv).querySelector('.city-name');
       const description = (<HTMLHeadingElement>currentWeatherDiv).querySelector('.description');
-      expect((<HTMLHeadingElement>cityName).textContent).toBe('stub city name');
-      expect((<HTMLElement>description).textContent).toBe('stub description 2');
+      expect((<HTMLHeadingElement>cityName).textContent).toBe('city');
+      expect((<HTMLElement>description).textContent).toBe('current weather description');
     });
   }));
 
@@ -87,7 +87,7 @@ describe('OpenweathermapWidgetComponent', () => {
     });
   }));
 
-  it('doesn\'t show the select menu if there\'s an error in receiving the cities list from the backend', () => {
+  it('doesn\'t show the select menu if there\'s an error in receiving the cities list from the backend', async(() => {
     const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
     openweathermapService.cityNames$ = of([]);
     fixture.detectChanges();
@@ -96,5 +96,22 @@ describe('OpenweathermapWidgetComponent', () => {
       const formField = el.querySelector('mat-form-field');
       expect(formField).toBeFalsy();
     });
-  });
+  }));
+
+  it('on selecting another city, it shows weather data of the selected city', async(() => {
+    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    openweathermapService.cityNames$ = of(['city1', 'city2']);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();      
+      spy.and.returnValue(asyncData(anotherStubOpenweathermapItem));
+      component.cityChanged((<any>{ value: anotherStubOpenweathermapItem.city }));
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const cityName = el.querySelector('.city-name');
+        expect((<HTMLElement>cityName).textContent).toBe('city');        
+      })
+    });
+  }));
+
 });

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing'
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { GuardianNewsPageComponent } from './guardian-news-page.component';
 import { AppMaterialModule } from '../../app.material-module'
@@ -14,6 +16,7 @@ describe('GuardianNewsPageComponent', () => {
   let fixture: ComponentFixture<GuardianNewsPageComponent>;
   let guardianNewsService: jasmine.SpyObj<Observable<NewsItem[]>>;
   let el: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(() => {
     guardianNewsService = jasmine.createSpyObj('GuardianNewsService', ['getPageNews']);
@@ -35,6 +38,7 @@ describe('GuardianNewsPageComponent', () => {
     fixture = TestBed.createComponent(GuardianNewsPageComponent);
     component = fixture.componentInstance;
     el = fixture.nativeElement;
+    de = fixture.debugElement;
   });
 
   it('should create', () => {
@@ -51,8 +55,8 @@ describe('GuardianNewsPageComponent', () => {
       const item1 = items[0];
       const title = item1.querySelector('h3');
       const trailText = item1.querySelector('span');
-      expect((<HTMLHeadingElement>title).textContent).toBe('stub title');
-      expect((<HTMLElement>trailText).textContent).toBe('stub trail text');
+      expect((<HTMLHeadingElement>title).textContent).toBe('title1');
+      expect((<HTMLElement>trailText).textContent).toBe('trail text');
     });
   }));
 
@@ -65,4 +69,18 @@ describe('GuardianNewsPageComponent', () => {
       expect((<HTMLElement>errMessage).textContent).toMatch(/test failure/);
     });
   }));
+
+  it('on clicking on an news item, this item becomes the selected news item', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const selectedItem = el.querySelector('#selected-item-container h3');
+      expect((<HTMLElement>selectedItem).textContent).toBe('title1');
+      const newsItem2 = de.queryAll(By.css('#all-items-container li'))[1];
+      newsItem2.triggerEventHandler('click', null);
+      fixture.detectChanges();
+      expect((<HTMLElement>selectedItem).textContent).toBe('title2');
+    });
+  });  
+
 });

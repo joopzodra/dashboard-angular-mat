@@ -1,10 +1,13 @@
 import { NewsItem } from '../models/news-item';
 
-export const newsItem: NewsItem = {
-  title: 'stub title',
-  trailText: 'stub trail text',
+const newsItem1: NewsItem = {
+  title: 'title1',
+  trailText: 'trail text',
   thumbnail: '',
-  body: 'stub body text'
+  body: 'body text'
 };
 
-export const newsItemsArray = [newsItem, newsItem, newsItem];
+const newsItem2 = Object.assign({}, newsItem1, {title: 'title2'});
+const newsItem3 = Object.assign({}, newsItem1, {title: 'title3'});
+
+export const newsItemsArray = [newsItem1, newsItem2, newsItem3];
