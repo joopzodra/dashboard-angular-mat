@@ -32,6 +32,10 @@ describe('OpenweathermapWidgetComponent', () => {
     //fixture.detectChanges(); // Don't call this without providing spy with returnValue, otherwise subscription in ngOnInit fails and throws an error.
   });
 
+  afterAll(() => {
+    document.cookie = 'dashboardMdOpenweathermapCity=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  })
+
   it('should create', () => {
     const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
     fixture.detectChanges();
