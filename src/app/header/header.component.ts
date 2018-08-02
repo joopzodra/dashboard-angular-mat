@@ -27,21 +27,51 @@ export class HeaderComponent implements OnInit {
   year = this.date.getFullYear();
   cursor = 'auto';
   mediaLarge = false;
+  mediaSmall = true;
+  headerStyle = {};
+  headerNameStyle = {};
+  headerDateStyle = {};
 
   constructor(private router: Router, private breakpointsService: BreakpointsService) {
-    breakpointsService.breakpoints$.subscribe(value => {
-      this.mediaLarge = value.large;
-    })
     this.toggleEvent = new EventEmitter()
   }
 
   ngOnInit() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-      )
-    .subscribe(event => {
-      this.cursor = (<NavigationEnd>event).url === '/overzicht' ? 'auto' : 'pointer';
-    })
+    )
+      .subscribe(event => {
+        this.cursor = (<NavigationEnd>event).url === '/overzicht' ? 'auto' : 'pointer';
+      });
+
+    this.breakpointsService.breakpoints$.subscribe(value => {
+      this.mediaSmall = !value.tablet;
+      this.mediaLarge = value.large;
+
+      if (this.mediaSmall) {
+        this.headerStyle = {
+          'flex-direction': 'column',
+          'margin-top': '6px'
+        };
+        this.headerNameStyle = {
+          'font-size': '0.9em',
+          'margin-bottom': '-10px'
+        };
+        this.headerDateStyle = {
+          'font-size': '0.7em'
+        }
+      } else {
+        this.headerStyle = {
+          'justify-content': 'center'
+        };
+        this.headerNameStyle = {
+          'font-weight': 'bold'
+        };
+        this.headerDateStyle = {
+          'margin-left': '24px'
+        };
+      }
+    });
   }
 
   toggleSidenav() {

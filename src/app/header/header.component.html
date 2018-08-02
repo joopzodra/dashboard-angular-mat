@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
-  <span class="mat-headline" (click)="navigateTo('/overzicht')" [style.cursor]="cursor">
-    Welcome to {{ day }} {{ month }} {{ year }}
-  </span>
+  <div class="mat-headline" (click)="navigateTo('/overzicht')" [style.cursor]="cursor" [ngStyle]="headerStyle">
+    <div [ngStyle]="headerNameStyle" >Dashboard demo</div>
+    <div [ngStyle]="headerDateStyle">{{ day }} {{ month }} {{ year }}</div>
+  </div>
   <button mat-icon-button="" *ngIf="!mediaLarge" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
 </mat-toolbar>

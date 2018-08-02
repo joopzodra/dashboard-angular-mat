@@ -11,4 +11,5 @@ mat-toolbar {
   text-align: center;
   /* The padding is to enlarge the clickable area; without it the element's height is considerably less than the mat-toolbar height */
   padding: 12px 0;
+  display: flex;
 }
