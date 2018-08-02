@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 
 import { asyncData, asyncError } from '../../testing/async-observable-helpers';
 import { OpenweathermapPageComponent } from './openweathermap-page.component';
-import { OpenweathermapService } from '../../services/openweathermap/openweathermap.service';
+import { OpenweathermapDataService } from '../../services/openweathermap-data/openweathermap-data.service';
 import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
 
 describe('OpenweathermapPageComponent', () => {
@@ -16,11 +16,11 @@ describe('OpenweathermapPageComponent', () => {
   let de: DebugElement;
 
   beforeEach(() => {
-    serviceSpy = jasmine.createSpyObj('OpenweathermapService', ['getPageWeather']);
+    serviceSpy = jasmine.createSpyObj('OpenweathermapDataService', ['getPageWeather']);
     TestBed.configureTestingModule({
       imports: [AppMaterialModule],
       declarations: [OpenweathermapPageComponent],
-      providers: [{ provide: OpenweathermapService, useValue: serviceSpy }]
+      providers: [{ provide: OpenweathermapDataService, useValue: serviceSpy }]
     });
   });
 
@@ -47,8 +47,8 @@ describe('OpenweathermapPageComponent', () => {
     });
   }));
 
-  it('displays an error message when OpenweathermapService fails', async(() => {
-    serviceSpy.getPageWeather.and.returnValue(asyncError({ error: 'OpenweathermapService test failure' }));
+  it('displays an error message when OpenweathermapDataService fails', async(() => {
+    serviceSpy.getPageWeather.and.returnValue(asyncError({ error: 'OpenweathermapDataService test failure' }));
     fixture.detectChanges()
     fixture.whenStable().then(() => {
       fixture.detectChanges();

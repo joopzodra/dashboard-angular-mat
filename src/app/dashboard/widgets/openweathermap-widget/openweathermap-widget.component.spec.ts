@@ -5,15 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { asyncData, asyncError } from '../../../testing/async-observable-helpers';
 import { OpenweathermapWidgetComponent } from './openweathermap-widget.component';
-import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
+import { OpenweathermapDataService } from '../../../services/openweathermap-data/openweathermap-data.service';
 import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../..//testing/stub-openweathermap-item';
 
 describe('OpenweathermapWidgetComponent', () => {
   let component: OpenweathermapWidgetComponent;
   let fixture: ComponentFixture<OpenweathermapWidgetComponent>;
   let el: HTMLElement;
-  let openweathermapService: OpenweathermapService;
-  class MockOpenweathermapService {
+  let openweathermapDataService: OpenweathermapDataService;
+  class MockOpenweathermapDataService {
     getWidgetWeather() { }
   }
 
@@ -21,25 +21,25 @@ describe('OpenweathermapWidgetComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppMaterialModule, BrowserAnimationsModule],
       declarations: [OpenweathermapWidgetComponent],
-      providers: [{ provide: OpenweathermapService, useClass: MockOpenweathermapService }]
+      providers: [{ provide: OpenweathermapDataService, useClass: MockOpenweathermapDataService }]
     });
 
     fixture = TestBed.createComponent(OpenweathermapWidgetComponent);
     component = fixture.componentInstance;
     el = fixture.nativeElement;
-    openweathermapService = TestBed.get(OpenweathermapService);
+    openweathermapDataService = TestBed.get(OpenweathermapDataService);
 
     //fixture.detectChanges(); // Don't call this without providing spy with returnValue, otherwise subscription in ngOnInit fails and throws an error.
   });
 
   it('should create', () => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('shows the current weather', async(() => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -54,7 +54,7 @@ describe('OpenweathermapWidgetComponent', () => {
 
   it('shows a forecast', async(() => {
     const forecastItemsLength = stubOpenweathermapItem.forecast.data.length;
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -66,8 +66,8 @@ describe('OpenweathermapWidgetComponent', () => {
     });
   }));
 
-  it('displays an error message when OpenweathermapService fails', async(() => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncError({ error: 'OpenweathermapService test failure' }));
+  it('displays an error message when OpenweathermapDataService fails', async(() => {
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncError({ error: 'OpenweathermapDataService test failure' }));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -77,8 +77,8 @@ describe('OpenweathermapWidgetComponent', () => {
   }));
 
   it('has an select menu to select a city', async(() => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
-    openweathermapService.cityNames$ = of(['city1', 'city2']);
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    openweathermapDataService.cityNames$ = of(['city1', 'city2']);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -88,8 +88,8 @@ describe('OpenweathermapWidgetComponent', () => {
   }));
 
   it('doesn\'t show the select menu if there\'s an error in receiving the cities list from the backend', async(() => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
-    openweathermapService.cityNames$ = of([]);
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    openweathermapDataService.cityNames$ = of([]);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -99,8 +99,8 @@ describe('OpenweathermapWidgetComponent', () => {
   }));
 
   it('on selecting another city, it shows weather data of the selected city', async(() => {
-    const spy = spyOn(openweathermapService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
-    openweathermapService.cityNames$ = of(['city1', 'city2']);
+    const spy = spyOn(openweathermapDataService, 'getWidgetWeather').and.returnValue(asyncData(stubOpenweathermapItem));
+    openweathermapDataService.cityNames$ = of(['city1', 'city2']);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();      

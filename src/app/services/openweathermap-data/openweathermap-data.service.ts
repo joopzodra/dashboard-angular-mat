@@ -7,14 +7,14 @@ import { catchError } from 'rxjs/operators';
 import { OpenweathermapItem } from '../../models/openweathermap-item';
 
 /*
- * The OpenweathermapService fectches openweathermap data from the backend.
+ * The OpenweathermapDataService fectches openweathermap data from the backend.
  * The service on construction also fetches the names of the cities for which there is weather data available at the backend.
  */
 
 @Injectable({
   providedIn: 'root'
 })
-export class OpenweathermapService {
+export class OpenweathermapDataService {
 
   private baseUrl = environment.backendBaseUrl;
   private apiEndpoint = '/openweathermap';

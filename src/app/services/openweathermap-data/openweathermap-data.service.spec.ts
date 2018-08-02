@@ -3,26 +3,26 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-import { OpenweathermapService } from './openweathermap.service';
+import { OpenweathermapDataService } from './openweathermap-data.service';
 import { OpenweathermapItem } from '../../models/openweathermap-item';
 import { stubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
 
-describe('OpenweathermapService', () => {
+describe('OpenweathermapDataService', () => {
 
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
-  let service: OpenweathermapService;
+  let service: OpenweathermapDataService;
   const baseUrl = environment.backendBaseUrl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [OpenweathermapService]
+      providers: [OpenweathermapDataService]
     });
 
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
-    service = new OpenweathermapService(httpClient);
+    service = new OpenweathermapDataService(httpClient);
   });
 
   afterEach(() => {

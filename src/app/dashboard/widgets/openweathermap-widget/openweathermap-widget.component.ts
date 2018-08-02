@@ -3,9 +3,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { of, Observable, Subscription } from 'rxjs';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { environment } from '../../../../environments/environment'
-import { OpenweathermapService } from '../../../services/openweathermap/openweathermap.service';
+import { OpenweathermapDataService } from '../../../services/openweathermap-data/openweathermap-data.service';
+import { OpenweathermapHelpersService } from '../../../services/openweathermap-helpers/openweathermap-helpers.service';
 import { ForecastData } from '../../../models/openweathermap-item';
-import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeatherData } from '../../../helpers/openweathermap-helpers';
 
 /*
  * The OpenweathermapWidgetComponent
@@ -19,12 +19,12 @@ import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeath
 export class OpenweathermapWidgetComponent implements OnInit {
 
   @ViewChild('citySelect') citySelect!: MatSelect;
-  currentWeather = currentWeather;
-  forecast: ForecastData[] = forecast;
+  currentWeather = this.openweathermapHelpersService.currentWeather;
+  forecast: ForecastData[] = this.openweathermapHelpersService.forecast;
   errorMessage = '';
   cityNames$: Observable<string[]> = of([]);
 
-  constructor(private service: OpenweathermapService) { }
+  constructor(private openweathermapDataService: OpenweathermapDataService, private openweathermapHelpersService: OpenweathermapHelpersService) { }
 
   ngOnInit() {
     let city = 'utrecht';
@@ -35,12 +35,12 @@ export class OpenweathermapWidgetComponent implements OnInit {
       city = cityValue;
     }
     this.getWeatherData(city);
-    this.cityNames$ = this.service.cityNames$;
+    this.cityNames$ = this.openweathermapDataService.cityNames$;
   }
 
   getWeatherData(city: string) {
-    this.service.getWidgetWeather(city).subscribe(res => {
-      const weatherData = handleWeatherData(res, 9);
+    this.openweathermapDataService.getWidgetWeather(city).subscribe(res => {
+      const weatherData = this.openweathermapHelpersService.handleWeatherData(res, 9);
       this.currentWeather = weatherData.current_weather;
       this.forecast = weatherData.forecast.data;
     },
@@ -51,7 +51,6 @@ export class OpenweathermapWidgetComponent implements OnInit {
   }
 
   cityChanged(event: MatSelectChange) {
-    event
     const city = event.value.toLowerCase().replace(/ /g, '');
     document.cookie = "dashboardMdOpenweathermapCity=" + city + "; max-age=31536000"; // max-age is 60*60*24*365 seconds = 1 year
     this.getWeatherData(city);
@@ -59,11 +58,11 @@ export class OpenweathermapWidgetComponent implements OnInit {
   }
 
   windSpeedBeaufort(speed: number) {
-    return windSpeedBeaufort(speed);
+    return this.openweathermapHelpersService.windSpeedBeaufort(speed);
   }
 
   windDirection(degree: number) {
-    return windDirection(degree);
+    return this.openweathermapHelpersService.windDirection(degree);
   }
 
   stopEventPropagation(event: Event){

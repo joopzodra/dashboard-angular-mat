@@ -4,8 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { BreakpointsService } from '../../services/breakpoints/breakpoints.service';
 import { OpenweathermapItem } from '../../models/openweathermap-item';
-import { OpenweathermapService } from '../../services/openweathermap/openweathermap.service';
-import { currentWeather, forecast, windSpeedBeaufort, windDirection, handleWeatherData } from '../../helpers/openweathermap-helpers';
+import { OpenweathermapDataService } from '../../services/openweathermap-data/openweathermap-data.service';
+import { OpenweathermapHelpersService } from '../../services/openweathermap-helpers/openweathermap-helpers.service';
 
 @Component({
   selector: 'jr-openweathermap-page',
@@ -22,7 +22,7 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
   selectedCityStyle = {};
   pageContentStyle = {};
 
-  constructor(private breakpointsService: BreakpointsService, private openweathermapService: OpenweathermapService) { }
+  constructor(private breakpointsService: BreakpointsService, private openweathermapDataService: OpenweathermapDataService, private openweathermapHelpersService: OpenweathermapHelpersService) { }
 
   ngOnInit() {
     this.breakpointsSubscription = this.breakpointsService.breakpoints$.subscribe(screenSize => {
@@ -50,8 +50,8 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.openweathermapService.getPageWeather().subscribe(res => {
-      const weatherData = res.map(cityData => handleWeatherData(cityData, undefined));
+    this.openweathermapDataService.getPageWeather().subscribe(res => {
+      const weatherData = res.map(cityData => this.openweathermapHelpersService.handleWeatherData(cityData, undefined));
       this.items = weatherData;
 
       let city = 'utrecht';
@@ -74,11 +74,11 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
   }
 
   windSpeedBeaufort(speed: number) {
-    return windSpeedBeaufort(speed);
+    return this.openweathermapHelpersService.windSpeedBeaufort(speed);
   }
 
   windDirection(degree: number) {
-    return windDirection(degree);
+    return this.openweathermapHelpersService.windDirection(degree);
   }
 
   selectItem(item: any) {
