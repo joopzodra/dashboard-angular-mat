@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMaterialModule } from '../../app.material-module';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 import { asyncData, asyncError } from '../../testing/async-observable-helpers';
 import { OpenweathermapPageComponent } from './openweathermap-page.component';
@@ -9,6 +10,11 @@ import { OpenweathermapDataService } from '../../services/openweathermap-data/op
 import { stubOpenweathermapItem, anotherStubOpenweathermapItem } from '../../testing/stub-openweathermap-item';
 
 describe('OpenweathermapPageComponent', () => {
+
+  const stubActivatedRoute: any = {
+    snapshot: { data: 'test' }
+  };
+
   let component: OpenweathermapPageComponent;
   let fixture: ComponentFixture<OpenweathermapPageComponent>;
   let serviceSpy: jasmine.SpyObj<any>;
@@ -20,7 +26,10 @@ describe('OpenweathermapPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppMaterialModule],
       declarations: [OpenweathermapPageComponent],
-      providers: [{ provide: OpenweathermapDataService, useValue: serviceSpy }]
+      providers: [
+        { provide: OpenweathermapDataService, useValue: serviceSpy },
+        { provide: ActivatedRoute, useValue: stubActivatedRoute }
+      ]
     });
   });
 
