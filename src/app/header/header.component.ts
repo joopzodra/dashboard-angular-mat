@@ -82,4 +82,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
+  toFrontendJr() {
+    location.href = 'https://frontendJR.nl';
+  }
+
 }

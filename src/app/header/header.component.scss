@@ -3,7 +3,7 @@ mat-toolbar {
   top: 0;
   z-index: 2;
   display: flex;
-  align-content: center;
+  flex-flow: row;
 }
 .mat-headline {
   margin-bottom: 0;
@@ -12,4 +12,18 @@ mat-toolbar {
   /* The padding is to enlarge the clickable area; without it the element's height is considerably less than the mat-toolbar height */
   padding: 12px 0;
   display: flex;
+}
+.back {
+  padding: 2px 6px;
+}
+@media (max-width: 599px) {
+  .back {
+    padding: 4px 2px;
+  }
+  button {
+    padding: 0;
+  }
+  mat-toolbar {
+    padding: 0 4px;
+  }
 }
