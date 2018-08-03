@@ -54,21 +54,11 @@ export class IexChartComponent implements OnChanges {
 
   /* Adjust chart width on window resize */
   resizeTimeout: any;
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    // ignore resize events as long as an actualResizeHandler execution is in the queue
-    if (!this.resizeTimeout) {
-      this.resizeTimeout = setTimeout(() => {
-        this.resizeTimeout = undefined;
-        actualResizeHandler();
-        // The actualResizeHandler will execute at a rate of 3fps
-      }, 333);
-    }
-    const actualResizeHandler = () => {
-      // First delete previous svg element if any, so chartContainer can adjust its width (by css flex) to the new window size. (This has happened after the setTimeout.) Otherwise the chartContainer' width will determined by the previous svg width and will suddenly change on clicking another tab in the IexWidgetComponent or lead to incorrect sizing in the IexPageComponent. 
-      select(this.svg.nativeElement).select('.created-chart').remove();
-      setTimeout(() => this.createChart());
-    }
+  @HostListener('window:orientationchange', ['$event'])
+  onOrientationChange(event: any) {
+    // First delete previous svg element if any, so chartContainer can adjust its width (by css flex) to the new window size. (This has happened after the setTimeout.) Otherwise the chartContainer' width will determined by the previous svg width and will suddenly change on clicking another tab in the IexWidgetComponent or lead to incorrect sizing in the IexPageComponent. 
+    select(this.svg.nativeElement).select('.created-chart').remove();
+    setTimeout(() => this.createChart());
   }
 
   ngOnChanges() {
@@ -83,7 +73,7 @@ export class IexChartComponent implements OnChanges {
       .attr('class', 'created-chart');
     const svgNode = select('svg').node() as SVGElement;
     // In Firefox svgNode.clientWidth and svgNode.clientHeight are 0. Therefore we use getBoundingClientRect().
-    const boundingRect = svgNode.getBoundingClientRect();    
+    const boundingRect = svgNode.getBoundingClientRect();
     const chartWidth = boundingRect.width - this.margin.left - this.margin.right;
     const chartHeight = boundingRect.height - this.margin.top - this.margin.bottom;
 
