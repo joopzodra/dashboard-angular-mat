@@ -9,3 +9,7 @@
   opacity: 0.1;
   shape-rendering: crispEdges;
 }
+/* Stroke color is set in styles/dashboard-md-theme to a theme color. But without giving stroke a value here, Firefox doesn't show the path in unit tests and tests will fail. */
+path {
+  stroke: #000;
+}
