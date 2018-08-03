@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { AppMaterialModule } from '../../../../app.material-module';
 import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing'
 
 import { asyncData, asyncError } from '../../../../testing/async-observable-helpers';
 import { OpenweathermapWidgetComponent } from './openweathermap-widget.component';
@@ -19,7 +20,7 @@ describe('OpenweathermapWidgetComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule, BrowserAnimationsModule],
+      imports: [AppMaterialModule, BrowserAnimationsModule, RouterTestingModule],
       declarations: [OpenweathermapWidgetComponent],
       providers: [{ provide: OpenweathermapDataService, useClass: MockOpenweathermapDataService }]
     });
