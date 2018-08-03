@@ -27,7 +27,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Safari'],
+    browsers: ['Safari', 'Firefox', 'Chrome'],
+    // browsers: ['Safari']
     singleRun: false
   });
 };
