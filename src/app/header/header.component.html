@@ -6,5 +6,5 @@
     <div [ngStyle]="headerNameStyle" >Dashboard demo</div>
     <div [ngStyle]="headerDateStyle">{{ day }} {{ month }} {{ year }}</div>
   </div>
-  <button mat-icon-button="" *ngIf="!mediaLarge" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+  <button mat-icon-button class="menu-button" *ngIf="!mediaLarge" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
 </mat-toolbar>

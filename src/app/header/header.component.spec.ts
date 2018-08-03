@@ -48,12 +48,12 @@ describe('HeaderComponent', () => {
     expect(button).toBeDefined();
     (<any>breakpointService.breakpoints$).next({ tablet: true, medium: true, large: true });
     fixture.detectChanges();
-    button = headerEl.querySelector('button');
+    button = headerEl.querySelector('.menu-button');
     expect(button).toBeNull();
   });
 
   it('clicking the nav button emits a toggle sidenav event', () => {
-    const buttonDe = fixture.debugElement.query(By.css('button'));
+    const buttonDe = fixture.debugElement.query(By.css('.menu-button'));
     component.toggleEvent.subscribe((ev: boolean) => {
       expect(ev).toBeTruthy();
     })
