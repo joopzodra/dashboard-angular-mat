@@ -26,7 +26,7 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
     protected location: Location,
     protected activatedRoute: ActivatedRoute,
     protected titleService: Title
-    ) { }
+  ) { }
 
   ngOnInit() {
     const title = this.activatedRoute.snapshot.data['title'];
@@ -71,12 +71,7 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
         this.selectedItem = undefined;
       } else {
         this.selectedItem = item;
-        // Using setTimeout to get element's offsetTop when it is fully displayed.
-        setTimeout(() => {
-          const elRef = this.itemsList.find(item => item.nativeElement.id === 'selected-item');
-          const el = (<ElementRef<any>>elRef).nativeElement;
-          window.scrollTo({top: el.offsetTop , behavior: 'auto'})
-        });
+        this.scrollToSelectedItem();
       }
     }
     else {
@@ -85,14 +80,26 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  scrollToSelectedItem() {
+    // Using setTimeout to get element's offsetTop when it is fully displayed.
+    setTimeout(() => {
+      const elRef = this.itemsList.find(item => item.nativeElement.id === 'selected-item');
+      const el = (<ElementRef<any>>elRef).nativeElement;
+      window.scrollTo({ top: el.offsetTop, behavior: 'auto' })
+    });
+  }
+
   afterNavigation() {
     // If the url which navigated to this component contains a query param, replace the url by an url without query param.
     const urlFragments = this.location.path().split('?');
     const itemIndexQueryParam = urlFragments[1];
     if (itemIndexQueryParam) {
       const itemIndex = +itemIndexQueryParam.split('=')[1];
-      this.selectedItem = this.items[itemIndex];
+      this.selectedItem = this.items[itemIndex];      
       this.location.replaceState(urlFragments[0]);
+      if (this.columns === 1) {
+        this.scrollToSelectedItem();
+      }
     }
   }
 }
