@@ -57,7 +57,7 @@ describe('NosNewsWidgetComponent', () => {
       const title = item1.querySelector('h3');
       const trailText = item1.querySelector('span');
       expect((<HTMLHeadingElement>title).textContent).toBe('stub title');
-      expect((<HTMLElement>trailText).textContent).toBe('stub trail text');
+      expect((<HTMLElement>trailText).textContent).toBe('stub trail text …');
     });
   }));
 
