@@ -1,9 +1,17 @@
+mat-card {
+  padding-bottom: 8px;
+}
+
 mat-card-title {
   display: flex;
   justify-content: space-between;
   padding: 4px 8px;
   align-items: center;
 }
+mat-form-field{
+  margin-top: -.75em;
+}
+
 .logo {
   width: 140px;
 }
@@ -60,6 +68,7 @@ mat-card-title {
     width: 30px;
   }
 }
-mat-form-field{
-  margin-top: -.75em;
+
+.button-container {
+  text-align: right;
 }

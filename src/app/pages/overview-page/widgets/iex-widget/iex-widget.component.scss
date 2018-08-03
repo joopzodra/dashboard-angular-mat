@@ -1,3 +1,6 @@
+mat-card {
+  padding-bottom: 8px;
+}
 mat-card-title {
   display: flex;
   justify-content: space-between;
@@ -43,4 +46,7 @@ mat-card-title {
 }
 .mat-headline {
   margin-bottom: 0;
+}
+.button-container {
+  text-align: right;
 }

@@ -38,7 +38,7 @@ export class IexWidgetComponent implements OnInit {
       )
   }
 
-  navigate(i: any) {
+  navigate(i?: any) {
     let navigationExtras: NavigationExtras = {
       queryParams: { 'item-index': i },
     };

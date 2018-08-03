@@ -24,6 +24,7 @@ export class GuardianNewsWidgetComponent extends NewsWidgetComponent {
   logoAlt = 'logo The Guardian';
   logoWidth = '80px';
   logoHeight = '30px';
+  buttonText = 'Meer tech nieuws';
 
   constructor(protected newsService: GuardianNewsService, protected router: Router) {
     super(newsService, router);

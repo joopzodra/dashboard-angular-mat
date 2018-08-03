@@ -9,11 +9,14 @@
         <h3 class="mat-h3 bold">{{item.title}}</h3>
         <div class="mat-body-1">
           <img class="thumbnail" [src]="item.thumbnail" alt="nieuwsfoto">
-          <span>{{item.trailText}}</span>
+          <span>{{item.trailText}} &hellip;</span>
         </div>
         <mat-divider *ngIf="!last"></mat-divider>
       </li>
     </ul>
     <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
   </mat-card-content>
+  <div class="button-container" *ngIf="!errorMessage">
+    <button mat-raised-button (click)="navigate()">{{buttonText}}</button>
+  </div>
 </mat-card>

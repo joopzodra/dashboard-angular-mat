@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of, Observable, Subscription } from 'rxjs';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { Router } from '@angular/router';
+
 import { environment } from '../../../../../environments/environment'
 import { OpenweathermapDataService } from '../../../../services/openweathermap-data/openweathermap-data.service';
 import { OpenweathermapHelpersService } from '../../../../services/openweathermap-helpers/openweathermap-helpers.service';
@@ -24,7 +26,7 @@ export class OpenweathermapWidgetComponent implements OnInit {
   errorMessage = '';
   cityNames$: Observable<string[]> = of([]);
 
-  constructor(private openweathermapDataService: OpenweathermapDataService, private openweathermapHelpersService: OpenweathermapHelpersService) { }
+  constructor(private openweathermapDataService: OpenweathermapDataService, private openweathermapHelpersService: OpenweathermapHelpersService, private router: Router) { }
 
   ngOnInit() {
     let city = 'utrecht';
@@ -65,7 +67,11 @@ export class OpenweathermapWidgetComponent implements OnInit {
     return this.openweathermapHelpersService.windDirection(degree);
   }
 
-  stopEventPropagation(event: Event){
+  stopEventPropagation(event: Event) {
     event.stopPropagation();
+  }
+
+  navigate() {
+    this.router.navigate(['/paginas/weer']);
   }
 }

@@ -24,12 +24,13 @@ export class NosNewsWidgetComponent extends NewsWidgetComponent {
   logoAlt = 'NOS logo';
   logoWidth = '50px';
   logoHeight = '18px';
+  buttonText = 'Meer nieuws';
 
   constructor(protected newsService: NosNewsService, protected router: Router) {
     super(newsService, router);
   }
 
-  navigate(i: number) {
+  navigate(i?: number) {
     let navigationExtras: NavigationExtras = {
       queryParams: { 'item-index': i },
     };
