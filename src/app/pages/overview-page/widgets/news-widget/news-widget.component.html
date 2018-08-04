@@ -5,13 +5,15 @@
   </mat-card-title>
   <mat-card-content>
     <ul class="ul">
-      <li *ngFor="let item of items$ | async; let i = index" (click)="navigate(i)">
-        <h3 class="mat-h3 bold">{{item.title}}</h3>
-        <div class="mat-body-1">
-          <img class="thumbnail" [src]="item.thumbnail" alt="nieuwsfoto">
-          <span>{{item.trailText}} &hellip;</span>
-        </div>
-        <mat-divider *ngIf="!last"></mat-divider>
+      <li *ngFor="let item of items$ | async; let i = index">
+        <a [routerLink]="routerLink" [queryParams]="{'itemindex': i}">
+          <h3 class="mat-h3 bold">{{item.title}}</h3>
+          <div class="mat-body-1">
+            <img class="thumbnail" [src]="item.thumbnail" alt="nieuwsfoto">
+            <span>{{item.trailText}} &hellip;</span>
+          </div>
+          <mat-divider *ngIf="!last"></mat-divider>
+        </a>
       </li>
     </ul>
     <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>

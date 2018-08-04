@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
 
 import { NosNewsService } from '../../../../services/nos-news/nos-news.service';
 import { NewsWidgetComponent } from '../news-widget/news-widget.component';
@@ -25,15 +24,10 @@ export class NosNewsWidgetComponent extends NewsWidgetComponent {
   logoWidth = '50px';
   logoHeight = '18px';
   buttonText = 'Meer nieuws';
+  routerLink = '/paginas/nieuws';
 
-  constructor(protected newsService: NosNewsService, protected router: Router) {
-    super(newsService, router);
+  constructor(protected newsService: NosNewsService) {
+    super(newsService);
   }
 
-  navigate(i?: number) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'item-index': i },
-    };
-    this.router.navigate(['/paginas/nieuws'], navigationExtras);
-  }
 }

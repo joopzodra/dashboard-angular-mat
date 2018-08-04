@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
 
 import { GuardianNewsService } from '../../../../services/guardian-news/guardian-news.service';
 import { NewsWidgetComponent } from '../news-widget/news-widget.component';
@@ -25,15 +24,10 @@ export class GuardianNewsWidgetComponent extends NewsWidgetComponent {
   logoWidth = '80px';
   logoHeight = '30px';
   buttonText = 'Meer tech nieuws';
+  routerLink = '/paginas/tech-news';
 
-  constructor(protected newsService: GuardianNewsService, protected router: Router) {
-    super(newsService, router);
+  constructor(protected newsService: GuardianNewsService) {
+    super(newsService);
   }
 
-  navigate(i: number) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'item-index': i },
-    };
-    this.router.navigate(['/paginas/tech-news'], navigationExtras);
-  }
 }

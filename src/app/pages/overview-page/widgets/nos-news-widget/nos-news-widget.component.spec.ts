@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppMaterialModule } from '../../../../app.material-module';
 import { asyncData, asyncError } from '../../../../testing/async-observable-helpers';
@@ -12,7 +12,6 @@ describe('NosNewsWidgetComponent', () => {
   let fixture: ComponentFixture<NosNewsWidgetComponent>;
   let el: HTMLElement;
   let nosNewsService: jasmine.SpyObj<{}>;
-  let routerSpy: jasmine.SpyObj<{}>;
 
   const newsItem: NewsItem = {
     title: 'stub title',
@@ -24,14 +23,12 @@ describe('NosNewsWidgetComponent', () => {
 
   beforeEach(() => {
     nosNewsService = jasmine.createSpyObj('NosNewsService', ['getWidgetNews']);
-    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     TestBed.configureTestingModule({
       declarations: [NosNewsWidgetComponent],
-      imports: [AppMaterialModule],
+      imports: [AppMaterialModule, RouterTestingModule],
       providers: [
         { provide: NosNewsService, useValue: nosNewsService },
-        { provide: Router, useValue: routerSpy }
       ]
     });
 

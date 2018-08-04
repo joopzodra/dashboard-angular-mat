@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 
 /*
  * The DashboardComponent is the host of several widget components. In the navigation it is called Overview.
@@ -15,7 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class OverviewPageComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) { }
+  constructor(private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     const title = this.activatedRoute.snapshot.data['title'];
@@ -24,7 +23,4 @@ export class OverviewPageComponent implements OnInit {
     }
   }
 
-  navigateTo(url: string) {
-    this.router.navigateByUrl(url);
-  }
 }

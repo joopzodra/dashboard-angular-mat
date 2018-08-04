@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMaterialModule } from '../../app.material-module';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { OverviewPageComponent } from './overview-page.component';
@@ -20,7 +19,6 @@ describe('OverviewPageComponent', () => {
   const stubActivatedRoute: any = {
     snapshot: { data: 'test' }
   };
-  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
   let component: OverviewPageComponent;
   let fixture: ComponentFixture<OverviewPageComponent>;
 
@@ -34,7 +32,6 @@ describe('OverviewPageComponent', () => {
         IexStubComponent
       ],
       providers: [
-        { provide: Router, useValue: routerSpy },
         { provide: ActivatedRoute, useValue: stubActivatedRoute }
       ]
     });
