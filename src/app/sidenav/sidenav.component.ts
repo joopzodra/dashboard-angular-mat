@@ -27,7 +27,7 @@ export class SidenavComponent {
   navItems = [
     { url: '/overzicht', label: 'Overzicht' },
     { url: '/paginas/nieuws', label: 'Nieuws' },
-    { url: '/paginas/tech-news', label: 'Tech news' },
+    { url: '/paginas/tech-nieuws', label: 'Tech nieuws' },
     { url: '/paginas/weer', label: 'Weer' },
     { url: 'paginas/tech-aandelen', label: 'Tech aandelen'}
   ]

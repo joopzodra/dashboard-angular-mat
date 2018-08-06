@@ -18,13 +18,13 @@ import { NewsWidgetComponent } from '../news-widget/news-widget.component';
 })
 export class GuardianNewsWidgetComponent extends NewsWidgetComponent {
 
-  widgetTitle = 'Tech news';
+  widgetTitle = 'Tech nieuws';
   logoSrc = 'assets/The_Guardian_2018.svg';
   logoAlt = 'logo The Guardian';
   logoWidth = '80px';
   logoHeight = '30px';
   buttonText = 'Meer tech nieuws';
-  routerLink = '/paginas/tech-news';
+  routerLink = '/paginas/tech-nieuws';
 
   constructor(protected newsService: GuardianNewsService) {
     super(newsService);
