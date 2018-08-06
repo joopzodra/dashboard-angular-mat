@@ -19,6 +19,6 @@
     <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
   </mat-card-content>
   <div class="button-container" *ngIf="!errorMessage">
-    <button mat-raised-button (click)="navigate()">{{buttonText}}</button>
+    <button mat-raised-button [routerLink]="routerLink">{{buttonText}}</button>
   </div>
 </mat-card>

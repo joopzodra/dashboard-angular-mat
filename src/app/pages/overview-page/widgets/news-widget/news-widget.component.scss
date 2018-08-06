@@ -10,9 +10,9 @@ mat-card-title {
 mat-card-content {
   margin-bottom: 8px;
 }
-/* The mat-divider is absolutely positioned and has a width: 100%. We want it to respect the width of the li-element, therefore add position: relative to the li. */
+
 li {
-  position: relative;
+  padding-top:8px;
 }
 .thumbnail {
   height: 50px;
@@ -29,6 +29,7 @@ li {
 }
 .button-container {
   text-align: right;
+  padding-top: 8px;
 }
 button {
   text-transform: uppercase;
