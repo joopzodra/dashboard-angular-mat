@@ -56,6 +56,9 @@
               <div class="mat-body-2">{{windDirection(item.current_weather.wind_direction)}}</div>
               <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.current_weather.wind_speed)}}</div>
             </div>
+            <div class="more-button-container">
+              <button *ngIf="selectedCity !== item" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">>></button>
+            </div>
           </div>
         </mat-card>
       </li>

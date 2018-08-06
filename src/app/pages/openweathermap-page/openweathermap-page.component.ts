@@ -49,7 +49,6 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
           'order': '2',
           'max-width': 'none',
           'margin-left': '16px',
-          'margin-top': '8px',
           // To prevent overflow (see: https://stackoverflow.com/questions/12022288/how-to-keep-a-flex-item-from-overflowing-due-to-its-text)
           'min-width': 0
         }

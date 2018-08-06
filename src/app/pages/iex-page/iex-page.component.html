@@ -51,6 +51,9 @@
           </div>
           <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">            
           </jr-iex-chart>
+          <div class="more-button-container">
+            <button *ngIf="iexSelectedCompanyDayItem !== company" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">>></button>
+          </div>
         </mat-card>
       </li>
     </ul>    

@@ -2,6 +2,7 @@
 .mat-card {
   padding-top: 0;
   padding-bottom: 0;
+  margin-bottom: 8px;
 }
 .mat-display-1 {
   margin-bottom: 0;
@@ -52,6 +53,10 @@
 }
 .company-header {
   padding-top: 8px;
+}
+.more-button-container {
+  padding-bottom: 8px;
+  text-align: right;
 }
 
 /* In selected-company-container */

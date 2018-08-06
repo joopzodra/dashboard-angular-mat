@@ -53,8 +53,7 @@ export class IexPageComponent implements OnInit {
         }
         this.selectedCompanyStyle = {
           'order': '2',
-          'margin-left': '16px',
-          'margin-top': '8px'
+          'margin-left': '16px'
         }
       } else {
         this.columns = 1;

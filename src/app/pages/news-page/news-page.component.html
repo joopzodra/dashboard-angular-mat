@@ -1,8 +1,8 @@
 <div class="page-header">
   <h1 class="mat-headline">{{pageTitle}}</h1>
   <a [href]="logoLink">
-  <img class="logo" [src]="logoSrc" [alt]="logoAlt" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
-</a>
+    <img class="logo" [src]="logoSrc" [alt]="logoAlt" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
+  </a>
 </div>
 
 <div class="page-content">
@@ -10,16 +10,18 @@
   <div id="all-items-container">
     <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
     <ul class="ul">
-      <li #newsItem *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " (click)="selectItem(item)" >
-        <div [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " [style.padding]="selectedItem === item ? '8px' : '0' ">
+      <li #newsItem *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " (click)="selectItem(item)">
+        <div [style.padding]="selectedItem === item ? '0 8px' : '0' ">
           <h3 class="mat-h3 bold">{{item.title}}</h3>
           <div class="item-body mat-body-1" [style.display]="(selectedItem === item && columns === 1) ? 'block' : 'flex'">
             <img [ngClass]="(selectedItem === item && columns === 1) ? thumbnailClass : 'thumbnail-small' " [src]="item.thumbnail" alt="nieuwsfoto">
+            <div>
             <span *ngIf="selectedItem !== item || columns === 2" >{{item.trailText}}</span>
             <span class="body-text" *ngIf="selectedItem === item && columns === 1" [innerHTML]="item.body"></span>
+            <button *ngIf="columns === 1 || selectedItem !== item" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">{{selectedItem === item ? '<<' : '>>'}}</button>
+          </div>
           </div>
         </div>
-        <mat-divider></mat-divider>
       </li>
     </ul>
   </div>

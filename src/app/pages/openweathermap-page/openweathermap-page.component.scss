@@ -2,6 +2,7 @@
 .mat-card {
   padding-top: 0;
   padding-bottom: 0;
+  margin-bottom: 8px;
 }
 .mat-display-1 {
   margin-bottom: 0;
@@ -62,6 +63,10 @@
 /* In all-cities-container */
 #all-cities-container mat-card {
   cursor: pointer;
+}
+.more-button-container {
+  margin: 0 0 8px 8px !important;
+  align-self: flex-end;
 }
 
 /* In selected-city-container */
