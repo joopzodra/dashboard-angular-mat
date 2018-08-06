@@ -21,6 +21,7 @@ export class NosNewsPageComponent extends NewsPageComponent {
   logoWidth = '50px';
   logoHeight = '18px';
   logoLink = 'https://nos.nl/';
+  lang = 'nl';
   
   constructor(
     protected breakpointsService: BreakpointsService,
