@@ -9,7 +9,7 @@
         <a [routerLink]="routerLink" [queryParams]="{'itemindex': i}">
           <h3 class="mat-h3 bold">{{item.title}}</h3>
           <div class="mat-body-1">
-            <img class="thumbnail" [src]="item.thumbnail" alt="nieuwsfoto">
+            <img class="thumbnail" [src]="item.thumbnail" alt="">
             <span>{{item.trailText}} &hellip;</span>
           </div>
           <mat-divider *ngIf="!last"></mat-divider>

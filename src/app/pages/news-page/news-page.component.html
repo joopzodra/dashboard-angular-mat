@@ -14,7 +14,7 @@
         <div [style.padding]="selectedItem === item ? '0 8px' : '0' ">
           <h3 class="mat-h3 bold">{{item.title}}</h3>
           <div class="item-body mat-body-1" [style.display]="(selectedItem === item && columns === 1) ? 'block' : 'flex'">
-            <img [ngClass]="(selectedItem === item && columns === 1) ? thumbnailClass : 'thumbnail-small' " [src]="item.thumbnail" alt="nieuwsfoto">
+            <img [ngClass]="(selectedItem === item && columns === 1) ? thumbnailClass : 'thumbnail-small' " [src]="item.thumbnail" alt="">
             <div>
             <span *ngIf="selectedItem !== item || columns === 2" >{{item.trailText}}</span>
             <span class="body-text" *ngIf="selectedItem === item && columns === 1" [innerHTML]="item.body"></span>
@@ -29,7 +29,7 @@
   <div id="selected-item-container" class="soft-background-theme-color" *ngIf="selectedItem && columns === 2">
     <h3 class="mat-h3 bold">{{selectedItem.title}}</h3>
     <div class="mat-body-1">
-      <img [src]="selectedItem.thumbnail" alt="nieuwsfoto">
+      <img [src]="selectedItem.thumbnail" alt="">
       <span class="body-text" [innerHTML]="selectedItem.body"></span>
     </div>
   </div>

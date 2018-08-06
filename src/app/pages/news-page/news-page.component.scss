@@ -1,4 +1,4 @@
-/* Changes in mat styles */
+x/* Changes in mat styles */
 .mat-h3, .mat-body-1 {
   margin-bottom: 8px;
 }
@@ -10,8 +10,12 @@
 .page-header {
   display: flex;
   align-items: center;
+  h1 {
+    margin-right: 16px; 
+  }
   img {
-    margin-left: 24px;
+    padding: 8px;
+    vertical-align: middle;
   }
 }
 .page-content {
@@ -21,6 +25,7 @@
 }
 #all-items-container, #selected-item-container {
   max-width: 600px;
+  flex: 1;
 }
 
 /* In selected-item-container */

@@ -17,7 +17,7 @@
           <div *ngIf="currentWeather.temp" class="mat-display-1">{{currentWeather.temp}}°</div>
         </div>
         <div class="icon-container">
-          <img class="icon" [src]="currentWeather?.icon" alt="icoontje van weertype">
+          <img class="icon" [src]="currentWeather?.icon" alt="">
         </div>
         <div class="wind">
           <div class="mat-body-2">wind</div>
@@ -30,7 +30,7 @@
           <div class="mat-body-1">{{forecastItem.time}}</div>
           <div class="temp mat-body-2" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
           <div>
-            <img class="icon" [src]="forecastItem.icon" alt="icoontje van weertype">
+            <img class="icon" [src]="forecastItem.icon" alt="">
           </div>
         </div>
       </div>

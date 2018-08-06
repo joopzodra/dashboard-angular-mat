@@ -12,8 +12,12 @@
 .page-header {
   display: flex;
   align-items: center;
+  h1 {
+    margin-right: 16px;
+  }
   img {
-    margin-left: 24px;
+    padding: 8px;
+    vertical-align: middle;
   }
 }
 .logo {

@@ -16,6 +16,13 @@ mat-card-title {
 .mat-h3, .mat-body-1 {
   margin-bottom: 8px;
 }
+.mat-display-1 {
+  margin-bottom: 0;
+}
+.mat-headline {
+  margin-bottom: 0;
+}
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -41,12 +48,7 @@ mat-card-title {
   display: flex;
   flex-flow: column;
 }
-.mat-display-1 {
-  margin-bottom: 0;
-}
-.mat-headline {
-  margin-bottom: 0;
-}
+
 .button-container {
   text-align: right;
 }
