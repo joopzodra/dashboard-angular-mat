@@ -1,7 +1,7 @@
 <mat-card class="news-widget-container">
 
   <mat-card-title class="accent">
-    <span>Weer</span>
+    <h2 class="mat-h2">Weer</h2>
     <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps">
   </mat-card-title>
 
@@ -35,8 +35,9 @@
         </div>
       </div>
 
-      <mat-form-field *ngIf="(cityNames$ | async)?.length" appearance="standard" color="accent" (click)="stopEventPropagation($event)">
+      <mat-form-field *ngIf="(cityNames$ | async)?.length" appearance="standard" color="accent" (click)="stopEventPropagation($event)" aria-label="kies een andere stad">
         <mat-select  #citySelect placeholder="kies andere stad" (selectionChange)="cityChanged($event)">
+          <mat-option aria-selected="true" >Test</mat-option>
           <mat-option *ngFor="let city of cityNames$ | async" [value]=city>{{city}}</mat-option>
         </mat-select>
       </mat-form-field>

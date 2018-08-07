@@ -1,7 +1,7 @@
 <mat-card class="iex-widget-container">
 
   <mat-card-title class="accent">
-    <span>Tech aandelen</span>
+    <h2 class="mat-h2">Tech aandelen</h2>
     <div class="logo-container">
       <div class="logo-text bold">IEX</div>
       <img class="logo-img" src="assets/iex.svg" alt="IEX-logo">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mat-caption">Laatste update: {{company.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd*)</div>
               </div>
-              <h3 class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</h3>
+              <div class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</div>
               <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">
               </jr-iex-chart>
               <div class="mat-caption">* Nederlandse tijd: {{company.quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }}</div>

@@ -1,7 +1,6 @@
 mat-card {
   padding-bottom: 8px;
 }
-
 mat-card-title {
   display: flex;
   justify-content: space-between;
@@ -10,6 +9,12 @@ mat-card-title {
 }
 mat-form-field{
   margin-top: -.75em;
+}
+.mat-h2 {
+  margin-bottom: 0;
+}
+.mat-display-1 {
+  margin-bottom: 0;
 }
 
 .logo {
@@ -41,10 +46,6 @@ mat-form-field{
   .wind-icon {
     width: 16px;
   }
-}
-
-.mat-display-1 {
-  margin-bottom: 0;
 }
 .icon-container {
   flex: 1 1 100%;

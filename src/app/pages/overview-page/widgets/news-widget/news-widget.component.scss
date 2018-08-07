@@ -10,26 +10,30 @@ mat-card-title {
 mat-card-content {
   margin-bottom: 8px;
 }
-
-li {
-  padding-top:8px;
-}
-.thumbnail {
-  height: 50px;
-  margin: 0 8px 0px 0;
+.mat-h2 {
+  margin-bottom: 0;
 }
 .mat-h3 {
   line-height: 1;
 }
 .mat-body-1 {
   display: flex;
+  cursor: pointer;
 }
 .mat-h3, .mat-body-1 {
   margin-bottom: 8px;
 }
+
+li {
+  padding-top: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.thumbnail {
+  height: 50px;
+  margin: 0 8px 0px 0;
+}
 .button-container {
   text-align: right;
-  padding-top: 8px;
 }
 button {
   text-transform: uppercase;

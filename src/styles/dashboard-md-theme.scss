@@ -31,6 +31,9 @@ $custom-typography: mat-typography-config(
   .soft-background-theme-color {
     background-color: mat-color($primary, 50);
   }
+  .mat-h2 {
+    font: 400 24px/32px Avenir, Helvetica, Arial, sans-serif;
+  }
 }
 
 @mixin widget-accent-theme($theme) {
