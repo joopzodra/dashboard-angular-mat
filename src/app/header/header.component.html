@@ -1,9 +1,10 @@
 <header>
   <mat-toolbar color="primary">
+    <button (click)="focusContent()" class="focus-content">Spring naar inhoud</button>
     <div class="back">
       <button (click)="toFrontendJr()" mat-raised-button color="primary">FrontendJR</button>
     </div>
-    <div class="mat-headline" (click)="navigateTo('/overzicht')" [style.cursor]="cursor" [ngStyle]="headerStyle">
+    <div class="mat-headline" [ngStyle]="headerStyle">
       <div [ngStyle]="headerNameStyle" >Dashboard demo</div>
       <div [ngStyle]="headerDateStyle">{{ day }} {{ month }} {{ year }}</div>
     </div>

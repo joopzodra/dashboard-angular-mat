@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { Router, NavigationEnd } from '@angular/router';
 
 import { Breakpoints } from '../models/breakpoints';
 import { BreakpointsService } from '../services/breakpoints/breakpoints.service';
@@ -31,18 +29,13 @@ export class HeaderComponent implements OnInit {
   headerStyle = {};
   headerNameStyle = {};
   headerDateStyle = {};
+  currentRoute = '';
 
-  constructor(private router: Router, private breakpointsService: BreakpointsService) {
+  constructor( private breakpointsService: BreakpointsService) {
     this.toggleEvent = new EventEmitter()
   }
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    )
-      .subscribe(event => {
-        this.cursor = (<NavigationEnd>event).url === '/overzicht' ? 'auto' : 'pointer';
-      });
 
     this.breakpointsService.breakpoints$.subscribe(value => {
       this.mediaSmall = !value.tablet;
@@ -78,12 +71,12 @@ export class HeaderComponent implements OnInit {
     this.toggleEvent.emit(true);
   }
 
-  navigateTo(url: string) {
-    this.router.navigateByUrl(url);
-  }
-
   toFrontendJr() {
     location.href = 'https://frontendJR.nl';
+  }
+
+  focusContent() {
+    (document.querySelector('#content') as HTMLElement).focus();
   }
 
 }
