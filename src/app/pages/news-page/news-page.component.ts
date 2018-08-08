@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'
@@ -10,15 +10,17 @@ import { BreakpointsService } from '../../services/breakpoints/breakpoints.servi
 import { NewsItem } from '../../models/news-item';
 import { NewsService } from '../../services/news/news.service';
 
-export abstract class NewsPageComponent implements OnInit, OnDestroy {
+export abstract class NewsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChildren('newsItem') itemsList!: QueryList<ElementRef>
+  @ViewChildren('newsItem') itemsList!: QueryList<ElementRef>;
+  @ViewChild('pageContent') pageContent!: ElementRef;
   items: NewsItem[] = [];
   errorMessage = '';
   breakpointsSubscription!: Subscription;
   selectedItem: NewsItem | undefined;
   thumbnailClass = 'thumbnail-medium';
   columns = 1;
+  activatedRouteParamsSubscription!: Subscription;
 
   constructor(
     protected breakpointsService: BreakpointsService,
@@ -54,11 +56,25 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
       )
       .subscribe((items: NewsItem[]) => {
         this.items = items;
-        this.afterNavigation();
+        const selectedItemIndex = this.activatedRoute.snapshot.queryParams.itemindex || 0;
+        this.selectItem(this.items[selectedItemIndex]);
       },
         (err: HttpErrorResponse) => {
           this.errorMessage = err.error;
         });
+
+    this.activatedRouteParamsSubscription = this.activatedRoute.queryParams.subscribe(queryParams => {
+      if (queryParams.itemindex) {
+        const selectedItem = this.items[+queryParams.itemindex];
+        this.selectItem(selectedItem);
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    (<HTMLElement>this.pageContent.nativeElement).addEventListener('focus', () => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
   }
 
   ngOnDestroy() {
@@ -89,17 +105,4 @@ export abstract class NewsPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  afterNavigation() {
-    // If the url which navigated to this component contains a query param, replace the url by an url without query param.
-    const urlFragments = this.location.path().split('?');
-    const itemIndexQueryParam = urlFragments[1];
-    if (itemIndexQueryParam) {
-      const itemIndex = +itemIndexQueryParam.split('=')[1];
-      this.selectedItem = this.items[itemIndex];      
-      this.location.replaceState(urlFragments[0]);
-      if (this.columns === 1) {
-        this.scrollToSelectedItem();
-      }
-    }
-  }
 }

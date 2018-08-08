@@ -10,6 +10,7 @@ import { GuardianNewsService } from '../../services/guardian-news/guardian-news.
 import { asyncData, asyncError } from '../../testing/async-observable-helpers';
 import { newsItemsArray } from '../../testing/stub-news-items';
 import { NewsItem } from '../../models/news-item';
+import { ReplaceH2Pipe } from '../../pipes/replace-h2.pipe';
 
 describe('GuardianNewsPageComponent', () => {
   let component: GuardianNewsPageComponent;
@@ -27,7 +28,7 @@ describe('GuardianNewsPageComponent', () => {
         // The RouterTestingModule is needed for the Location class, which is used in the component.
         RouterTestingModule
       ],
-      declarations: [GuardianNewsPageComponent],
+      declarations: [GuardianNewsPageComponent, ReplaceH2Pipe],
       providers: [
         { provide: GuardianNewsService, useValue: guardianNewsService }
       ]
@@ -81,6 +82,6 @@ describe('GuardianNewsPageComponent', () => {
       fixture.detectChanges();
       expect((<HTMLElement>selectedItem).textContent).toBe('title2');
     });
-  });  
+  });
 
 });

@@ -22,6 +22,7 @@ export class GuardianNewsPageComponent extends NewsPageComponent {
   logoHeight = '30px';
   logoLink = 'https://www.theguardian.com/uk/technology';
   lang = 'en';
+  routerLink = '/tech-nieuws';
   
   constructor(
     protected breakpointsService: BreakpointsService,

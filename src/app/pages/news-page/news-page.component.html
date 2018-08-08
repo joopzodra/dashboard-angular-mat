@@ -5,32 +5,34 @@
   </a>
 </div>
 
-<div class="page-content" [lang]="lang">
+<div #pageContent id="content" tabindex="0" class="page-content" [lang]="lang">
 
   <div id="all-items-container">
+    <h2 class="sr-only">Nieuwsberichten lijst</h2>
     <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
     <ul class="ul">
-      <li #newsItem *ngFor="let item of items" [id]="selectedItem === item ? 'selected-item' : '' " [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " (click)="selectItem(item)">
+      <li #newsItem *ngFor="let item of items; let i = index" [id]="selectedItem === item ? 'selected-item' : '' " [ngClass]="(selectedItem === item) ? 'soft-background-theme-color' : '' " (click)="selectItem(item)">
         <div [style.padding]="selectedItem === item ? '0 8px' : '0' ">
-          <h3 class="mat-h3 bold">{{item.title}}</h3>
+          <h3 class="mat-h3 bold" [id]="'heading-' + i"><a [routerLink]="routerLink" [queryParams]="{'itemindex': i}" (click)="$event.stopPropagation()">{{item.title}}</a></h3>
           <div class="item-body mat-body-1" [style.display]="(selectedItem === item && columns === 1) ? 'block' : 'flex'">
             <img [ngClass]="(selectedItem === item && columns === 1) ? thumbnailClass : 'thumbnail-small' " [src]="item.thumbnail" alt="">
             <div>
-            <span *ngIf="selectedItem !== item || columns === 2" >{{item.trailText}}</span>
-            <span class="body-text" *ngIf="selectedItem === item && columns === 1" [innerHTML]="item.body"></span>
-            <button *ngIf="columns === 1 || selectedItem !== item" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">{{selectedItem === item ? '<<' : '>>'}}</button>
-          </div>
+              <span *ngIf="selectedItem !== item || columns === 2" >{{item.trailText}}</span>
+              <span class="body-text" *ngIf="selectedItem === item && columns === 1" [innerHTML]="item.body" aria-live="polite"></span>
+              <button mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()" [attr.aria-labelledby]="'heading-' + i">{{columns === 1 && selectedItem === item ? '<<' : '>>'}}</button>
+            </div>
           </div>
         </div>
       </li>
     </ul>
   </div>
 
-  <div id="selected-item-container" class="soft-background-theme-color" *ngIf="selectedItem && columns === 2">
+  <div id="selected-item-container" #selectedItemCont class="soft-background-theme-color" *ngIf="selectedItem && columns === 2">
+    <h2 class="sr-only">Geselecteerd nieuwsbericht</h2>
     <h3 class="mat-h3 bold">{{selectedItem.title}}</h3>
-    <div class="mat-body-1">
+    <div class="mat-body-1" aria-live="polite">
       <img [src]="selectedItem.thumbnail" alt="">
-      <span class="body-text" [innerHTML]="selectedItem.body"></span>
+      <span class="body-text" [innerHTML]="selectedItem.body | replaceH2"></span>
     </div>
   </div>
 

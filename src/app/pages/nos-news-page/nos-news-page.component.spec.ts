@@ -10,6 +10,7 @@ import { NosNewsService } from '../../services/nos-news/nos-news.service';
 import { asyncData, asyncError } from '../../testing/async-observable-helpers';
 import { newsItemsArray } from '../../testing/stub-news-items';
 import { NewsItem } from '../../models/news-item';
+import { ReplaceH2Pipe } from '../../pipes/replace-h2.pipe';
 
 describe('NosNewsPageComponent', () => {
   let component: NosNewsPageComponent;
@@ -27,7 +28,7 @@ describe('NosNewsPageComponent', () => {
         // The RouterTestingModule is needed for the Location class, which is used in the component.
         RouterTestingModule
       ],
-      declarations: [NosNewsPageComponent],
+      declarations: [NosNewsPageComponent, ReplaceH2Pipe],
       providers: [{ provide: NosNewsService, useValue: nosNewsService }]
     });
   });
@@ -79,6 +80,6 @@ describe('NosNewsPageComponent', () => {
       fixture.detectChanges();
       expect((<HTMLElement>selectedItem).textContent).toBe('title2');
     });
-  }); 
+  });
 
 });
