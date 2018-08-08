@@ -19,6 +19,7 @@ import { NosNewsWidgetComponent } from './pages/overview-page/widgets/nos-news-w
 import { OpenweathermapWidgetComponent } from './pages/overview-page/widgets/openweathermap-widget/openweathermap-widget.component';
 import { IexWidgetComponent } from './pages/overview-page/widgets/iex-widget/iex-widget.component';
 import { DateIsoPipe } from './pipes/date-iso.pipe';
+import { ReplaceH2Pipe } from './pipes/replace-h2.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DateIsoPipe } from './pipes/date-iso.pipe';
     OpenweathermapWidgetComponent,
     IexWidgetComponent,
     DateIsoPipe,
+    ReplaceH2Pipe,
   ],
   imports: [
     BrowserModule,
