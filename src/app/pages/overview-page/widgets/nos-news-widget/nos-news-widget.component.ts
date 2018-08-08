@@ -24,7 +24,7 @@ export class NosNewsWidgetComponent extends NewsWidgetComponent {
   logoWidth = '50px';
   logoHeight = '18px';
   buttonText = 'Meer nieuws';
-  routerLink = '/paginas/nieuws';
+  routerLink = '/nieuws';
 
   constructor(protected newsService: NosNewsService) {
     super(newsService);

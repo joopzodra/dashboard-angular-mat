@@ -11,10 +11,10 @@ const titlePrefix = 'Dashboard demo | ';
 
 const routes: Routes = [
   { path: 'overzicht', component: OverviewPageComponent, data: {title: titlePrefix + 'Overzicht'} },
-  { path: 'paginas/nieuws', component: NosNewsPageComponent, data: {title: titlePrefix + 'Nieuws'} },
-  { path: 'paginas/tech-nieuws', component: GuardianNewsPageComponent, data: {title: titlePrefix + 'Tech nieuws'} },
-  { path: 'paginas/weer', component: OpenweathermapPageComponent, data: {title: titlePrefix + 'Weer'} },
-  { path: 'paginas/tech-aandelen', component: IexPageComponent, data: {title: titlePrefix + 'Tech aandelen'} },
+  { path: 'nieuws', component: NosNewsPageComponent, data: {title: titlePrefix + 'Nieuws'} },
+  { path: 'tech-nieuws', component: GuardianNewsPageComponent, data: {title: titlePrefix + 'Tech nieuws'} },
+  { path: 'weer', component: OpenweathermapPageComponent, data: {title: titlePrefix + 'Weer'} },
+  { path: 'tech-aandelen', component: IexPageComponent, data: {title: titlePrefix + 'Tech aandelen'} },
   { path: '**', redirectTo: 'overzicht' }
 ];
 

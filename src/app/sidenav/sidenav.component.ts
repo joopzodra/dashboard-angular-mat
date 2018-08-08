@@ -26,10 +26,10 @@ export class SidenavComponent {
 
   navItems = [
     { url: '/overzicht', label: 'Overzicht' },
-    { url: '/paginas/nieuws', label: 'Nieuws' },
-    { url: '/paginas/tech-nieuws', label: 'Tech nieuws' },
-    { url: '/paginas/weer', label: 'Weer' },
-    { url: 'paginas/tech-aandelen', label: 'Tech aandelen'}
+    { url: '/nieuws', label: 'Nieuws' },
+    { url: '/tech-nieuws', label: 'Tech nieuws' },
+    { url: '/weer', label: 'Weer' },
+    { url: '/tech-aandelen', label: 'Tech aandelen'}
   ]
 
   constructor(breakpointsService: BreakpointsService) {

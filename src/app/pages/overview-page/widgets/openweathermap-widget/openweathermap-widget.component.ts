@@ -72,6 +72,6 @@ export class OpenweathermapWidgetComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigate(['/paginas/weer']);
+    this.router.navigate(['/weer']);
   }
 }

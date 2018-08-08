@@ -42,6 +42,6 @@ export class IexWidgetComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: { 'item-index': i },
     };
-    this.router.navigate(['/paginas/tech-aandelen'], navigationExtras);
+    this.router.navigate(['/tech-aandelen'], navigationExtras);
   }
 }
