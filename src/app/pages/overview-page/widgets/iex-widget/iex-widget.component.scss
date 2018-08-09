@@ -1,11 +1,14 @@
 mat-card {
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 mat-card-title {
   display: flex;
   justify-content: space-between;
   padding: 4px 8px;
   align-items: center;
+}
+mat-tab-group {
+  min-height: 410px;
 }
 .mat-h2 {
   margin-bottom: 0;
@@ -51,4 +54,6 @@ mat-card-title {
 
 .button-container {
   text-align: right;
+  margin-bottom: 4px;
+  margin-right: 3px;
 }

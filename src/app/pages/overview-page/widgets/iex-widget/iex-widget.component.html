@@ -16,31 +16,27 @@
       <mat-tab-group color="accent">
         <mat-tab  *ngFor="let company of companyData | async" [label]="company.company">
           <ng-template matTabContent>
-            <div (click)="navigate(company.day.symbol)">
-              <div class="quote-info">
-                <div class="quote-info-top">
-                  <div class="quote-info-top-left">
-                    <div class="mat-headline company-symbol">{{company.day.symbol}}</div>
-                    <div class="mat-body-1 company-name">{{company.quote.company_name}}</div>
-                  </div>
-                  <div class="mat-display-1 quote-info-top-right" aria-hidden="true">$ {{company.quote.latest_price | number:'1.2-2':'nl'}}</div>
-                  <div class="sr-only">{{'dollar.'}}{{company.quote.latest_price | number:'1.2-2'}}</div>
+            <div class="quote-info">
+              <div class="quote-info-top">
+                <div class="quote-info-top-left">
+                  <div class="mat-headline company-symbol">{{company.day.symbol}}</div>
+                  <div class="mat-body-1 company-name">{{company.quote.company_name}}</div>
                 </div>
-                <div class="mat-caption">Laatste update: {{company.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd*)</div>
+                <div class="mat-display-1 quote-info-top-right" aria-hidden="true">$ {{company.quote.latest_price | number:'1.2-2':'nl'}}</div>
+                <div class="sr-only">{{'dollar.'}}{{company.quote.latest_price | number:'1.2-2'}}</div>
               </div>
-              <div aria-hidden="true" class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</div>
-              <jr-iex-chart aria-hidden="true" [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">
-              </jr-iex-chart>
-              <div class="mat-caption">* Nederlandse tijd: {{company.quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }}</div>
+              <div class="mat-caption">Laatste update: {{company.quote.latest_update.newYorkTimeIso | dateIso:"shortMonths":"noYear" }} (New Yorkse tijd*)</div>
+            </div>
+            <div aria-hidden="true" class="mat-body-1 iex-widget-chart-title">{{weekdays[company.quote.latest_update.weekday - 1]}} {{company.quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime"}}</div>
+            <jr-iex-chart aria-hidden="true" [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">
+            </jr-iex-chart>
+            <div class="mat-caption">* Nederlandse tijd: {{company.quote.latest_update.amsterdamTimeIso | dateIso:"shortMonths":"noYear" }}</div>
+            <div class="button-container">
+              <button mat-raised-button (click)="navigate(company.day.symbol)">MEER TECH AANDELEN</button>
             </div>
           </ng-template>
         </mat-tab>
       </mat-tab-group>
-
-      <div class="button-container">
-        <button mat-raised-button (click)="navigate()">MEER TECH AANDELEN</button>
-      </div>
-
     </ng-template>
 
   </mat-card-content>
