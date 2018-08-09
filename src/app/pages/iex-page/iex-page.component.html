@@ -1,6 +1,6 @@
 <div class="page-header" [style.display]="columns === 2 ? 'flex' : ''">
   <div class="page-title">
-    <h1 class="mat-headline">Tech aandelen</h1>
+    <h1 #pageContent id="content" tabindex="0" class="mat-headline">Tech aandelen</h1>
     <a class="logo-link" href="https://iextrading.com/">
       <div class="logo-container">
         <span class="logo-text bold mat-body-1">IEX</span>
@@ -15,12 +15,14 @@
 
   <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
 
-  <div *ngIf="iexSelectedCompanyLongtermItem" id="selected-company-container" [ngStyle]="selectedCompanyStyle">
+  <div *ngIf="iexSelectedCompanyLongtermItem" id="selected-company-container" [ngStyle]="selectedCompanyStyle" aria-hidden="true">
     <div *ngIf="columns === 2" class="mat-subheading-2">&nbsp;</div>
     <mat-card class="soft-background-theme-color">
-      <div class="mat-heading company-header">
-        <span class="company-symbol bold">{{iexSelectedCompanyDayItem.day.symbol}} </span>
-        <span class="company-name">– {{iexSelectedCompanyDayItem.company}}</span>
+      <div class="company-header">
+        <h3 class="mat-h3">
+          <span class="bold">{{iexSelectedCompanyDayItem.day.symbol}}</span>
+          <span class="company-name"> – {{iexSelectedCompanyDayItem.company}}</span>
+        </h3> 
       </div>
       <div class="chart-container-selected">
         <div class="mat-body-1 selected-subheading">{{iexDayItems[0].quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime":"day"}}</div>
@@ -41,18 +43,23 @@
   </div>
 
   <div *ngIf="iexDayItems.length" id="all-companies-container">
+    <h2 class="sr-only">Lijst met bedrijven en de koers van het aandeel.</h2>
     <div class="mat-subheading-2">{{iexDayItems[0].quote.latest_update.newYorkTimeIso | dateIso:"noYear":"noTime":"day"}}</div>
     <ul class="ul">
       <li *ngFor="let company of iexDayItems" (click)="selectCompany(company.day.symbol)">
         <mat-card [ngClass]="(iexSelectedCompanyDayItem === company) ? 'soft-background-theme-color' : '' ">
           <div class="company-header">
-            <span class="company-symbol bold">{{company.day.symbol}} </span>
-            <span class="company-name">– {{company.company}}</span>
+            <h3 class="mat-h3">
+              <span class="bold">{{company.day.symbol}}</span>
+              <span class="company-name"> – {{company.company}}</span>
+            </h3>            
+            <div class="quote-info-top-right" aria-hidden="true">$ {{company.quote.latest_price | number:'1.2-2':'nl'}}</div>
           </div>
-          <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight">            
+          <div class="sr-only">{{'dollar.'}}{{company.quote.latest_price | number:'1.2-2'}}</div>
+          <jr-iex-chart [iexItem]="company" [period]="'day'" [chartHeight]="chartHeight" aria-hidden="true">            
           </jr-iex-chart>
-          <div class="more-button-container">
-            <button *ngIf="iexSelectedCompanyDayItem !== company" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">>></button>
+          <div class="more-button-container" aria-hidden="true" [class.transparent]="iexSelectedCompanyDayItem === company">
+            <button mat-raised-button class="more-button" (click)="selectCompany(company.day.symbol); $event.stopPropagation()">>></button>
           </div>
         </mat-card>
       </li>

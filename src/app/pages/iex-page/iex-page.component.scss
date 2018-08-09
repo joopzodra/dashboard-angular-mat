@@ -46,17 +46,25 @@
   max-width: 600px;
   margin-bottom: 16px;
 }
-
+.company-header {
+  padding-top: 16px;
+}
 /* In all-companies-container */
 #all-companies-container mat-card {
   cursor: pointer;
 }
-.company-header {
-  padding-top: 8px;
+#all-companies-container .company-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 .more-button-container {
   padding-bottom: 8px;
   text-align: right;
+
+  &.transparent {
+    opacity: 0.4;
+  }
 }
 
 /* In selected-company-container */
