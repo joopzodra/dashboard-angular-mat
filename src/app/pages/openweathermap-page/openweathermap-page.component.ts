@@ -83,11 +83,13 @@ export class OpenweathermapPageComponent implements OnInit, AfterViewInit, OnDes
       });
   }
 
+// Currently unnecessary since routerlink with fragment doesn't scroll to anchor. However, this will be changed in router v6.1. See https://medium.com/lacolaco-blog/introduce-router-scroller-in-angular-v6-1-ef34278461e9.
   ngAfterViewInit() {
     (<HTMLElement>this.pageContent.nativeElement).addEventListener('focus', () => {
       window.scrollTo({ top: 0, behavior: 'auto' });
     });
   }
+
   ngOnDestroy() {
     this.breakpointsSubscription.unsubscribe();
   }
