@@ -13,7 +13,7 @@ mat-toolbar {
   padding: 12px 0;
   display: flex;
 }
-button.focus-content {
+a.jump-to-content {
   position: absolute;
   top: -1000px;
   left: -1000px;
@@ -27,9 +27,9 @@ button.focus-content {
   background-color: #fff;
   font-size: 1em;
 }
-button.focus-content:active,
-button.focus-content:focus,
-button.focus-content:hover {
+a.jump-to-content:active,
+a.jump-to-content:focus,
+a.jump-to-content:hover {
   left: 0;
   top: 0;
   width: auto;

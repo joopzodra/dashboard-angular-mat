@@ -1,13 +1,13 @@
 <header>
   <mat-toolbar color="primary">
-    <button (click)="focusContent()" class="focus-content">Spring naar inhoud</button>
-    <div class="back">
-      <button (click)="toFrontendJr()" mat-raised-button color="primary">FrontendJR</button>
-    </div>
-    <div class="mat-headline" [ngStyle]="headerStyle">
-      <div [ngStyle]="headerNameStyle" >Dashboard demo</div>
-      <div [ngStyle]="headerDateStyle">{{ day }} {{ month }} {{ year }}</div>
-    </div>
-    <button mat-icon-button class="menu-button" *ngIf="!mediaLarge" (click)="toggleSidenav()" aria-label="menu"><mat-icon>menu</mat-icon></button>
-  </mat-toolbar>
+   <a [routerLink]="currentRoute" fragment="content" (click)="focusContent()" class="jump-to-content">Spring naar inhoud</a>
+   <div class="back">
+    <button (click)="toFrontendJr()" mat-raised-button color="primary">FrontendJR</button>
+  </div>
+  <div class="mat-headline" [ngStyle]="headerStyle">
+    <div [ngStyle]="headerNameStyle" >Dashboard demo</div>
+    <div [ngStyle]="headerDateStyle">{{ day }} {{ month }} {{ year }}</div>
+  </div>
+  <button mat-icon-button class="menu-button" *ngIf="!mediaLarge" (click)="toggleSidenav()" aria-label="menu"><mat-icon>menu</mat-icon></button>
+</mat-toolbar>
 </header>

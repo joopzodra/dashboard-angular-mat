@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
+import {filter } from 'rxjs/operators';
 
 import { Breakpoints } from '../models/breakpoints';
 import { BreakpointsService } from '../services/breakpoints/breakpoints.service';
@@ -31,7 +33,7 @@ export class HeaderComponent implements OnInit {
   headerDateStyle = {};
   currentRoute = '';
 
-  constructor( private breakpointsService: BreakpointsService) {
+  constructor( private breakpointsService: BreakpointsService, private router: Router) {
     this.toggleEvent = new EventEmitter()
   }
 
@@ -65,6 +67,14 @@ export class HeaderComponent implements OnInit {
         };
       }
     });
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+      )
+    .subscribe(event => {
+       const url = (<NavigationEnd>event).url.split('#')[0];
+       this.currentRoute = url;
+    })
   }
 
   toggleSidenav() {
