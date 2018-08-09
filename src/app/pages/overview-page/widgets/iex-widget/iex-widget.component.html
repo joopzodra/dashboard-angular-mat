@@ -13,7 +13,7 @@
     <div class="error-message" *ngIf="errorMessage else iexContent">{{errorMessage}}</div>
 
     <ng-template #iexContent>
-      <mat-tab-group (click)="$event.stopPropagation()" color="accent">
+      <mat-tab-group color="accent">
         <mat-tab  *ngFor="let company of companyData | async" [label]="company.company">
           <ng-template matTabContent>
             <div (click)="navigate(company.day.symbol)">

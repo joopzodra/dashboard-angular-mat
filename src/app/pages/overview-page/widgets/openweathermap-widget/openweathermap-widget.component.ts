@@ -67,10 +67,6 @@ export class OpenweathermapWidgetComponent implements OnInit {
     return this.openweathermapHelpersService.windDirection(degree);
   }
 
-  stopEventPropagation(event: Event) {
-    event.stopPropagation();
-  }
-
   navigate() {
     this.router.navigate(['/weer']);
   }
