@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav [mode]="mode" [fixedInViewport]=true [fixedTopGap]="topGap">
-    <mat-nav-list>
+    <mat-nav-list aria-label="menu">
       <a mat-list-item *ngFor="let nav of navItems" (click)="close()" routerLinkActive='active' [routerLink]="nav.url">{{nav.label}}</a>
     </mat-nav-list>
   </mat-sidenav>
