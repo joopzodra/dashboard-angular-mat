@@ -22,3 +22,12 @@ body { margin: 0;
   line-height: normal !important;
   margin-left: 8px !important;
 }
+/* Invisible for users, screenreader only */
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
