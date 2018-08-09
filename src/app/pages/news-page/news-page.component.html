@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h1 class="mat-headline">{{pageTitle}}</h1>
+  <h1 #pageContent id="content" tabindex="0" class="mat-headline">{{pageTitle}}</h1>
   <a [href]="logoLink">
     <img class="logo" [src]="logoSrc" [alt]="logoAlt" [ngStyle]="{'height': logoHeight, 'width': logoWidth}">
   </a>
 </div>
 
-<div #pageContent id="content" tabindex="0" class="page-content" [lang]="lang">
+<div class="page-content" [lang]="lang">
 
   <div id="all-items-container">
     <h2 class="sr-only">Nieuwsberichten lijst</h2>
