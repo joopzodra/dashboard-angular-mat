@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1 class="mat-headline">Weer</h1>
+  <h1 #pageContent id="content" tabindex="0" class="mat-headline">Weer</h1>
   <a href="https://openweathermap.org/">
     <img class="logo" src="assets/OpenWeatherMap_orange.svg" alt="logo OpenWeatherMaps">
   </a>
@@ -9,7 +9,36 @@
 
   <div class="error-message mat-body-1" *ngIf="errorMessage">{{errorMessage}}</div>
 
+  <div id="all-cities-container">
+    <h2 class="sr-only">Lijst met steden en het huidige weer aldaar.</h2>
+    <ul class="ul">
+      <li *ngFor="let item of items" [id]="selectedCity === item ? 'selected-item' : '' " (click)="selectItem(item)">
+        <mat-card [ngClass]="selectedCity === item ? 'soft-background-accent-theme-color' : '' " >
+          <div class="current-weather">
+            <div class="text-info">
+              <h3 class="mat-h2 city-name">{{item.current_weather.city}}</h3>
+              <div class="mat-body-2 description">{{item.current_weather.description}}</div>
+              <div *ngIf="item.current_weather.temp" class="mat-display-1">{{item.current_weather.temp}}°</div>
+            </div>
+            <div class="icon-container">
+              <img class="icon" [src]="item.current_weather?.icon" alt="">
+            </div>
+            <div class="wind">
+              <div class="mat-body-2">wind</div>
+              <div class="mat-body-2">{{windDirection(item.current_weather.wind_direction)}}</div>
+              <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.current_weather.wind_speed)}}</div>
+            </div>
+            <div class="more-button-container">
+              <button mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()" [attr.aria-label]="'selecteer ' + item.current_weather.city">>></button>
+            </div>
+          </div>
+        </mat-card>
+      </li>
+    </ul>    
+  </div>
+
   <div *ngIf="selectedCity" id="selected-city-container" [ngStyle]="selectedCityStyle">
+    <h2 class="sr-only">Geselecteerde stad: {{selectedCity.current_weather.city}}, het weer op dit moment en vooruitzicht voor de komende twee dagen</h2>
     <mat-card class="soft-background-accent-theme-color">
       <div class="current-weather">
         <div class="text-info">
@@ -26,43 +55,16 @@
           <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(selectedCity.current_weather.wind_speed)}}</div>
         </div>
       </div>
-      <div class="forecast">
-        <div class="forecast-item" *ngFor="let forecastItem of selectedCity.forecast.data" [class.forecast-item-day-border]="forecastItem.time === '2u'">
+      <ul class="forecast" aria-label="voorspelling voor de komende twee dagen">
+        <li class="forecast-item" *ngFor="let forecastItem of selectedCity.forecast.data" [class.forecast-item-day-border]="forecastItem.time === '2u'">
           <div class="mat-body-1">{{forecastItem.time}}</div>
           <div class="temp mat-body-2" *ngIf="forecastItem.temp">{{forecastItem.temp}}°</div>
           <div>
             <img class="icon" [src]="forecastItem.icon" alt="">
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </mat-card>
-  </div>
-
-  <div id="all-cities-container">
-    <ul class="ul">
-      <li *ngFor="let item of items" [id]="selectedCity === item ? 'selected-item' : '' " (click)="selectItem(item)">
-        <mat-card [ngClass]="selectedCity === item ? 'soft-background-accent-theme-color' : '' " >
-          <div class="current-weather">
-            <div class="text-info">
-              <div class="mat-h2 city-name">{{item.current_weather.city}}</div>
-              <div class="mat-body-2 description">{{item.current_weather.description}}</div>
-              <div *ngIf="item.current_weather.temp" class="mat-display-1">{{item.current_weather.temp}}°</div>
-            </div>
-            <div class="icon-container">
-              <img class="icon" [src]="item.current_weather?.icon" alt="">
-            </div>
-            <div class="wind">
-              <div class="mat-body-2">wind</div>
-              <div class="mat-body-2">{{windDirection(item.current_weather.wind_direction)}}</div>
-              <div class=" mat-h2 wind-speed">{{windSpeedBeaufort(item.current_weather.wind_speed)}}</div>
-            </div>
-            <div class="more-button-container">
-              <button *ngIf="selectedCity !== item" mat-raised-button class="more-button" (click)="selectItem(item); $event.stopPropagation()">>></button>
-            </div>
-          </div>
-        </mat-card>
-      </li>
-    </ul>    
   </div>
 
 </div>

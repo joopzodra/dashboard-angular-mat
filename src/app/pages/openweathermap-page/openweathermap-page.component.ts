@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ElementRef  } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -14,8 +14,9 @@ import { OpenweathermapHelpersService } from '../../services/openweathermap-help
   templateUrl: './openweathermap-page.component.html',
   styleUrls: ['./openweathermap-page.component.scss']
 })
-export class OpenweathermapPageComponent implements OnInit, OnDestroy {
+export class OpenweathermapPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  @ViewChild('pageContent') pageContent!: ElementRef;
   columns = 1;
   breakpointsSubscription!: Subscription;
   items: OpenweathermapItem[] = [];
@@ -46,7 +47,6 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
           'justify-content': 'center'
         }
         this.selectedCityStyle = {
-          'order': '2',
           'max-width': 'none',
           'margin-left': '16px',
           // To prevent overflow (see: https://stackoverflow.com/questions/12022288/how-to-keep-a-flex-item-from-overflowing-due-to-its-text)
@@ -58,7 +58,9 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
           'max-width': '600px',
           'margin': '0 auto'
         };
-        this.selectedCityStyle = {};
+        this.selectedCityStyle = {
+          'order': '-1'
+        };
       }
     });
 
@@ -81,6 +83,11 @@ export class OpenweathermapPageComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit() {
+    (<HTMLElement>this.pageContent.nativeElement).addEventListener('focus', () => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
+  }
   ngOnDestroy() {
     this.breakpointsSubscription.unsubscribe();
   }
