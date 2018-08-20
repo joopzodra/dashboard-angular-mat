@@ -4,6 +4,9 @@ This dashboard gives an overview in widgets of news (Dutch), tech news, the weat
 
 Also there are pages for reading full news items, full tech news items, more weather information and more stockexchange data.
 
+## Accessability
+The app can be navigated with the keyboard. It's also adapted to screenreaders.
+
 ## Angular Material
 The app is build with Angular and Angular Material.
 
